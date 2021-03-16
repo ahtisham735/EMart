@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>E-commerce</title>
+        <link rel="stylesheet" href="SignUp.css" >
+    </head>
+    <body>
+        <div>
+                <div class="form-box">
+                    <div class="button-box">
+                        <div id="btn_back"></div>
+                        <button  class="toogle_btn" onclick="login()">Login</button>
+                        <button  class="toogle_btn" onclick="register()">Register</button>
+                    </div>
+                    <form id="login" class="form_style" onsubmit="" method="post" action="">
+                        <div>
+                            <input id="username" type="text" class="input_field" placeholder="Username"/>
+                        </div>
+                        <div>
+                            <input id="password" type="password" class="input_field" placeholder="Password" />
+                        </div>
+                         <div>
+                            <input type="checkbox" id="chkbox" class="check_box"/><span>Remeber Password</span>
+                            <button id="loin_btn" type="submit" class="submit_btn" >Login</button>
+                            <a  class="forget" href="">Forgot Password?</a>
+                        </div>
+                        <div class="btn_div">
+                            <button class="fb_btn">
+                            <img src="E:\FinalYearProject\SignUp\fb.png"/>
+                                Facebook
+                            </button>
+                            <button class="fb_btn">
+                            <img src="E:\FinalYearProject\SignUp\google.jpg"/>
+                                Google
+                            </button>
+                        </div>
+                    </form>
+                    <form id="register" class="form_style" onsubmit="OnSubmit()" method="post" action="">
+                        <div>
+                            <input name="email" type="email" class="input_field" placeholder="Email*"/>
+                        </div>
+                        <div>
+                            <input name="username" type="text" class="input_field" placeholder="Username*" />
+                        </div>    
+                        <div>
+                            <input name="password" type="password" class="input_field" placeholder="Password*"  />
+                        </div>
+                        <div>
+                            <input name="cnfrmPassword" type="password" class="input_field" placeholder="Cofirm Password*" />
+                        </div>
+                        <input name="chkbox" type="checkbox" class="check_box"/><span id="registerSpan">I agree all terms and policy of E-MART.</span>
+                        <button id= "reg_btn" type="submit" class="submit_btn">Register</button>
+                        <h4>or</h4>
+                        <div class="btn_div">
+                            <button class="fb_btn">
+                            <img src="E:\FinalYearProject\SignUp\fb.png"/>
+                                Facebook
+                            </button>
+                            <button class="fb_btn">
+                            <img src="E:\FinalYearProject\SignUp\google.jpg"/>
+                                Google
+                            </button>
+                        </div>
+                    </form>
+                </div> 
+        </div>
+        <script src="E:\FinalYearProject\SignUp\SignUp.js"></script>
+    </body>
+</html>
