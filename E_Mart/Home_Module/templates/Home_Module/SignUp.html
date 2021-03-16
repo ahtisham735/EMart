@@ -1,8 +1,13 @@
+{% load static%}
+{% load socialaccount %}
+{% providers_media_js %}
+{% load account %}
 <!DOCTYPE html>
 <html>
     <head>
         <title>E-commerce</title>
-        <link rel="stylesheet" href="SignUp.css" >
+        <link rel="stylesheet" type="text/css" href="{%static '/css/signup.css'%}" >
+        <script src="{% static 'javaScript/SignUp.js' %}"></script>
     </head>
     <body>
         <div>
@@ -13,6 +18,7 @@
                         <button  class="toogle_btn" onclick="register()">Register</button>
                     </div>
                     <form id="login" class="form_style" onsubmit="" method="post" action="">
+                        {% csrf_token %}
                         <div>
                             <input id="username" type="text" class="input_field" placeholder="Username"/>
                         </div>
@@ -25,17 +31,19 @@
                             <a  class="forget" href="">Forgot Password?</a>
                         </div>
                         <div class="btn_div">
-                            <button class="fb_btn">
-                            <img src="E:\FinalYearProject\SignUp\fb.png"/>
+                            <a class="fb_btn" href="{% provider_login_url "facebook"   method="oauth2" %}">
+                            <img src="{%static '/Images/fb.png'%}"/>
                                 Facebook
-                            </button>
-                            <button class="fb_btn">
-                            <img src="E:\FinalYearProject\SignUp\google.jpg"/>
-                                Google
-                            </button>
+                            </a>
+                            <a class="fb_btn" href="{% provider_login_url "google"  %}" >
+                                <img src="{%static '/Images/google.jpg'%}"/>
+                                    Google
+                            </a>
                         </div>
                     </form>
+                    
                     <form id="register" class="form_style" onsubmit="OnSubmit()" method="post" action="">
+                        {% csrf_token %}
                         <div>
                             <input name="email" type="email" class="input_field" placeholder="Email*"/>
                         </div>
@@ -52,18 +60,19 @@
                         <button id= "reg_btn" type="submit" class="submit_btn">Register</button>
                         <h4>or</h4>
                         <div class="btn_div">
-                            <button class="fb_btn">
-                            <img src="E:\FinalYearProject\SignUp\fb.png"/>
+                            <a class="fb_btn" href="{% provider_login_url "facebook"   method="oauth2"   %}">
+                            <img src="{%static '/Images/fb.png'%}"/>
                                 Facebook
-                            </button>
-                            <button class="fb_btn">
-                            <img src="E:\FinalYearProject\SignUp\google.jpg"/>
+                            </a>
+                            
+                            <a class="fb_btn" href="{% provider_login_url "google"  %}" >
+                            <img src="{%static '/Images/google.jpg'%}"/>
                                 Google
-                            </button>
+                            </a>
                         </div>
                     </form>
                 </div> 
         </div>
-        <script src="E:\FinalYearProject\SignUp\SignUp.js"></script>
+        
     </body>
 </html>

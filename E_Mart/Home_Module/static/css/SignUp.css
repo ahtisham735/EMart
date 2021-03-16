@@ -4,7 +4,8 @@
   position: relative;
   margin: 6% auto;
   background: whitesmoke;
-  padding: 5px; }
+  padding: 5px;
+  overflow: hidden; }
 
 .button-box {
   width: 220px;
@@ -137,4 +138,4 @@ p {
     border-radius: 30px;
     outline-color: blue; }
 
-/*# sourceMappingURL=SignUp.css.map */
+/*# sourceMappingURL=signup.css.map */
