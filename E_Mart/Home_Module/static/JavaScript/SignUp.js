@@ -3,15 +3,8 @@ const user_name=document.getElementById("username")
 const pass=document.getElementById("password")
 const cnfrm_Password=document.getElementById("cnfrmPassword")
 const form=document.getElementById("login")
-handleFocus=(name)=>{
-    val=document.querySelector('email')
-    alert(val)
-    alert(val.text)
-    if(val.text===""){
-        alert("empty")
-        document.getElementById(`${name}`).innerHTML="It is a required field"
-
-    }
+handleFocus=(obj)=>{
+    document.querySelector('#email').innerHTML="asdasd";
 
 }
 handleChangeRegister=(name)=>{

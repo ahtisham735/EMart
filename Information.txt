@@ -1,0 +1,30 @@
+All information regarding FYP
+
+Admin user Credentials  in django:
+username:mcsf19 
+passowrd:Pakistan
+
+
+
+commands to remember:
+
+1:Fyp_env\Scripts\activate  ....for activating virtual enviormnent
+2:django-admin startproject projectName ....for creating a django project 
+3:python manage.py startapp appName ....for creating a new app 
+4:python manage.py makemigrations .... propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema
+5:python manage.py migrate...... commit the changes into database
+6:python manage.py runserver....for staring server
+7:python manage.py createsuperuser ....for creating an admin user
+8: code .   //to open all folders/files of current directory in vs code 
+9:sass fileName.scss:fileName.css ... to convert scss file to css 
+10:sass --watch sass fileName.scss:fileName.css .... for making sass to watch changes so that we don't need to covert scss file to css every time we make a change.
+ 
+Git Commands:
+1:git reset <file> or git reset ...to remove added files
+2: 
+
+installed libraries(backend):
+1:django-3.1.7 (pip install django) backend framework
+2:django-allauth...(pip install django-allauth)...to provides social authentication
+3:djangorestframework-3.12.2(pip install djangorestframework)...for creating api's
+4:django-cors-headers-3.7.0(pip install django-cors-headers) ...for allowing other origins to access our api's 

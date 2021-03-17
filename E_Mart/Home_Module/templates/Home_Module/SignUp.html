@@ -45,7 +45,7 @@
                     <form id="register" class="form_style"  method="post" action="">
                         {% csrf_token %}
                         <div>
-                            <input name="email" onfocus="handleFocus(name)" onchange="handleChangeRegister(name)" type="email" class="input_field" placeholder="Email*"/>
+                            <input name="email" onfocus="handleFocus(this)" onchange="handleChangeRegister(name)" type="email" class="input_field" placeholder="Email*"/>
                             <span id="email"></span>
                         </div>
                         <div>
