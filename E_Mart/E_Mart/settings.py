@@ -38,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #for creating rest api's
+     'rest_framework',
+     #to ensure only authorize domains can access our Api's
+    'corsheaders',
+
     #to use Allauth library
     'django.contrib.sites',
     'allauth',
@@ -50,6 +55,7 @@ INSTALLED_APPS = [
     #local apps
     'Home_Module',
 ]
+#only White List domains can access our Api's
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,6 +65,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    #manully added
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'E_Mart.urls'

@@ -3,8 +3,22 @@ const user_name=document.getElementById("username")
 const pass=document.getElementById("password")
 const cnfrm_Password=document.getElementById("cnfrmPassword")
 const form=document.getElementById("login")
+handleFocus=(name)=>{
+    val=document.querySelector('email')
+    alert(val)
+    alert(val.text)
+    if(val.text===""){
+        alert("empty")
+        document.getElementById(`${name}`).innerHTML="It is a required field"
 
+    }
+
+}
+handleChangeRegister=(name)=>{
+    
+}
 function login(){
+    
     var x=document.getElementById("login");
     var y=document.getElementById("register");
     var z=document.getElementById("btn_back");  

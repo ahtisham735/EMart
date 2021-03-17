@@ -17,13 +17,13 @@
                         <button  class="toogle_btn" onclick="login()">Login</button>
                         <button  class="toogle_btn" onclick="register()">Register</button>
                     </div>
-                    <form id="login" class="form_style" onsubmit="" method="post" action="">
+                    <form id="login" class="form_style" onsubmit="return LoginForm()" method="post" action="">
                         {% csrf_token %}
                         <div>
-                            <input id="username" type="text" class="input_field" placeholder="Username"/>
+                            <input name="username" type="text" class="input_field" placeholder="Username"/>
                         </div>
                         <div>
-                            <input id="password" type="password" class="input_field" placeholder="Password" />
+                            <input name="password" type="password" class="input_field" placeholder="Password" />
                         </div>
                          <div>
                             <input type="checkbox" id="chkbox" class="check_box"/><span>Remeber Password</span>
@@ -42,22 +42,24 @@
                         </div>
                     </form>
                     
-                    <form id="register" class="form_style" onsubmit="OnSubmit()" method="post" action="">
+                    <form id="register" class="form_style"  method="post" action="">
                         {% csrf_token %}
                         <div>
-                            <input name="email" type="email" class="input_field" placeholder="Email*"/>
+                            <input name="email" onfocus="handleFocus(name)" onchange="handleChangeRegister(name)" type="email" class="input_field" placeholder="Email*"/>
+                            <span id="email"></span>
                         </div>
                         <div>
-                            <input name="username" type="text" class="input_field" placeholder="Username*" />
+                            <input name="username" onchange="handleChangeRegister(name)" type="text" class="input_field" placeholder="Username*" />
                         </div>    
                         <div>
-                            <input name="password" type="password" class="input_field" placeholder="Password*"  />
+                            <input name="password" onfocus="handleFocus(name)" onchange="handleChangeRegister(name)" type="password" class="input_field" placeholder="Password*"  />
+                            <span id="password"></span>
                         </div>
                         <div>
-                            <input name="cnfrmPassword" type="password" class="input_field" placeholder="Cofirm Password*" />
+                            <input name="cnfrmPassword" onchange="handleChangeRegister(name)" type="password" class="input_field" placeholder="Cofirm Password*" />
                         </div>
-                        <input name="chkbox" type="checkbox" class="check_box"/><span id="registerSpan">I agree all terms and policy of E-MART.</span>
-                        <button id= "reg_btn" type="submit" class="submit_btn">Register</button>
+                        <input name="chkbox" type="checkbox" onchange="handleChangeRegister(name)" class="check_box"/><span id="registerSpan">I agree all terms and policy of E-MART.</span>
+                        <button id= "reg_btn" type="submit" disabled class="submit_btn">Register</button>
                         <h4>or</h4>
                         <div class="btn_div">
                             <a class="fb_btn" href="{% provider_login_url "facebook"   method="oauth2"   %}">
