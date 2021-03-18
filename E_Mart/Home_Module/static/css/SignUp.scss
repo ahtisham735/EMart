@@ -93,7 +93,7 @@ a{
 .check_box{
     margin: 20px 10px 30px 5px;
 }
-span{
+.checkbox_style{
     color: #777;
     font-size:12px;
     bottom: 190px;
@@ -123,7 +123,7 @@ h4:after {
 
 p{
     color:red;
-    font-size: 10px;
+    font-size: 15px;
 
 }
 
@@ -152,4 +152,13 @@ p{
         border-radius:30px;
         outline-color:blue;
     }
+
+   
+}
+.error_style{
+    color:red;
+    display: block;
+    font-size: 15px;
+    margin-left: 10px;
+    
 }

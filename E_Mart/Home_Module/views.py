@@ -14,7 +14,7 @@ def cust_api(request,name=''):
                 cust_serializer=CustomerSerializer(cust)
                 return JsonResponse(cust_serializer.data,safe=False)      
             except Customer.DoesNotExist:
-                return JsonResponse("Not found",safe=False)
+                return JsonResponse(None,safe=False)
                               
         customers=Customer.objects.all()
         cust_serializer=CustomerSerializer(customers,many=True)
