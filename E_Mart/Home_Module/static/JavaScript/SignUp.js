@@ -1,4 +1,7 @@
-var status={email:false,username:false,password:false,cnfrmPassword:false}
+var emailStatus=true
+var usernameStatus=false
+var passwordStatus=false
+var cnfrmPasswordStatus=false
 handleFocus=(id)=>{
     
     const val=document.getElementById(`${id}`)
@@ -24,11 +27,12 @@ handleChangeRegister=(id)=>{
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if(!filter.test(val.value)){
             element.innerHTML="invalid email";  
-            status.email=true;   
+           
+            emailStatus=false   
         }
         else
         {
-            status.email=false; 
+            emailStatus=true; 
             element.innerHTML="";
         }
 
@@ -39,10 +43,10 @@ handleChangeRegister=(id)=>{
         .then(data=>{
            if(data!==null){
             element.innerHTML="This username has already taken"
-            status.username=false;
+                usernameStatus=false;
            }
            else{
-            status.username=true;
+                usernameStatus=true;
             element.innerHTML=""
            }
         })
@@ -52,29 +56,29 @@ handleChangeRegister=(id)=>{
         const cnfrmPasswd=document.querySelector('#cnfrmPassword')
         if(cnfrmPasswd.value.length!=0){
            if(!PasswordValidation()){
-            status.cnfrmPassword=false;
+                cnfrmPasswordStatus=false;
             
            }else{
-            status.cnfrmPassword=true;
+                cnfrmPasswordStatus=true;
            }
 
         }
         var passwdPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{8,})") 
        if(!passwdPattern.test(val.value)){
             element.innerHTML="use 8 or more letters having atleast one lowercase,one uppercase and one special character";
-            status.password=false;
+                passwordStatus=false;
     }
        else{
-        status.password=true;
+            passwordStatus=true;
         element.innerHTML="";
        }
 
     }
     else if(id==="cnfrmPassword"){
         if(!PasswordValidation()){
-            status.cnfrmPassword=false;
+            cnfrmPasswordStatus=false;
         }else{
-            status.cnfrmPassword=true;
+            cnfrmPasswordStatus=true;
         }
     }
     
@@ -98,25 +102,26 @@ PasswordValidation=()=>{
 
 }
 
-regSubmit=(e)=>{
-    console.log(e)
-    e.preventDefault();
-    if(status.email&&status.password&&status.cnfrmPassword&&status.username){
+regSubmit=()=>{
+    f=document.getElementById("register")
+   
+    if(email&&password&&cnfrmPassword&&username){
        
         const chkbox=document.querySelector('#chkbox')
         if(chkbox.checked){
-            alert("sdsds")
+            obj={"email":f.email,"username":f.username,"password":f.password}
+            alert(obj.password.value)
             fetch('http://localhost:8000/customer/',{
                 method:'POST',
-                body:new FormData(e)
+                body:JSON.stringify(obj)
             })
-            .then(response=>response.text())
+            .then(response=>response.json())
             .then(data=>{
                 alert(data)
             })
         }
     }else{
-        return;
+        return false;
     }
 };
 function login(){

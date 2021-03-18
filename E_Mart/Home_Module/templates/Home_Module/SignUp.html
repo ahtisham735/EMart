@@ -42,7 +42,7 @@
                         </div>
                     </form>
                     
-                    <form id="register" class="form_style"  onsubmit="regSubmit(this)">
+                    <form id="register" class="form_style" method="POST" onsubmit="return regSubmit()">
                         {% csrf_token %}
                         <div>
                             <input id="email" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="email" class="input_field" placeholder="Email*"/>

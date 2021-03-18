@@ -21,7 +21,8 @@ def cust_api(request,name=''):
         return JsonResponse(cust_serializer.data,safe=False)
     elif request.method=="POST":
         cust_data=JSONParser().parse(request) #converting data into json form
-        cust_serializer=CustomerSerializer(data=user_data) #using serializer to convert into model type
+        cust_serializer=CustomerSerializer(data=cust_data) #using serializer to convert into model type
+        print(cust_serializer.username)
         if cust_serializer.is_valid():
             cust_serializer.save() # saving data into database
             
