@@ -109,15 +109,14 @@ regSubmit=()=>{
        
         const chkbox=document.querySelector('#chkbox')
         if(chkbox.checked){
-            obj={"email":f.email,"username":f.username,"password":f.password}
-            alert(obj.password.value)
+            obj={"email":f.email.value,"username":f.username.value,"password":f.password.value}
             fetch('http://localhost:8000/customer/',{
                 method:'POST',
                 body:JSON.stringify(obj)
             })
             .then(response=>response.json())
             .then(data=>{
-                alert(data)
+                alert(data.value)
             })
         }
     }else{
