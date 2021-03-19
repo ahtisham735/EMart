@@ -128,7 +128,7 @@ p {
   cursor: pointer;
   box-shadow: 0px 2px 2px lightgray;
   transition: ease background-color 250ms;
-  display: inline-flex; }
+  display: inline-block; }
   .fb_btn hover {
     background-color: blue; }
   .fb_btn img {
@@ -142,4 +142,4 @@ p {
   font-size: 15px;
   margin-left: 10px; }
 
-/*# sourceMappingURL=SignUp.css.map */
+/*# sourceMappingURL=SignUp.cs.map */

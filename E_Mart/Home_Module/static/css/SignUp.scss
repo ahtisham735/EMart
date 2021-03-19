@@ -16,10 +16,11 @@
     box-shadow:0 0 20px 9px pink;
     border-radius: 30px;
 }
-.heading{
+.div_head{
     color:black;
     width:250px;
-    margin:35px 80px auto;
+    margin:35px 95px auto;
+    cursor: pointer;
 
 }
 .icons{
@@ -96,12 +97,8 @@ a{
 .checkbox_style{
     color: #777;
     font-size:12px;
-    bottom: 190px;
-    position: absolute;
-}
-
-#registerSpan{
-    bottom:200px;
+    bottom: 3px;
+    position: relative;
 }
 #login{
     left: 50px;
@@ -143,7 +140,7 @@ p{
     cursor: pointer;
     box-shadow: 0px 2px 2px lightgray;
     transition: ease background-color 250ms;
-    display:inline-block;
+    display:inline-flex;
     hover {
         background-color:blue;
     }
