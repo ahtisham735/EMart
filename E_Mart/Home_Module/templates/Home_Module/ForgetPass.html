@@ -1,0 +1,31 @@
+{% load static%}
+<!DOCTYPE>
+<html>
+    <head>
+        <title>E-commerce</title>
+        <link rel="stylesheet" type="text/css" href="{%static '/css/forget.css'%}" >
+    </head>
+    <body >
+        <form id="register" class="form_style">
+            <div class="form-box">
+                <div>
+                    <img class="rounded" src="{%static '/Images/forget.jpg'%}"/>
+                </div>
+                <div class="heading">
+                    <h2>Forgot Password??</h2>
+                </div>
+                <div class="paragraph">
+                    <pre>
+                    Please Enter Your Email so that we'll 
+                    send you a link to reset your password.
+                    </pre>
+                </div>
+                <div>
+                    <input name="email" type="email" class="input_field" placeholder="Please Enter Your Email"/>
+                </div>
+                <button id="loin_btn" type="submit" class="submit_btn" >Send Verification Code</button>
+                <a  class="goBack" href="{%url 'Home_Module:signup'%}">Go back</a>
+            </div>
+        </form>
+    </body>
+</html>

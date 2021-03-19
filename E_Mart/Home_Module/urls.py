@@ -5,6 +5,7 @@ urlpatterns=[
     path('',views.home,name="home"),
     path('Home/login/', views.login,name="login"),
     path('signup/',views.signup,name="signup"),
+    path('forget',views.forget,name="forget"),
     path('customer/',views.cust_api,name="cust_api"),
     path('customer/<str:name>',views.cust_api,name="cust_api")
 ]

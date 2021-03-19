@@ -108,14 +108,15 @@ a{
 }
 h4 { 
     display: flex; 
-    flex-direction: row; 
-} 
-h4:before, 
-h4:after { 
-    content: ""; 
-    flex:1 1;
-    border-bottom: 1px solid #9e9e9e; 
-    margin: auto; 
+    flex-direction: row;
+}
+    
+h4::before,
+h4:after{
+content: ""; 
+flex:1 1;
+border-bottom: 1px solid #9e9e9e; 
+margin: auto; 
 }
 
 p{

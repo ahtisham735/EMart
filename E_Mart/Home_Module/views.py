@@ -54,3 +54,5 @@ def home(request):
     return render(request,"Home_Module/Home.html")
 def signup(request):
     return render(request,"Home_Module/signup.html")
+def forget(request):
+    return render(request,"Home_Module/ForgetPass.html")
