@@ -1,10 +1,13 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
 from .Serializer import CustomerSerializer
 from .models import Customer
+from django import forms
 # Create your views here.
+
 @csrf_exempt
 def cust_api(request,name=''):
     if request.method=="GET":
@@ -20,13 +23,17 @@ def cust_api(request,name=''):
         cust_serializer=CustomerSerializer(customers,many=True)
         return JsonResponse(cust_serializer.data,safe=False)
     elif request.method=="POST":
-        cust_data=JSONParser().parse(request) #converting data into json form
-        cust_serializer=CustomerSerializer(data=cust_data) #using serializer to convert into model type
-        if cust_serializer.is_valid():
-            cust_serializer.save() # saving data into database
-            
-            return JsonResponse("Registered Successfully!!",safe=False)
-        return JsonResponse("Failed to Register!!",safe=False)
+        email=request.POST['email']
+        username=request.POST['username']
+        password=request.POST['password']
+        cust=Customer(email=email,username=username,password=password)
+        cust.save()
+        # cust_data=JSONParser().parse(request) #converting data into json form
+        # cust_serializer=CustomerSerializer(data=cust_data) #using serializer to convert into model type
+        # if cust_serializer.is_valid():
+        #     cust_serializer.save() # saving data into database           
+        return HttpResponseRedirect('/')
+       
 
 # Create your views here.
 def home(request):

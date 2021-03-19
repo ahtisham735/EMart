@@ -42,18 +42,18 @@
                         </div>
                     </form>
                     
-                    <form id="register" class="form_style" method="POST" onsubmit="return regSubmit()">
+                    <form id="register" class="form_style" method="POST" action="{%url 'Home_Module:cust_api'%}" onsubmit="return regSubmit()">
                         {% csrf_token %}
                         <div>
-                            <input id="email" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="email" class="input_field" placeholder="Email*"/>
+                            <input name="email" id="email" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="email" class="input_field" placeholder="Email*"/>
                             <span id="emailError" class="error_style"></span>
                         </div>
                         <div>
-                            <input id="username" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="text" class="input_field" placeholder="Username*" />
+                            <input name="username" id="username" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="text" class="input_field" placeholder="Username*" />
                             <span id="usernameError" class="error_style"></span>
                         </div>    
                         <div>
-                            <input id="password" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="password" class="input_field" placeholder="Password*"  />
+                            <input name="password" id="password" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="password" class="input_field" placeholder="Password*"  />
                             <span id="passwordError" class="error_style"></span>
                         </div>
                         <div>
