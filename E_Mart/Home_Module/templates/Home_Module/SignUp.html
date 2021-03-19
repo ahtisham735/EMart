@@ -17,7 +17,7 @@
                         <button  class="toogle_btn" onclick="login()">Login</button>
                         <button  class="toogle_btn" onclick="register()">Register</button>
                     </div>
-                    <form id="login" class="form_style" onsubmit="return LoginForm()" method="post" action="">
+                    <form id="login" class="form_style" onsubmit="return LoginForm()" action="{%url 'Home_Module:login' %}" method="post" >
                         {% csrf_token %}
                         <div>
                             <input name="username" type="text" class="input_field" placeholder="Username"/>
