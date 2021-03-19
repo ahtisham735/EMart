@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
@@ -36,6 +37,19 @@ def cust_api(request,name=''):
        
 
 # Create your views here.
+def login(request):
+    if request.method=="POST":
+        username= request.POST['username']
+        password= request.POST['password']
+
+        count = Customer.objects.filter(username=username,password=password).count()
+        if count >0:
+            return HttpResponse("You are valid")
+        else:
+            return HttpResponse("You are invalid")
+
+
+    return render(request,"Home_Module/SignUp.html")
 def home(request):
     return render(request,"Home_Module/Home.html")
 def signup(request):
