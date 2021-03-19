@@ -42,7 +42,7 @@
                         </div>
                     </form>
                     
-                    <form id="register" class="form_style" method="POST" action="{%url 'Home_Module:cust_api'%}" onsubmit="return regSubmit()">
+                    <form id="register" class="form_style" method="POST" action="{%url 'Home_Module:cust_api'%}" >
                         {% csrf_token %}
                         <div>
                             <input name="email" id="email" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="email" class="input_field" placeholder="Email*"/>
@@ -60,8 +60,8 @@
                             <input id="cnfrmPassword" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="password" class="input_field" placeholder="Cofirm Password*" />
                             <span id="cnfrmPasswordError" class="error_style"></span>
                         </div>
-                        <input id="chkbox" type="checkbox"   class="check_box"/><span class="checkbox_style" id="registerSpan">I agree all terms and policy of E-MART.</span>
-                        <button id="regbtn" type="submit"  class="submit_btn">Register</button>
+                        <input id="chkbox" type="checkbox" onchange="handleChangeRegister(id)"   class="check_box"/><span class="checkbox_style" id="registerSpan">I agree all terms and policy of E-MART.</span>
+                        <button id="regbtn" type="submit" disabled  class="submit_btn">Register</button>
                         <h4>or</h4>
                         <div class="btn_div">
                             <a class="fb_btn" href="{% provider_login_url "facebook"   method="oauth2"   %}">
