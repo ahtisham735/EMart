@@ -9,7 +9,7 @@ handleLoginUserName=()=>
     const x=document.getElementById("username").value;
     if(x.length<1)
     {
-        document.getElementById("nameError").innerHTML = x;
+        document.getElementById("nameError").innerHTML = "Required field";
         loginName=false;
     }
     else
@@ -34,35 +34,11 @@ function handleLoginPaswd()
     }
         
 }
-handleUserLoginFocus=()=>{
-    
-    const x=document.getElementById("username").value;
-    if(x.length<1)
-    {
-        document.getElementById("nameError").innerHTML = "Required field";
-    }
-    else
-    {
-        document.getElementById("nameError").innerHTML = "";
-    }
-}
-handleUserPswdFocus=()=>{
-    
-    const x=document.getElementById("password").value;
-    if(x.length<5)
-    {
-        document.getElementById("pswdError").innerHTML = "Required field";
-    }
-    else
-    {
-        document.getElementById("pswdError").innerHTML = "";
-    }
-}
 handleFocus=(id)=>{
     
     const val=document.getElementById(`${id}`)
     const element =document.getElementById(`${id}Error`)
-    if(val.value.length===0){
+    if(val.value.length<1){
        
         element.innerHTML="it is a required field";
                

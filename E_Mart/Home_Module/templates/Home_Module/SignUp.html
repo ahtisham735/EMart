@@ -20,11 +20,11 @@
                     <form id="login" class="form_style" method="POST" action="{%url 'Home_Module:login'%}"  onsubmit="return loginSubmit()" >
                         {% csrf_token %}
                         <div>
-                            <input id="username" name="username" onfocus="handleUserLoginFocus()" onkeyup="handleLoginUserName()" type="text" class="input_field" placeholder="Username"/>
+                            <input id="username" name="username" onfocus="handleFocus(id)" onkeyup="handleLoginUserName()" type="text" class="input_field" placeholder="Username"/>
                             <span id="nameError" class="error_style"></span>
                         </div>
                         <div>
-                            <input id="password" name="password" onfocus="handleUserPswdFocus()" onkeyup="handleLoginPaswd()" type="password" class="input_field" placeholder="Password" />
+                            <input id="password" name="password" onfocus="handleFocus(id)" onkeyup="handleLoginPaswd()" type="password" class="input_field" placeholder="Password" />
                             <span id="pswdError" class="error_style"></span>
                         </div>
                          <div>
