@@ -1,7 +1,8 @@
-var emailStatus=true
+var emailStatus=false
 var usernameStatus=false
 var passwordStatus=false
 var cnfrmPasswordStatus=false
+var chkboxStatus=false
 handleFocus=(id)=>{
     
     const val=document.getElementById(`${id}`)
@@ -16,6 +17,7 @@ handleFocus=(id)=>{
 handleChangeRegister=(id)=>{
     const val=document.getElementById(`${id}`)
     const element =document.getElementById(`${id}Error`)
+    var regbtn=document.getElementById('regbtn')
     if(val.value.length===0){
        
         element.innerHTML="it is a required field";
@@ -64,22 +66,48 @@ handleChangeRegister=(id)=>{
 
         }
         var passwdPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{8,})") 
-       if(!passwdPattern.test(val.value)){
+       if(!passwdPattern.test(val.value))
+        {
             element.innerHTML="use 8 or more letters having atleast one lowercase,one uppercase and one special character";
-                passwordStatus=false;
-    }
-       else{
+            passwordStatus=false;
+        }
+       else
+       {
             passwordStatus=true;
-        element.innerHTML="";
+            element.innerHTML="";
        }
 
     }
-    else if(id==="cnfrmPassword"){
-        if(!PasswordValidation()){
+    else if(id==="cnfrmPassword")
+    {
+        if(!PasswordValidation())
+        {
             cnfrmPasswordStatus=false;
-        }else{
+        }else
+        {
             cnfrmPasswordStatus=true;
         }
+    }
+    else if(id==='chkbox')
+    {
+        
+        if(val.checked)
+        {
+            chkboxStatus=true;
+            
+        }
+        else
+        {
+            chkboxStatus=false;
+        }
+    }
+    if(emailStatus&&passwordStatus&&cnfrmPasswordStatus&&usernameStatus&&chkboxStatus)
+    {
+        regbtn.disabled=false;  
+    }
+    else
+    {
+        regbtn.disabled=true; 
     }
     
    
@@ -90,11 +118,13 @@ PasswordValidation=()=>{
     const passwd=document.getElementById('password')
     const cnfrmPasswd=document.getElementById('cnfrmPassword')
     const element=document.getElementById('cnfrmPasswordError')
-    if(passwd.value!==cnfrmPasswd.value){
+    if(passwd.value!==cnfrmPasswd.value)
+    {
         element.innerHTML="Password not matched"
         return false;
     }
-    else{
+    else
+    {
         element.innerHTML=""
         return true;
     }
@@ -102,20 +132,7 @@ PasswordValidation=()=>{
 
 }
 
-regSubmit=()=>{
-    f=document.getElementById("register")
-S
-    if(email&&password&&cnfrmPassword&&username){
-       
-        const chkbox=document.querySelector('#chkbox')
-        if(chkbox.checked){
-            return true;
-            
-        }
-    }else{
-        return false;
-    }
-};
+
 function login(){
     
     var x=document.getElementById("login");

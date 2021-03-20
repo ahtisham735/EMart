@@ -46,7 +46,7 @@
                         </div>
                     </form>
                     
-                    <form id="register" class="form_style" method="POST" action="{%url 'Home_Module:cust_api'%}" onsubmit="return regSubmit()">
+                    <form id="register" class="form_style" method="POST" action="{%url 'Home_Module:cust_api'%}" >
                         {% csrf_token %}
                         <div>
                             <input name="email" id="email" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="email" class="input_field" placeholder="Email*"/>
@@ -64,7 +64,7 @@
                             <input id="cnfrmPassword" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="password" class="input_field" placeholder="Cofirm Password*" />
                             <span id="cnfrmPasswordError" class="error_style"></span>
                         </div>
-                        <input id="chkbox" type="checkbox"   class="check_box"/><span class="checkbox_style">I agree all terms and policy of E-MART.</span>
+                        <input id="chkbox" type="checkbox"  class="check_box" onchange="handleChangeRegister(id)"  /><span class="checkbox_style">I agree all terms and policy of E-MART.</span>
                         <button id="regbtn" type="submit"  class="submit_btn">Register</button>
                     </form>
                 </div> 
