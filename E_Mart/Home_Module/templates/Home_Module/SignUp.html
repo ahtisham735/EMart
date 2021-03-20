@@ -17,23 +17,21 @@
                         <button  class="toogle_btn" onclick="login()">Login</button>
                         <button  class="toogle_btn" onclick="register()">Register</button>
                     </div>
-                    <div class="div_head">
-                        <h3>WELCOME TO EMART</h3>
-                    </div>
-                    <form id="login" class="form_style" onsubmit="return LoginForm()" action="{%url 'Home_Module:login' %}" method="post" >
+                    <form id="login" class="form_style" method="POST" action="{%url 'Home_Module:login'%}"  onsubmit="return loginSubmit()" >
                         {% csrf_token %}
                         <div>
-                            <input name="username" type="text" class="input_field" placeholder="Username"/>
+                            <input id="username" name="username" onfocus="handleUserLoginFocus()" onkeyup="handleLoginUserName()" type="text" class="input_field" placeholder="Username"/>
+                            <span id="nameError" class="error_style"></span>
                         </div>
                         <div>
-                            <input name="password" type="password" class="input_field" placeholder="Password" />
+                            <input id="password" name="password" onfocus="handleUserPswdFocus()" onkeyup="handleLoginPaswd()" type="password" class="input_field" placeholder="Password" />
+                            <span id="pswdError" class="error_style"></span>
                         </div>
                          <div>
                             <input type="checkbox" id="chkbox1" class="check_box"/><span class="checkbox_style">Remeber Password</span>
                             <button id="loin_btn" type="submit" class="submit_btn" >Login</button>
-                            <a  class="forget" href="{%url 'Home_Module:forget' %}">Forgot Password?</a>
+                            <a  class="forget" href="">Forgot Password?</a>
                         </div>
-                        <h4>or</h4>
                         <div class="btn_div">
                             <a class="fb_btn" href="{% provider_login_url "facebook"   method="oauth2" %}">
                             <img src="{%static '/Images/fb.png'%}"/>
@@ -46,7 +44,7 @@
                         </div>
                     </form>
                     
-                    <form id="register" class="form_style" method="POST" action="{%url 'Home_Module:cust_api'%}" >
+                    <form id="register" class="form_style" method="POST" action="{%url 'Home_Module:cust_api'%}" onsubmit="return regSubmit()">
                         {% csrf_token %}
                         <div>
                             <input name="email" id="email" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="email" class="input_field" placeholder="Email*"/>
@@ -64,8 +62,20 @@
                             <input id="cnfrmPassword" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)" type="password" class="input_field" placeholder="Cofirm Password*" />
                             <span id="cnfrmPasswordError" class="error_style"></span>
                         </div>
-                        <input id="chkbox" type="checkbox"  class="check_box" onchange="handleChangeRegister(id)"  /><span class="checkbox_style">I agree all terms and policy of E-MART.</span>
+                        <input id="chkbox" type="checkbox"   class="check_box"/><span class="checkbox_style" id="registerSpan">I agree all terms and policy of E-MART.</span>
                         <button id="regbtn" type="submit"  class="submit_btn">Register</button>
+                        <h4>or</h4>
+                        <div class="btn_div">
+                            <a class="fb_btn" href="{% provider_login_url "facebook"   method="oauth2"   %}">
+                            <img src="{%static '/Images/fb.png'%}"/>
+                                Facebook
+                            </a>
+                            
+                            <a class="fb_btn" href="{% provider_login_url "google"  %}" >
+                            <img src="{%static '/Images/google.jpg'%}"/>
+                                Google
+                            </a>
+                        </div>
                     </form>
                 </div> 
         </div>
