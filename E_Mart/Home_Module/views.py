@@ -41,15 +41,14 @@ def login(request):
     if request.method=="POST":
         username= request.POST['username']
         password= request.POST['password']
-
-        count = Customer.objects.filter(username=username,password=password).count()
-        if count >0:
-            return HttpResponse("You are valid")
-        else:
-            return HttpResponse("You are invalid")
-
-
-    return render(request,"Home_Module/SignUp.html")
+        try:
+            cust = Customer.objects.get(username=username,password=password)
+            return render(request,"Home_Module/Home.html",context={"LoginCust":cust})
+        except Customer.DoesNotExist:
+            ErrorMessage="Login faild!,Invalid Username or Password"
+            return render(request,"Home_Module/SignUp.html",context={"ErrorMessage":ErrorMessage})
+           
+        
 def home(request):
     return render(request,"Home_Module/Home.html")
 def signup(request):

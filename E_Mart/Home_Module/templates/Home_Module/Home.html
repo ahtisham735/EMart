@@ -5,6 +5,9 @@
     <body>
         <h1>Home Page</h1>
         <a href="{%url 'Home_Module:signup'%}">Login</a>
+        {%if LoginCust is not None%}
+        {{LoginCust.username}}
+        {%endif%}
         {%if user.is_authenticated%}
         {{user.first_name}}<br>
         {%endif%}
