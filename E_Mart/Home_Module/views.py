@@ -7,6 +7,7 @@ from django.http.response import JsonResponse
 from .Serializer import CustomerSerializer
 from .models import Customer
 from django import forms
+
 # Create your views here.
 
 @csrf_exempt
@@ -42,6 +43,9 @@ def login(request):
         username= request.POST['username']
         password= request.POST['password']
         try:
+            if request.session.get('is_Login', False):
+                 return HttpResponse("You are already login.")       
+            request.session['is_Login']=True
             cust = Customer.objects.get(username=username,password=password)
             return render(request,"Home_Module/Home.html",context={"LoginCust":cust})
         except Customer.DoesNotExist:
@@ -50,7 +54,12 @@ def login(request):
            
         
 def home(request):
-    return render(request,"Home_Module/Home.html")
+    isLogin = request.session.get('is_Login', False)
+    if isLogin:
+        return render(request,"Home_Module/Home.html")
+    else:
+        return render(request,"Home_Module/signup.html")
+ 
 def signup(request):
     return render(request,"Home_Module/signup.html")
 def forget(request):
