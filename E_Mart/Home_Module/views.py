@@ -53,7 +53,7 @@ def login(request):
             if isChecked:  
                 request.session['is_Login'] = True
             cust = Customer.objects.get(username=username,password=password)
-            return render(request,"Home_Module/Home.html",context={"LoginCust":is_private})
+            return render(request,"Home_Module/Home.html",context={"LoginCust":cust})
         except Customer.DoesNotExist:
             ErrorMessage="Login faild!,Invalid Username or Password"
             return render(request,"Home_Module/SignUp.html",context={"ErrorMessage":ErrorMessage})
