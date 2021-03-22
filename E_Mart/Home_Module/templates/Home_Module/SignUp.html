@@ -1,20 +1,16 @@
+{%extends 'base.html'%}
 {% load static%}
 {% load socialaccount %}
 {% providers_media_js %}
 {% load account %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>E-commerce</title>
-        <link rel="stylesheet" type="text/css" href="{%static '/css/signup.css'%}" >
-        <script src="{% static 'javaScript/SignUp.js' %}"></script>
-    </head>
-    <body>
+
+{% block content %}
+
         <div>
                 <div class="form-box">
                     <div class="button-box">
                         <div id="btn_back"></div>
-                        <button  class="toogle_btn" onclick="login()">Login</button>
+                        <button  class="toggle_btn" onclick="login()">Login</button>
                         <button  class="toogle_btn" onclick="register()">Register</button>
                     </div>
                     <div class="div_head">
@@ -72,6 +68,4 @@
                     </form>
                 </div> 
         </div>
-        
-    </body>
-</html>
+{% endblock %}

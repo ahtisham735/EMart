@@ -19,9 +19,11 @@
 .div_head{
     color:black;
     width:250px;
-    margin:35px 95px auto;
+    margin:35px 110px auto;
     cursor: pointer;
-
+    h3{
+       font-size:large;
+    }
 }
 .icons{
     margin: 30px auto;
@@ -36,8 +38,8 @@
     }
 }
 //Top Register and Login Button Styling
-.toogle_btn{
-    padding: 10px 30px;  
+.toggle_btn{
+    padding: 5px 20px;  
     cursor: pointer;
     position: relative;
     outline:none;
@@ -83,6 +85,7 @@
     border:0;
     outline: none;
     border-radius: 30px;
+    
 }
 .forget{
     cursor: pointer;
@@ -119,16 +122,14 @@ border-bottom: 1px solid #9e9e9e;
 margin: auto; 
 }
 
-p{
-    color:red;
-    font-size: 15px;
-
-}
-
 //social-login buttons styling
 .btn_div{
-    position: relative;
+    position: absolute;
     margin: 10px 0px;
+}
+div{
+    font-weight: lighter;
+    font-size: 16px;
 }
 .fb_btn{
     background-color:#304ffe;
@@ -142,7 +143,7 @@ p{
     transition: ease background-color 250ms;
     display:inline-flex;
     :hover{
-        background-color:green;
+        background-color:blue;
      }
     img{
         width:30px;

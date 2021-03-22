@@ -17,8 +17,10 @@
 .div_head {
   color: black;
   width: 250px;
-  margin: 35px 95px auto;
+  margin: 35px 110px auto;
   cursor: pointer; }
+  .div_head h3 {
+    font-size: large; }
 
 .icons {
   margin: 30px auto;
@@ -30,8 +32,8 @@
     box-shadow: blue;
     border-radius: 50%; }
 
-.toogle_btn {
-  padding: 10px 30px;
+.toggle_btn {
+  padding: 5px 20px;
   cursor: pointer;
   position: relative;
   outline: none;
@@ -109,13 +111,13 @@ h4:after {
   border-bottom: 1px solid #9e9e9e;
   margin: auto; }
 
-p {
-  color: red;
-  font-size: 15px; }
-
 .btn_div {
-  position: relative;
+  position: absolute;
   margin: 10px 0px; }
+
+div {
+  font-weight: lighter;
+  font-size: 16px; }
 
 .fb_btn {
   background-color: #304ffe;
@@ -129,7 +131,7 @@ p {
   transition: ease background-color 250ms;
   display: inline-flex; }
   .fb_btn :hover {
-    background-color: green; }
+    background-color: blue; }
   .fb_btn img {
     width: 30px;
     border-radius: 30px;
