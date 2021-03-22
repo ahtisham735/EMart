@@ -42,12 +42,18 @@ def login(request):
     if request.method=="POST":
         username= request.POST['username']
         password= request.POST['password']
+        
         try:
+            if 'chkbox1' in request.POST:
+                 isChecked = request.POST['chkbox1']
+            else:
+                 isChecked = False
             if request.session.get('is_Login', False):
-                 return HttpResponse("You are already login.")       
-            request.session['is_Login']=True
+                  return HttpResponse("You are already login.") 
+            if isChecked:  
+                request.session['is_Login'] = True
             cust = Customer.objects.get(username=username,password=password)
-            return render(request,"Home_Module/Home.html",context={"LoginCust":cust})
+            return render(request,"Home_Module/Home.html",context={"LoginCust":is_private})
         except Customer.DoesNotExist:
             ErrorMessage="Login faild!,Invalid Username or Password"
             return render(request,"Home_Module/SignUp.html",context={"ErrorMessage":ErrorMessage})
@@ -61,6 +67,10 @@ def home(request):
         return render(request,"Home_Module/signup.html")
  
 def signup(request):
-    return render(request,"Home_Module/signup.html")
+    isLog = request.session.get('is_Login', False)
+    if isLog:
+       return HttpResponse("You are already login.")
+    else:
+        return render(request,"Home_Module/signup.html")
 def forget(request):
     return render(request,"Home_Module/ForgetPass.html")
