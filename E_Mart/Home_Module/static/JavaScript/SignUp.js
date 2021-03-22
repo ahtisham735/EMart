@@ -11,7 +11,7 @@ loginSubmit=()=>{
     var pswdError=document.getElementById("pswdError")
     var submit=true;
     if(username.value.length===0){
-        nameError.innerHTML="Please enter username"
+        nameError.innerHTML="Please Enter Username"
         submit= false;
 
     }
@@ -19,7 +19,7 @@ loginSubmit=()=>{
         nameError.innerHTML=""
     }
     if(passwd.value.length==0){
-        pswdError.innerHTML="Please eneter password"
+        pswdError.innerHTML="Please Enter Password"
         submit= false
 
     }
@@ -39,7 +39,7 @@ handleFocus=(id)=>{
     const element =document.getElementById(`${id}Error`)
     if(val.value.length===0){
        
-        element.innerHTML="it is a required field";
+        element.innerHTML="It is a required field";
                
     }
        
@@ -50,7 +50,7 @@ handleChangeRegister=(id)=>{
     var regbtn=document.getElementById('regbtn')
     if(val.value.length===0){
        
-        element.innerHTML="it is a required field";
+        element.innerHTML="It is a required field";
         return;
                              
     }
@@ -75,6 +75,7 @@ handleChangeRegister=(id)=>{
         .then(response=>response.json())
         .then(data=>{
            if(data===null){
+               alert("Hello");
                 usernameStatus=true;
                 element.innerHTML=""
            }

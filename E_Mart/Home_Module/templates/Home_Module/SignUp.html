@@ -17,6 +17,10 @@
                         <button  class="toogle_btn" onclick="login()">Login</button>
                         <button  class="toogle_btn" onclick="register()">Register</button>
                     </div>
+                    <div class="div_head">
+                        <h3>WELCOME TO EMART</h3>
+                    
+                    </div>
                     <form id="login" class="form_style" method="POST" action="{%url 'Home_Module:login'%}"  onsubmit="return loginSubmit()" >
                         {% csrf_token %}
                         <div>
@@ -28,16 +32,16 @@
                             <span id="pswdError" class="error_style">{{ErrorMessage}}</span>
                         </div>
                          <div>
-                            <input type="checkbox" id="chkbox1" class="check_box"/><span class="checkbox_style">Remeber Password</span>
+                            <input type="checkbox" id="chkbox1" class="check_box"/><span class="checkbox_style">Remember Password</span>
                             <button id="loin_btn" type="submit" class="submit_btn" >Login</button>
                             <a  class="forget" href="{% url 'Home_Module:forget'%}">Forgot Password?</a>
                         </div>
                         <div class="btn_div">
-                            <a class="fb_btn" href="{% provider_login_url "facebook"   method="oauth2" %}">
+                            <a class="fb_btn" href="{% provider_login_url "facebook" method="oauth2" %}">
                             <img src="{%static '/Images/fb.png'%}"/>
                                 Facebook
                             </a>
-                            <a class="fb_btn" href="{% provider_login_url "google"  %}" >
+                            <a class="fb_btn" href="{% provider_login_url "google"  %}">
                                 <img src="{%static '/Images/google.jpg'%}"/>
                                     Google
                             </a>
@@ -64,7 +68,7 @@
                         </div>
                         <input id="chkbox" type="checkbox" onchange="handleChangeRegister(id)"   class="check_box"/><span class="checkbox_style" id="registerSpan">I agree all terms and policy of E-MART.</span>
                         <button id="regbtn" type="submit" disabled  class="submit_btn">Register</button>
-                     
+
                     </form>
                 </div> 
         </div>

@@ -7,5 +7,6 @@ urlpatterns=[
     path('signup/',views.signup,name="signup"),
     path('forget',views.forget,name="forget"),
     path('customer/',views.cust_api,name="cust_api"),
-    path('customer/<str:name>',views.cust_api,name="cust_api")
+    path('customer/<str:name>',views.cust_api,name="cust_api"),
+    path('contact',views.contact,name="contact")
 ]
