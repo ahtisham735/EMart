@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('Home_Module.urls')),
     path('accounts/',include('allauth.urls')),
+    path('verification/', include('verify_email.urls')),
 ]

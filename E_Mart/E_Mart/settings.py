@@ -51,11 +51,18 @@ INSTALLED_APPS = [
     #providers i.e google,facebook
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
+    #Email verification
+    'verify_email',
 
     #local apps
     'Home_Module',
 ]
 #only White List domains can access our Api's
+CORS_ALLOWED_ORIGINS = [
+ 
+    "http://localhost:8000",
+    "http://127.0.0.1:8000"
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -143,3 +150,14 @@ SITE_ID=1
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'emart1354@gmail.com' 
+EMAIL_HOST_PASSWORD = 'mcsf19@emart'
+EMAIL_USE_SSL=False
+
+
+
+DEFAULT_FROM_EMAIL = os.environ.get('emart1354@gmail.com')
