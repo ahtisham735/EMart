@@ -5,32 +5,38 @@
   margin: 6% auto;
   background: whitesmoke;
   padding: 5px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .button-box {
   width: 220px;
   margin: 35px auto;
   position: relative;
-  box-shadow: 0 0 20px 9px pink;
-  border-radius: 30px; }
+  -webkit-box-shadow: 0 0 20px 9px pink;
+          box-shadow: 0 0 20px 9px pink;
+  border-radius: 30px;
+}
 
 .div_head {
   color: black;
   width: 250px;
   margin: 35px 110px auto;
-  cursor: pointer; }
-  .div_head h3 {
-    font-size: large; }
+  cursor: pointer;
+}
 
 .icons {
   margin: 30px auto;
-  text-align: center; }
-  .icons img {
-    width: 30px;
-    margin: 0 12px;
-    cursor: pointer;
-    box-shadow: blue;
-    border-radius: 50%; }
+  text-align: center;
+}
+
+.icons img {
+  width: 30px;
+  margin: 0 12px;
+  cursor: pointer;
+  -webkit-box-shadow: blue;
+          box-shadow: blue;
+  border-radius: 50%;
+}
 
 .toggle_btn {
   padding: 5px 20px;
@@ -38,7 +44,8 @@
   position: relative;
   outline: none;
   border: 10px;
-  background: transparent; }
+  background: transparent;
+}
 
 #btn_back {
   top: 0;
@@ -46,15 +53,20 @@
   position: absolute;
   width: 110px;
   height: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(#6a1b9a), to(pink));
   background: linear-gradient(to right, #6a1b9a, pink);
   border-radius: 30px;
-  transition: .5s; }
+  -webkit-transition: .5s;
+  transition: .5s;
+}
 
 .form_style {
   top: 160px;
   position: absolute;
   width: 280px;
-  transition: .5s; }
+  -webkit-transition: .5s;
+  transition: .5s;
+}
 
 .input_field {
   width: 100%;
@@ -65,7 +77,8 @@
   border-bottom: 1px solid black;
   border-left: 0;
   border-right: 0;
-  background: transparent; }
+  background: transparent;
+}
 
 .submit_btn {
   width: 85%;
@@ -73,51 +86,70 @@
   cursor: pointer;
   display: block;
   margin: 20px auto;
+  background: -webkit-gradient(linear, right top, left top, from(#6a1b9a), to(pink));
   background: linear-gradient(to left, #6a1b9a, pink);
   border: 0;
   outline: none;
-  border-radius: 30px; }
+  border-radius: 30px;
+}
 
 .forget {
   cursor: pointer;
-  color: purple; }
+  color: purple;
+}
 
 a {
-  padding: 10px 30px 10px; }
+  padding: 10px 30px 10px;
+}
 
 .check_box {
-  margin: 20px 10px 30px 5px; }
+  margin: 20px 10px 30px 5px;
+}
 
 .checkbox_style {
   color: #777;
   font-size: 12px;
   bottom: 3px;
-  position: relative; }
+  position: relative;
+}
 
 #login {
-  left: 50px; }
+  left: 50px;
+}
 
 #register {
-  left: 450px; }
+  left: 450px;
+}
 
 h4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row; }
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
 
 h4::before,
 h4:after {
   content: "";
-  flex: 1 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
   border-bottom: 1px solid #9e9e9e;
-  margin: auto; }
+  margin: auto;
+}
 
 .btn_div {
   position: absolute;
-  margin: 10px 0px; }
+  margin: 10px 0px;
+}
 
 div {
   font-weight: lighter;
-  font-size: 16px; }
+  font-size: 16px;
+}
 
 .fb_btn {
   background-color: #304ffe;
@@ -127,21 +159,30 @@ div {
   outline: 0;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0px 2px 2px lightgray;
+  -webkit-box-shadow: 0px 2px 2px lightgray;
+          box-shadow: 0px 2px 2px lightgray;
+  -webkit-transition: ease background-color 250ms;
   transition: ease background-color 250ms;
-  display: inline-flex; }
-  .fb_btn :hover {
-    background-color: blue; }
-  .fb_btn img {
-    width: 30px;
-    border-radius: 30px;
-    outline-color: blue; }
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.fb_btn :hover {
+  background-color: blue;
+}
+
+.fb_btn img {
+  width: 30px;
+  border-radius: 30px;
+  outline-color: blue;
+}
 
 .error_style {
   color: red;
   display: block;
   font-size: 15px;
   margin-left: 10px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; }
-
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 /*# sourceMappingURL=SignUp.css.map */
