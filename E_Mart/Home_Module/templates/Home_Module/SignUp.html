@@ -31,7 +31,9 @@
                             <input type="checkbox" id="chkbox1" class="check_box"/><span class="checkbox_style">Remember Password</span>
                             <button id="loin_btn" type="submit" class="submit_btn" >Login</button>
                             <a  class="forget" href="{% url 'Home_Module:forget'%}">Forgot Password?</a>
+                            <h4>or</h4>
                         </div>
+
                         <div class="btn_div">
                             <a class="fb_btn" href="{% provider_login_url "facebook" method="oauth2" %}">
                             <img src="{%static '/Images/fb.png'%}"/>
