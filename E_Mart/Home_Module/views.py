@@ -16,6 +16,7 @@ from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeErro
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from .tokenGenrator import token_generator
+
 # Create your views here.
 class MyForm(forms.ModelForm):
     class Meta:
@@ -67,7 +68,16 @@ def login(request):
     if request.method=="POST":
         username= request.POST['username']
         password= request.POST['password']
+        
         try:
+            if 'chkbox1' in request.POST:
+                 isChecked = request.POST['chkbox1']
+            else:
+                 isChecked = False
+            if request.session.get('is_Login', False):
+                  return HttpResponse("You are already login.") 
+            if isChecked:  
+                request.session['is_Login'] = True
             cust = Customer.objects.get(username=username,password=password)
             return render(request,"Home_Module/Home.html",context={"LoginCust":cust})
         except Customer.DoesNotExist:
@@ -76,16 +86,25 @@ def login(request):
            
         
 def home(request):
-    return render(request,"Home_Module/Home.html")
+    isLogin = request.session.get('is_Login', False)
+    if isLogin:
+        return render(request,"Home_Module/Home.html")
+    else:
+        return render(request,"Home_Module/signup.html")
+ 
 def signup(request):
-    return render(request,"Home_Module/signup.html")
+    isLog = request.session.get('is_Login', False)
+    if isLog:
+       return HttpResponse("You are already login.")
+    else:
+        return render(request,"Home_Module/signup.html")
 def forget(request):
     return render(request,"Home_Module/ForgetPass.html")
-
+def contact(request):
+    return render(request,"Home_Module/contact.html")
 class Verification(View):
     def get(request,uidb64,token):
         return redirect('/')
 
 
-  
 
