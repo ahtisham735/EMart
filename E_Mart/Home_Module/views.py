@@ -54,35 +54,19 @@ def login(request):
             ErrorMessage="Login faild!,Invalid Username or Password"
             return render(request,"Home_Module/SignUp.html",context={"ErrorMessage":ErrorMessage})
            
-        
-<<<<<<< HEAD
-def home(request):
+ def home(request):
     isLogin = request.session.get('is_Login', False)
     if isLogin:
-        return render(request,"Home_Module/Home.html")
-    else:
-        return render(request,"Home_Module/signup.html")
-def signup(request):
+       return render(request,"Home_Module/Home.html")
+   else:
+       return render(request,"Home_Module/signup.html")
+ 
+ def signup(request):
     isLog = request.session.get('is_Login', False)
     if isLog:
        return HttpResponse("You are already login.")
-    else:
-        return render(request,"Home_Module/signup.html")
-=======
-# def home(request):
-#     isLogin = request.session.get('is_Login', False)
-#     if isLogin:
-#         return render(request,"Home_Module/Home.html")
-#     else:
-#         return render(request,"Home_Module/signup.html")
- 
-# def signup(request):
-#     isLog = request.session.get('is_Login', False)
-#     if isLog:
-#        return HttpResponse("You are already login.")
-#     else:
-#         return render(request,"Home_Module/signup.html")
->>>>>>> 60e5e2c32521948ccf8e05d3c3806a7dc7fddb71
+  else:
+       return render(request,"Home_Module/signup.html")
 def forget(request):
     return render(request,"Home_Module/ForgetPass.html")
 def contact(request):
