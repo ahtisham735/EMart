@@ -8,7 +8,7 @@ passowrd:Pakistan
 
 commands to remember:
 
-1:Fyp_env\Scripts\activate  ....for activating virtual enviormnent
+1:venv\Scripts\activate  ....for activating virtual enviormnent
 2:django-admin startproject projectName ....for creating a django project 
 3:python manage.py startapp appName ....for creating a new app 
 4:python manage.py makemigrations .... propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema
@@ -28,3 +28,4 @@ installed libraries(backend):
 2:django-allauth...(pip install django-allauth)...to provides social authentication
 3:djangorestframework-3.12.2(pip install djangorestframework)...for creating api's
 4:django-cors-headers-3.7.0(pip install django-cors-headers) ...for allowing other origins to access our api's 
+5:Django-Verify-Email-0.0.5(pip install Django-Verify-Email)....for email verification of valid users 

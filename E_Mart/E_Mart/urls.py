@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-
+from Home_Module.views import Verification
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('Home_Module.urls')),
-    path('accounts/',include('allauth.urls')),
+    path('accounts/',include('allauth.urls')),	
+    path('activate/<uidb64>/<token>',Verification.as_view(),name="activate"),
+   
 ]

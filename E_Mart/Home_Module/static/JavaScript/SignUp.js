@@ -70,21 +70,21 @@ handleChangeRegister=(id)=>{
 
     }
     else if(id==='username'){    
-        
-        fetch(`http://localhost:8000/customer/${val.value}`)
-        .then(response=>response.json())
-        .then(data=>{
-           if(data===null){
-               alert("Hello");
-                usernameStatus=true;
-                element.innerHTML=""
-           }
-           else{
+        usernameStatus=true
+        element.innerHTML="";
+        // fetch(`http://localhost:8000/customer/${val.value}`)
+        // .then(response=>response.json())
+        // .then(data=>{
+        //    if(data===null){
+        //         usernameStatus=true;
+        //         element.innerHTML=""
+        //    }
+        //    else{
               
-                element.innerHTML="This username has already taken"
-                usernameStatus=false;
-           }
-        })
+        //         element.innerHTML="This username has already taken"
+        //         usernameStatus=false;
+        //    }
+        // })
         
     }
     else if(id==='password')
@@ -137,11 +137,11 @@ handleChangeRegister=(id)=>{
     }
     if(emailStatus&&passwordStatus&&cnfrmPasswordStatus&&usernameStatus&&chkboxStatus)
     {
-        regbtn.disabled=false;  
+        //regbtn.disabled=false;  
     }
     else
     {
-        regbtn.disabled=true; 
+        //regbtn.disabled=false; 
     }
     
    
