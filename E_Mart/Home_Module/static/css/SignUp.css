@@ -20,8 +20,12 @@
 .div_head {
   color: black;
   width: 250px;
-  margin: 35px 110px auto;
+  margin: 35px 90px auto;
   cursor: pointer;
+}
+
+.div_head h3 {
+  font-size: x-large;
 }
 
 .icons {

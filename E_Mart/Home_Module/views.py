@@ -65,7 +65,6 @@ def home(request):
         return render(request,"Home_Module/Home.html")
     else:
         return render(request,"Home_Module/signup.html")
- 
 def signup(request):
     isLog = request.session.get('is_Login', False)
     if isLog:

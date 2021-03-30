@@ -5,6 +5,8 @@
 {% load account %}
 
 {% block content %}
+<link rel="stylesheet"  href="{%static '/css/SignUp.css'%}" >
+<script src="{% static 'javaScript/SignUp.js' %}"></script>
 
         <div>
                 <div class="form-box">
@@ -66,7 +68,6 @@
                         </div>
                         <input id="chkbox" type="checkbox" onchange="handleChangeRegister(id)"   class="check_box"/><span class="checkbox_style" id="registerSpan">I agree all terms and policy of E-MART.</span>
                         <button id="regbtn" type="submit" disabled  class="submit_btn">Register</button>
-
                     </form>
                 </div> 
         </div>

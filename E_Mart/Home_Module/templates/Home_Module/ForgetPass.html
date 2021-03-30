@@ -1,11 +1,9 @@
+{%extends 'base.html'%}
 {% load static%}
-<!DOCTYPE>
-<html>
-    <head>
-        <title>Password Recovery</title>
-        <link rel="stylesheet" type="text/css" href="{%static '/css/forget.css'%}" >
-    </head>
-    <body >
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{%static '/css/forget.css'%}" >
+<div>
         <form id="register" class="form_style">
             <div class="form-box">
                 <div>
@@ -27,5 +25,5 @@
                 <a  class="goBack" href="{%url 'Home_Module:signup'%}">Go back</a>
             </div>
         </form>
-    </body>
-</html>
+</div>
+{% endblock %}
