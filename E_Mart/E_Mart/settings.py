@@ -27,7 +27,11 @@ SECRET_KEY = 'x#1c03n(&5_1p*68)6_w26@(342u^f0if4ym#!6lh&5sx1@37o'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL='Home_Module.User'
+AUTHENTICATION_BACKENDS=(
+    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    'Home_Module.Backend.BackendSetting'
+)
 
 # Application definition
 
@@ -161,3 +165,4 @@ EMAIL_USE_SSL=False
 
 
 DEFAULT_FROM_EMAIL = os.environ.get('emart1354@gmail.com')
+
