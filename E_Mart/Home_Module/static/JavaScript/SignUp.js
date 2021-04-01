@@ -146,22 +146,19 @@ handleChangeRegister=(id)=>{
     
    
 }
+var loginForm=document.getElementById("loginForm");
+var regForm=document.getElementById("regForm");
+var indicator=document.getElementById("indicator"); 
+console.log(loginForm);
 function login(){
-    
-    var x=document.getElementById("login");
-    var y=document.getElementById("register");
-    var z=document.getElementById("btn_back");  
-    x.style.left="50px";
-    y.style.left="450px";
-    z.style.left="0px";
+    regForm.style.transform="translateX(340px)";
+    loginForm.style.transform="translateX(300px)";
+    indicator.style.transform="translateX(0px)";
     }
 function register(){
-    var x=document.getElementById("login");
-    var y=document.getElementById("register");
-    var z=document.getElementById("btn_back");
-    x.style.left="-400px";
-    y.style.left="50px";
-    z.style.left="110px";
+    regForm.style.transform="translateX(0px)";
+    loginForm.style.transform="translateX(0px)";
+    indicator.style.transform="translateX(100px)";
 }
 
 //utility functions

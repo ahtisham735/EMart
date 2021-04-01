@@ -102,7 +102,7 @@
   color: purple;
 }
 
-a {
+.anchor {
   padding: 10px 30px 10px;
 }
 
@@ -148,11 +148,6 @@ h4:after {
 .btn_div {
   position: absolute;
   margin: 10px 0px;
-}
-
-div {
-  font-weight: lighter;
-  font-size: 16px;
 }
 
 .fb_btn {

@@ -90,8 +90,9 @@
 .forget{
     cursor: pointer;
     color:purple;
+    
 }
-a{
+.anchor{
     padding: 10px 30px 10px;
 }
 .check_box{
@@ -126,10 +127,6 @@ margin: auto;
 .btn_div{
     position: absolute;
     margin: 10px 0px;
-}
-div{
-    font-weight: lighter;
-    font-size: 16px;
 }
 .fb_btn{
     background-color:#304ffe;

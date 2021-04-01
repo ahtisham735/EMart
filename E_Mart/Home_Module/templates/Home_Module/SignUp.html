@@ -1,84 +1,111 @@
-{%extends 'base.html'%}
 {% load static%}
 {% load socialaccount %}
 {% providers_media_js %}
 {% load account %}
-
-{% block content %}
-<link rel="stylesheet"  href="{%static '/css/SignUp.css'%}" >
-<script src="{% static 'javaScript/SignUp.js' %}"></script>
-
-        <div>
-                <div class="form-box">
-                    <div class="button-box">
-                        <div id="btn_back"></div>
-                        <button  class="toggle_btn" onclick="login()">Login</button>
-                        <button  class="toogle_btn" onclick="register()">Register</button>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>E-commerce|E-Mart</title>
+        <link rel="stylesheet" href="{%static '/css/home.css'%}"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    </head>
+    <body>
+        <div >
+            <div class="container">
+                <div class="navbar">
+                    <div class="head">
+                        <h1>E-Mart</h1>
+                         <img src="{%static '/Images/menu.png'%}" class="menu-icon" onclick="menutoggle()"/> 
                     </div>
-                    <div class="div_head">
-                        <h3>WELCOME TO EMART</h3>
-                    
-                    </div>
-                    <form id="login" class="form_style" method="POST" action="{%url 'Home_Module:login'%}"  onsubmit="return loginSubmit()" >
-                        {% csrf_token %}
-                        <div>
-                            <input  name="username" id="loginUsername"   type="text" class="input_field" placeholder="Username"/>
-                            <span id="nameError" class="error_style"></span>
-                        </div>
-                        <div>
-                            <input  name="password" id="loginPasswd"   type="password" class="input_field" placeholder="Password" />
-                            <span id="pswdError" class="error_style">{{ErrorMessage}}</span>
-                        </div>
-                         <div>
-                            <input type="checkbox" id="chkbox1" class="check_box"/><span class="checkbox_style">Remember Password</span>
-                            <button id="loin_btn" type="submit" class="submit_btn" >Login</button>
-                            <a  class="forget" href="{% url 'Home_Module:forget'%}">Forgot Password?</a>
-                            <h4>or</h4>
-                        </div>
-
-                        <div class="btn_div">
-                            <a class="fb_btn" href="{% provider_login_url "facebook" method="oauth2" %}">
-                            <img src="{%static '/Images/fb.png'%}"/>
-                                Facebook
-                            </a>
-                            <a class="fb_btn" href="{% provider_login_url "google"  %}">
-                                <img src="{%static '/Images/google.jpg'%}"/>
-                                    Google
-                            </a>
-                        </div>
-                    </form>
-                    
-                    <form id="register" class="form_style" method="POST" action="{%url 'Home_Module:signup'%}" >
-                        {% csrf_token %}
-                        <div>
-                            <input name="email" id="email" onfocus="handleFocus(id)" type="email" class="input_field" placeholder="Email*"/>
-                            <span id="emailError" class="error_style"></span>
-                        </div>
-                        <div>
-                            <input name="username" id="username" onfocus="handleFocus(id)" type="text" class="input_field" placeholder="Username*" />
-                            <span id="usernameError" class="error_style"></span>
-                        </div>    
-                        <div>
-                            <input name="password" id="password" onfocus="handleFocus(id)" type="password" class="input_field" placeholder="Password*"  />
-                            <span id="passwordError" class="error_style"></span>
-                        </div>
-                        <div>
-                            <input id="cnfrmPassword" onfocus="handleFocus(id)"  type="password" class="input_field" placeholder="Confirm Password*" />
-                            <span id="cnfrmPasswordError" class="error_style"></span>
-                        </div>
-<<<<<<< HEAD
-                        <input id="chkbox" type="checkbox" onchange="handleChangeRegister(id)"   class="check_box"/><span class="checkbox_style" id="registerSpan">I agree all terms and policy of E-MART.</span>
-                        <button id="regbtn" type="submit" disabled  class="submit_btn">Register</button>
-=======
-                        <input id="chkbox" type="checkbox"   class="check_box"/><span class="checkbox_style" id="registerSpan">I agree all terms and policy of E-MART.</span>
-                        <button id="regbtn" type="submit"  class="submit_btn">Register</button>
-
->>>>>>> 60e5e2c32521948ccf8e05d3c3806a7dc7fddb71
-                    </form>
-                </div> 
+                    <nav>
+                        <ul id="MenuItems">
+                            <li><a  href="{%url 'Home_Module:home'%}"/>Home</li>
+                            <li><a href=""/>About</li>
+                            <li><a href="{%url 'Home_Module:contact'%}"/>Contact</li>
+                            <li><a href="{%url 'Home_Module:signup'%}"/>Login</li>
+                            <li><a href=""/>Product</li>
+                        </ul>
+                    </nav>
+                    <img class="cart-img" src="{%static '/Images/cart.jpg' %}"/>  
+                </div>
+            </div>
         </div>
-{% endblock %}
-<<<<<<< HEAD
-=======
+<!-------------------------------------------------Login/Registration Form-------------------  -->
+        <div class="Login">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <h1>LOGIN TO EMART!!</h1>
+                        <p>EMART is one of the best online-shopping website.<br>You can buy quality products within suitable prices.<br>abacagahrfktcgsdfdyh ajhsgdftfhdjsmajhsdyrh kasjduru <br>LOOT LO MELA LOOT LO MELA.</p>
+                        <a href="" class= "Visitbtn">Visit EMART &#8594;</a>
+                    </div>
+                        <div class="col-2">
+                            <div class="form-box">
+                                <div class="btn-box">
+                                    <div id="btn_back"></div>
+                                    <button type="submit" class="toggle-btn" onclick="login()">Login In</button>
+                                    <button type="submit" class="toggle-btn" onclick="register()">Register</button>
+                                </div>
+                                <div class="div_head">
+                                <h3>WELCOME TO EMART<h3>
+                                </div>
+                                <form id="login" class="input-group" method="POST" action="{%url 'Home_Module:login'%}"  onsubmit="return loginSubmit()">
+                                    <div>
+                                        <input type="text" class="input_field" placeholder="username*" required></input>
+                                    </div>
+                                    <div>
+                                        <input type="password" class="input_field" placeholder="Password*" required></input>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="chkbox1" class="check_box"/><span class="checkbox_style">Remember Password</span>
+                                        <button id="loin_btn" type="submit" class="submit_btn" >Login</button>
+                                        <a  class="forget" href="{% url 'Home_Module:forget'%}">Forgot Password?</a>
+                                        <h5>or</h5>
+                                    </div> 
+                                    <div class="btn_div">
+                                    <a class="fb_btn" href="{% provider_login_url "facebook" method="oauth2" %}">
+                                        Facebook
+                                    </a>
+                                    <a class="fb_btn" href="{% provider_login_url "google"  %}">
+                                        Google
+                                    </a>
+                                    <div>
+                                    <p>Not have an account?<a class="regPointer">Register</a></p>
+                                </form>
+                                <form id="register" class="input-group" method="POST" action="{%url 'Home_Module:signup'%}" >
+                                    {% csrf_token %}
+                                    <div>
+                                        <input name="email" id="email" onfocus="handleFocus(id)" type="email" class="input_field" placeholder="Email*"/>
+                                        <span id="emailError" class="error_style"></span>
+                                    </div>
+                                    <div>
+                                        <input name="username" id="username" onfocus="handleFocus(id)" type="text" class="input_field" placeholder="Username*" />
+                                        <span id="usernameError" class="error_style"></span>
+                                    </div>    
+                                     <div>
+                                        <input name="password" id="password" onfocus="handleFocus(id)" type="password" class="input_field" placeholder="Password*"  />
+                                        <span id="passwordError" class="error_style"></span>
+                                    </div>
+                                    <div>
+                                        <input id="cnfrmPassword" onfocus="handleFocus(id)"  type="password" class="input_field" placeholder="Confirm Password*" />
+                                        <span id="cnfrmPasswordError" class="error_style"></span>
+                                    </div>
+                                    <input id="chkbox" type="checkbox" onchange="handleChangeRegister(id)"   class="check_box"/><span class="checkbox_style spn" id="registerSpan">I agree all terms and policy of E-MART.</span>
+                                    <button id="regbtn" type="submit" disabled  class="submit_btn">Register</button>
+                                </form>
+                                
 
->>>>>>> 60e5e2c32521948ccf8e05d3c3806a7dc7fddb71
+                             </div>
+                        </div>
+                </div>
+            </div>
+        
+        </div>
+        <script src="{% static 'javaScript/SignUp.js' %}"></script>
+    </body>
+</html>

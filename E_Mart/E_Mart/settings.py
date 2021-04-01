@@ -55,8 +55,7 @@ INSTALLED_APPS = [
     #providers i.e google,facebook
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
-    #Email verification
-    'verify_email',
+    
 
     #local apps
     'Home_Module',

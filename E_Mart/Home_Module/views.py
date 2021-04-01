@@ -54,18 +54,14 @@ def login(request):
             ErrorMessage="Login faild!,Invalid Username or Password"
             return render(request,"Home_Module/SignUp.html",context={"ErrorMessage":ErrorMessage})
            
- def home(request):
-    isLogin = request.session.get('is_Login', False)
-    if isLogin:
-       return render(request,"Home_Module/Home.html")
-   else:
-       return render(request,"Home_Module/signup.html")
+def home(request):
+    return render(request,"Home_Module/Home.html")
  
- def signup(request):
+def signup(request):
     isLog = request.session.get('is_Login', False)
     if isLog:
        return HttpResponse("You are already login.")
-  else:
+    else:
        return render(request,"Home_Module/signup.html")
 def forget(request):
     return render(request,"Home_Module/ForgetPass.html")
@@ -88,9 +84,8 @@ def signup(request):
         email_body=f'Hey {user.username}\n Thanks for regestring on E_Mart.We are very delighted to have you.Please click the following link to activate your account\n'
         send_link(email_subject,email_body,user,'activate')
         return render(request, 'Home_Module/email_verification.html',context={"email":user.email})
-    
-def home(request):
-    return render(request,"Home_Module/Home.html")
+
+
 def logout(request):
     return render(request,"Home_Module/logout.html")
 
