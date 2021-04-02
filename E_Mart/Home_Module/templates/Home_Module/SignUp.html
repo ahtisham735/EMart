@@ -41,15 +41,15 @@
                         <div class="div_head">
                         <h3>WELCOME TO EMART<h3>
                         </div>
-                        <form id="login"  class="input-group" method="POST"   onsubmit="return loginSubmit()">
+                        <form id="login"  class="input-group" method="POST" action="{%url 'Home_Module:login'%}"  onsubmit="return loginSubmit()">
                             {% csrf_token %}
                             <div>
-                                <input type="text" id="loginUsername" class="input_field" placeholder="username*" required></input>
+                                <input type="text" name="username" id="loginUsername" class="input_field" placeholder="username*" ></input>
                                 <span id="nameError"></span>
                             </div>
                             <div>
-                                <input id="loginPasswd" type="password" class="input_field" placeholder="Password*" required></input>
-                                <span id="passwdError"></span>
+                                <input id="loginPasswd" name="password" type="password" class="input_field" placeholder="Password*" ></input>
+                                <span id="passwdError">{{errorMessage}}</span>
                             </div>
                             <div>
                                 <input type="checkbox" id="chkbox1" class="check_box"/><span class="checkbox_style">Remember Password</span>
@@ -70,19 +70,19 @@
                         <form id="register" class="input-group" method="POST" action="{%url 'Home_Module:signup'%}" >
                             {% csrf_token %}
                             <div>
-                                <input name="email" id="email" onfocus="handleFocus(id)" type="email" class="input_field" placeholder="Email*"/>
+                                <input name="email" onkeyup="handleChangeRegister(id)" id="email" onfocus="handleFocus(id)" type="email" class="input_field" placeholder="Email*"/>
                                 <span id="emailError" class="error_style"></span>
                             </div>
                             <div>
-                                <input name="username" id="username" onfocus="handleFocus(id)" type="text" class="input_field" placeholder="Username*" />
+                                <input name="username" onkeyup="handleChangeRegister(id)" id="username" onfocus="handleFocus(id)" type="text" class="input_field" placeholder="Username*" />
                                 <span id="usernameError" class="error_style"></span>
                             </div>    
                              <div>
-                                <input name="password" id="password" onfocus="handleFocus(id)" type="password" class="input_field" placeholder="Password*"  />
+                                <input name="password" onkeyup="handleChangeRegister(id)" id="password" onfocus="handleFocus(id)" type="password" class="input_field" placeholder="Password*"  />
                                 <span id="passwordError" class="error_style"></span>
                             </div>
                             <div>
-                                <input id="cnfrmPassword" onfocus="handleFocus(id)"  type="password" class="input_field" placeholder="Confirm Password*" />
+                                <input id="cnfrmPassword" onkeyup="handleChangeRegister(id)" onfocus="handleFocus(id)"  type="password" class="input_field" placeholder="Confirm Password*" />
                                 <span id="cnfrmPasswordError" class="error_style"></span>
                             </div>
                             <input id="chkbox" type="checkbox" onchange="handleChangeRegister(id)"   class="check_box"/><span class="checkbox_style spn" id="registerSpan">I agree all terms and policy of E-MART.</span>

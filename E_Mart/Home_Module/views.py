@@ -18,15 +18,20 @@ from .Serializer import CustomerSerializer
 
 
 @csrf_exempt
-def cust_api(request,name=''):
+def cust_api(request,name='',email=''):
     if request.method=="GET":
-        if len(name)!=0:
+        if len(name)!=0 or len(email)!=0:
             try:
-                cust=User.objects.get(pk=name)
+                if len(email)==0:
+                    cust=User.objects.get(username=name)
+                else:
+                    cust=User.objects.get(email=email)
                 cust_serializer=CustomerSerializer(cust)
                 return JsonResponse(cust_serializer.data,safe=False)      
+                
             except User.DoesNotExist:
                 return JsonResponse(None,safe=False)
+
                               
         customers=User.objects.all()
         cust_serializer=CustomerSerializer(customers,many=True)
@@ -38,31 +43,34 @@ def login(request):
     if request.method=="POST":
         username= request.POST['username']
         password= request.POST['password']
-        
-        try:
-            if 'chkbox1' in request.POST:
-                 isChecked = request.POST['chkbox1']
-            else:
-                 isChecked = False
-            if request.session.get('is_Login', False):
-                  return HttpResponse("You are already login.") 
-            if isChecked:  
-                request.session['is_Login'] = True
-            cust = Customer.objects.get(username=username,password=password)
-            return render(request,"Home_Module/Home.html",context={"LoginCust":cust})
-        except Customer.DoesNotExist:
-            ErrorMessage="Login faild!,Invalid Username or Password"
-            return render(request,"Home_Module/SignUp.html",context={"ErrorMessage":ErrorMessage})
+
+            # if 'chkbox1' in request.POST:
+            #      isChecked = request.POST['chkbox1']
+            # else:
+            #      isChecked = False
+            # if request.session.get('is_Login', False):
+            #       return HttpResponseRedirect("You are already login.") 
+            # if isChecked:  
+            #     request.session['is_Login'] = True     
+        cust = auth.authenticate(username=username,password=password)
+        if cust is None:
+            errorMessage="Invalid Username or Password"
+            return render(request,"Home_Module/SignUp.html",context={"errorMessage":errorMessage})
+        if  not cust.is_active:
+            errorMessage="Your account is not active.please check your email address"
+            return render(request,"Home_Module/SignUp.html",context={"errorMessage":errorMessage})
+        return render(request,"Home_Module/Home.html",context={"LoginCust":cust})
+    
            
 def home(request):
     return render(request,"Home_Module/Home.html")
  
-def signup(request):
-    isLog = request.session.get('is_Login', False)
-    if isLog:
-       return HttpResponse("You are already login.")
-    else:
-       return render(request,"Home_Module/signup.html")
+# def signup(request):
+#     isLog = request.session.get('is_Login', False)
+#     if isLog:
+#        return HttpResponse("You are already login.")
+#     else:
+#        return render(request,"Home_Module/signup.html")
 def forget(request):
     return render(request,"Home_Module/ForgetPass.html")
 def contact(request):
