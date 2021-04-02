@@ -55,8 +55,7 @@ INSTALLED_APPS = [
     #providers i.e google,facebook
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
-    #Email verification
-    'verify_email',
+    
 
     #local apps
     'Home_Module',
@@ -86,7 +85,7 @@ ROOT_URLCONF = 'E_Mart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

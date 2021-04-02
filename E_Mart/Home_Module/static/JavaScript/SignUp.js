@@ -5,6 +5,8 @@ var cnfrmPasswordStatus=false
 var chkboxStatus=false
 
 loginSubmit=()=>{
+    alert("dasd")
+    console("sasd")
     const passwd=document.getElementById("loginPasswd")
     const username=document.getElementById("loginUsername")
     var nameError=document.getElementById("nameError")
@@ -146,24 +148,25 @@ handleChangeRegister=(id)=>{
     
    
 }
+
 function login(){
-    
-    var x=document.getElementById("login");
-    var y=document.getElementById("register");
-    var z=document.getElementById("btn_back");  
+    const x=document.getElementById("login");
+    const y=document.getElementById("register");
+    const z=document.getElementById("btn_back");    
+ 
     x.style.left="50px";
-    y.style.left="450px";
+    y.style.left="-450px";
     z.style.left="0px";
     }
 function register(){
-    var x=document.getElementById("login");
-    var y=document.getElementById("register");
-    var z=document.getElementById("btn_back");
+
+    const x=document.getElementById("login");
+const y=document.getElementById("register");
+const z=document.getElementById("btn_back");
     x.style.left="-400px";
     y.style.left="50px";
     z.style.left="110px";
 }
-
 //utility functions
 
 
