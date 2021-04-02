@@ -1,7 +1,7 @@
 All information regarding FYP
 
 Admin user Credentials  in django:
-username:mcsf19 
+username:mcsf19m002
 passowrd:Pakistan
 
 
@@ -28,4 +28,3 @@ installed libraries(backend):
 2:django-allauth...(pip install django-allauth)...to provides social authentication
 3:djangorestframework-3.12.2(pip install djangorestframework)...for creating api's
 4:django-cors-headers-3.7.0(pip install django-cors-headers) ...for allowing other origins to access our api's 
-5:Django-Verify-Email-0.0.5(pip install Django-Verify-Email)....for email verification of valid users 
