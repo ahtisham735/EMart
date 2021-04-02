@@ -5,8 +5,7 @@ var cnfrmPasswordStatus=false
 var chkboxStatus=false
 
 loginSubmit=()=>{
-    alert("dasd")
-    console("sasd")
+  
     const passwd=document.getElementById("loginPasswd")
     const username=document.getElementById("loginUsername")
     var nameError=document.getElementById("nameError")
@@ -14,15 +13,17 @@ loginSubmit=()=>{
     var submit=true;
     if(username.value.length===0){
         nameError.innerHTML="Please Enter Username"
-        submit= false;
+        return false;
 
     }
-    else{
+    else
+    {
         nameError.innerHTML=""
     }
-    if(passwd.value.length==0){
+
+    if(passwd.value.length===0){
         pswdError.innerHTML="Please Enter Password"
-        submit= false
+        return false;
 
     }
     else{
@@ -30,7 +31,8 @@ loginSubmit=()=>{
         
 
     }
-    return submit;
+
+        return true;
 
    
    
@@ -58,35 +60,44 @@ handleChangeRegister=(id)=>{
     }
 
     if(id==='email'){
-        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        if(!filter.test(val.value)){
-            element.innerHTML="invalid email";  
+        fetch(`http://localhost:8000/customer/email=${val.value}`)
+        .then(response=>response.json())
+        .then(data=>{
+           if(data!==null&&!data['is_social_user']){
+                element.innerHTML="User already exist"
+                emailStatus=false;
+                return;
+                
+           }
+        });
            
-            emailStatus=false   
-        }
-        else
-        {
-            emailStatus=true; 
-            element.innerHTML="";
-        }
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(!filter.test(val.value)){
+        element.innerHTML="invalid email";  
+        
+        emailStatus=false   
+    }
+    else
+    {
+        emailStatus=true; 
+        element.innerHTML="";
+    }
 
     }
     else if(id==='username'){    
-        usernameStatus=true
-        element.innerHTML="";
-        // fetch(`http://localhost:8000/customer/${val.value}`)
-        // .then(response=>response.json())
-        // .then(data=>{
-        //    if(data===null){
-        //         usernameStatus=true;
-        //         element.innerHTML=""
-        //    }
-        //    else{
+        fetch(`http://localhost:8000/customer/username=${val.value}`)
+        .then(response=>response.json())
+        .then(data=>{
+           if(data===null){
+                usernameStatus=true;
+                element.innerHTML=""
+           }
+           else{
               
-        //         element.innerHTML="This username has already taken"
-        //         usernameStatus=false;
-        //    }
-        // })
+                element.innerHTML="This username has already taken"
+                usernameStatus=false;
+           }
+        })
         
     }
     else if(id==='password')
@@ -139,11 +150,11 @@ handleChangeRegister=(id)=>{
     }
     if(emailStatus&&passwordStatus&&cnfrmPasswordStatus&&usernameStatus&&chkboxStatus)
     {
-        //regbtn.disabled=false;  
+        regbtn.disabled=false;  
     }
     else
     {
-        //regbtn.disabled=false; 
+        regbtn.disabled=true; 
     }
     
    
