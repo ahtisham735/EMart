@@ -7,6 +7,10 @@ body{
   font-family: 'Roboto', sans-serif;
 }
 .header{
+  /*background:radial-gradient( #9e9e9e,pink);*/
+  background: radial-gradient(#ff8a80,white);
+}
+.home{
   background: radial-gradient(#ff8a80,white);
 }
 .header .row{
@@ -303,12 +307,13 @@ footer hr{
   background: radial-gradient(#ff8a80,white);;
 }
 .form-box{
-  width: 380px;
-  height: 550px;
+  width: 400px;
+  height: 700px;
   position: relative;
   padding:5px;
   margin: 6% auto;
   background: whitesmoke;
+  overflow: hidden;
 
 }
 .btn-box {
@@ -339,7 +344,8 @@ footer hr{
 .div_head {
   color: black;
   width: 250px;
-  margin: 10px 100px;
+  margin:35px 80px auto;
+ 
   cursor: pointer;
 }
 .input-group{
@@ -372,13 +378,19 @@ footer hr{
   border-radius: 30px;
 }
 .check_box {
-  margin: 20px 10px 30px 5px;
+  margin: 20px 10px 30px auto;
 }
-.spn{
+span{
   color:#777;
   font-size: 12px;
-  bottom: 68px;
-  position:absolute;
+  margin-top: 5px;
+  position:relative;
+}
+.checkbox_style {
+  color: #777;
+  font-size: 10px;
+  bottom: 3px;
+  position: relative;
 }
 #login{
   left:50px;
@@ -389,9 +401,6 @@ footer hr{
 .forget {
   cursor: pointer;
   color: purple;
-  position:relative;
-  margin-top: 5px;
-  margin-left: 70px;
 }
 h5 {
   display: -webkit-box;

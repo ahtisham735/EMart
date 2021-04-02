@@ -148,30 +148,24 @@ handleChangeRegister=(id)=>{
     
    
 }
-
 function login(){
-    const x=document.getElementById("login");
-    const y=document.getElementById("register");
-    const z=document.getElementById("btn_back");    
-    console.log(`x:${x.style.left}\ny:${y}\nz:${z}`)
+    
+    var x=document.getElementById("login");
+    var y=document.getElementById("register");
+    var z=document.getElementById("btn_back");  
     x.style.left="50px";
-    y.style.left="400px";
+    y.style.left="450px";
     z.style.left="0px";
-   
-    }   
+    }
 function register(){
-
-    const x=document.getElementById("login");
-    const y=document.getElementById("register");
-    const z=document.getElementById("btn_back");
-    console.log(`x:${x.style.left}\ny:${y}\nz:${z}`)
+    var x=document.getElementById("login");
+    var y=document.getElementById("register");
+    var z=document.getElementById("btn_back");
     x.style.left="-400px";
-    y.style.top="-300px";
-    y.style.left="400px"
+    y.style.left="50px";
     z.style.left="110px";
 }
-//utility functions
-
+//utility Function
 
 
 PasswordValidation=()=>{

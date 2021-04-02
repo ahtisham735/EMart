@@ -30,6 +30,7 @@
                 <h1>LOGIN TO EMART!!</h1>
                 <p>EMART is one of the best online-shopping website.<br>You can buy quality products within suitable prices.<br>abacagahrfktcgsdfdyh ajhsgdftfhdjsmajhsdyrh kasjduru <br>LOOT LO MELA LOOT LO MELA.</p>
                 <a href="" class= "Visitbtn">Visit EMART &#8594;</a>
+                
             </div>
                 <div class="col-2">
                     <div class="form-box">
@@ -41,7 +42,7 @@
                         <div class="div_head">
                         <h3>WELCOME TO EMART<h3>
                         </div>
-                        <form id="login"  class="input-group" method="POST"   onsubmit="return loginSubmit()">
+                        <form id="login"  class="input-group" method="POST" action="{%url 'Home_Module:login'%}" onsubmit="return loginSubmit()">
                             {% csrf_token %}
                             <div>
                                 <input type="text" id="loginUsername" class="input_field" placeholder="username*" required></input>
@@ -54,7 +55,7 @@
                             <div>
                                 <input type="checkbox" id="chkbox1" class="check_box"/><span class="checkbox_style">Remember Password</span>
                                 <button id="loin_btn" type="submit" class="submit_btn" >Login</button>
-                                <a  class="forget" href="{% url 'Home_Module:forget'%}">Forgot Password?</a>
+                                <a class="forget" href="{% url 'Home_Module:forget'%}">Forgot Password?</a>
                                 <h5>or</h5>
                             </div> 
                             <div class="btn_div">
@@ -64,29 +65,30 @@
                             <a class="fb_btn" href="{% provider_login_url "google"  %}">
                                 Google
                             </a>
-                            <div>
-                            <p>Not have an account?<a class="regPointer">Register</a></p>
+                            </div>
                         </form>
                         <form id="register" class="input-group" method="POST" action="{%url 'Home_Module:signup'%}" >
                             {% csrf_token %}
                             <div>
-                                <input name="email" id="email" onfocus="handleFocus(id)" type="email" class="input_field" placeholder="Email*"/>
+                                <input name="email" id="email" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)"  type="email" class="input_field" placeholder="Email*"/>
                                 <span id="emailError" class="error_style"></span>
                             </div>
                             <div>
-                                <input name="username" id="username" onfocus="handleFocus(id)" type="text" class="input_field" placeholder="Username*" />
+                                <input name="username" id="username" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)"  type="text" class="input_field" placeholder="Username*" />
                                 <span id="usernameError" class="error_style"></span>
                             </div>    
                              <div>
-                                <input name="password" id="password" onfocus="handleFocus(id)" type="password" class="input_field" placeholder="Password*"  />
+                                <input name="password" id="password" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)"  type="password" class="input_field" placeholder="Password*"  />
                                 <span id="passwordError" class="error_style"></span>
                             </div>
                             <div>
-                                <input id="cnfrmPassword" onfocus="handleFocus(id)"  type="password" class="input_field" placeholder="Confirm Password*" />
+                                <input id="cnfrmPassword" onfocus="handleFocus(id)" onkeyup="handleChangeRegister(id)"   type="password" class="input_field" placeholder="Confirm Password*" />
                                 <span id="cnfrmPasswordError" class="error_style"></span>
                             </div>
-                            <input id="chkbox" type="checkbox" onchange="handleChangeRegister(id)"   class="check_box"/><span class="checkbox_style spn" id="registerSpan">I agree all terms and policy of E-MART.</span>
+                            <div>
+                            <input id="chkbox" type="checkbox" onchange="handleChangeRegister(id)" class="check_box"/><span class="checkbox_style" id="registerSpan">I agree all terms&policy of E-MART.</span>
                             <button id="regbtn" type="submit" disabled  class="submit_btn">Register</button>
+                            </div>
                         </form>
                         
 
