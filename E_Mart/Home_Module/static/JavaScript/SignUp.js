@@ -16,10 +16,12 @@ loginSubmit=()=>{
         return false;
 
     }
-    else{
+    else
+    {
         nameError.innerHTML=""
     }
-    if(passwd.value.length==0){
+
+    if(passwd.value.length===0){
         pswdError.innerHTML="Please Enter Password"
         return false;
 
@@ -30,6 +32,7 @@ loginSubmit=()=>{
 
     }
 
+        return true;
 
    
    
