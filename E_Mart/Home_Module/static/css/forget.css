@@ -1,4 +1,4 @@
-.form-box {
+.forget-form-box {
   width: 500px;
   height: 450px;
   position: relative;
@@ -20,7 +20,7 @@
   margin: 35px 150px auto;
   cursor: pointer; }
 
-.input_field {
+.forget_input_field {
   width: 50%;
   padding: 10px 0;
   margin: 25px 120px;
@@ -31,7 +31,7 @@
   border-right: 0;
   background: transparent; }
 
-.submit_btn {
+.forget_btn {
   width: 50%;
   padding: 10px 30px;
   cursor: pointer;
@@ -49,9 +49,7 @@ pre {
 
 .goBack {
   cursor: pointer;
-  color: purple; }
-
-a {
+  color: purple;
   padding: 20px 30px 10px;
   margin-left: 190px; }
 

@@ -30,6 +30,7 @@
                 <h1>LOGIN TO EMART!!</h1>
                 <p>EMART is one of the best online-shopping website.<br>You can buy quality products within suitable prices.<br>abacagahrfktcgsdfdyh ajhsgdftfhdjsmajhsdyrh kasjduru <br>LOOT LO MELA LOOT LO MELA.</p>
                 <a href="" class= "Visitbtn">Visit EMART &#8594;</a>
+                
             </div>
                 <div class="col-2">
                     <div class="form-box">
@@ -49,7 +50,7 @@
                             </div>
                             <div>
                                 <input id="loginPasswd" name="password" type="password" class="input_field" placeholder="Password*" ></input>
-                                <span id="passwdError">{{errorMessage}}</span>
+                                <span id="passwdError" style="color:red; font-size:20px">{{errorMessage}}</span>
                             </div>
                             <div>
                                 <input type="checkbox" id="chkbox1" class="check_box"/><span class="checkbox_style">Remember Password</span>
@@ -64,8 +65,7 @@
                             <a class="fb_btn" href="{% provider_login_url "google"  %}">
                                 Google
                             </a>
-                            <div>
-                            <p>Not have an account?<a class="regPointer">Register</a></p>
+                            </div>
                         </form>
                         <form id="register" class="input-group" method="POST" action="{%url 'Home_Module:signup'%}" >
                             {% csrf_token %}
@@ -85,8 +85,10 @@
                                 <input id="cnfrmPassword" onkeyup="handleChangeRegister(id)" onfocus="handleFocus(id)"  type="password" class="input_field" placeholder="Confirm Password*" />
                                 <span id="cnfrmPasswordError" class="error_style"></span>
                             </div>
-                            <input id="chkbox" type="checkbox" onchange="handleChangeRegister(id)"   class="check_box"/><span class="checkbox_style spn" id="registerSpan">I agree all terms and policy of E-MART.</span>
+                            <div>
+                            <input id="chkbox" type="checkbox" onchange="handleChangeRegister(id)" class="check_box"/><span class="checkbox_style" id="registerSpan">I agree all terms&policy of E-MART.</span>
                             <button id="regbtn" type="submit" disabled  class="submit_btn">Register</button>
+                            </div>
                         </form>
                         
 
@@ -94,6 +96,5 @@
                 </div>
         </div>
     </div>
-
 </div>
 {%endblock%}
