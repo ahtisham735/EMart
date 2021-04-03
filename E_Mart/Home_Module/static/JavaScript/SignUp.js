@@ -52,6 +52,7 @@ handleChangeRegister=(id)=>{
     const val=document.getElementById(`${id}`)
     const element =document.getElementById(`${id}Error`)
     var regbtn=document.getElementById('regbtn')
+
     if(val.value.length===0){
        
         element.innerHTML="It is a required field";
