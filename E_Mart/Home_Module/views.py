@@ -9,6 +9,7 @@ from django import forms
 from django.urls import reverse
 from django.contrib import auth
 from django.conf import settings
+from django.contrib.auth import update_session_auth_hash
 from Home_Module.models import User
 from .email_handler import token_generator,send_link
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
@@ -72,13 +73,31 @@ def home(request):
 #     else:
 #        return render(request,"Home_Module/signup.html")
 def forget(request):
-    return render(request,"Home_Module/ForgetPass.html")
+    if request.method!="POST":
+        return render(request,"Home_Module/ForgetPass.html")
+    else:
+        email=request.POST['email']
+        try:
+            user=User.objects.get(email=email,is_staff=False)
+            if not user.is_active:
+                return render(request,"Home_Module/ForgetPass.html",context={"errorMessage":"Your account is not active.please activate your account first"})
+            else:
+                email_subject="Reset Password"
+                email_body=f'Hey {user.username}\n You have requested a password reset.Please click the following link to  reset your password\n'
+                send_link(email_subject,email_body,user,'reset_password')
+                message=f'Please check your inbox.we have sent an email at {user.email} for password reset'
+                return render(request, 'Home_Module/generic_response.html',context={"message":message,"title":"Reset Password"})
+
+        except User.DoesNotExist:
+            return render(request,"Home_Module/ForgetPass.html",context={"errorMessage":"User does not exist"})
+            
 def contact(request):
     return render(request,"Home_Module/contact.html")
 
 def signup(request):
     if request.method=='GET':
         return render(request,"Home_Module/signup.html")
+    
     elif request.method=='POST':
         email=request.POST['email']
         username=request.POST['username']
@@ -91,11 +110,32 @@ def signup(request):
         email_subject="Activate your account"
         email_body=f'Hey {user.username}\n Thanks for regestring on E_Mart.We are very delighted to have you.Please click the following link to activate your account\n'
         send_link(email_subject,email_body,user,'activate')
-        return render(request, 'Home_Module/email_verification.html',context={"email":user.email})
+        message=f'Please check your inbox.we have sent an email at {user.email} for email verification'
+        return render(request, 'Home_Module/generic_response.html',context={"message":message,"title":"Email verification"})
 
 
 def logout(request):
     return render(request,"Home_Module/logout.html")
+def reset_password_done(request):
+    username=request.POST['username']
+    passwd=request.POST['password']
+    try:
+        user=User.objects.get(username=username)
+        user.set_password(passwd)
+        user.save()
+        update_session_auth_hash(request, user)
+        message='your password has been reset.'
+        return render(request,"Home_Module/generic_response.html",context={"message":message,"title":"Password changed"})
+    except User.DoesNotExist:
+        return render(request,"Home_Module/generic_response.html",context={"message":"something has went wrong.Please try again later ","title":"Error"})
+def reset_password(request,uidb64,token):
+        id = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=id)
+
+        if not token_generator.check_token(user, token):
+            return render(request,"Home_Module/Home.html")
+        return render(request,"Home_Module/reset_password.html",context={"username":user.username})
+        
 
 
 class Verification(View):
