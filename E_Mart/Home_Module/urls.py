@@ -12,5 +12,9 @@ urlpatterns=[
     path('customer/email=<str:email>',views.cust_api,name="cust_api"),
     path('contact',views.contact,name="contact"),
     path('logout/',views.logout,name="account_logout"),
+    path("reset_password_done",views.reset_password_done,name="reset_password_done")
+  
+
+    
  
 ]
