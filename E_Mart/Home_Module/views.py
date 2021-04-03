@@ -41,6 +41,8 @@ def cust_api(request,name='',email=''):
        
 
 def login(request):
+    if request.method=="GET":
+        return render(request,"Home_Module/signup.html")
     if request.method=="POST":
         username= request.POST['username']
         password= request.POST['password']

@@ -1,4 +1,4 @@
-/*-----------------------------------BASE.HTML CSS-------------------------------------------*/
+/-----------------------------------BASE.HTML CSS-------------------------------------------/
 
 *{
   margin:0;
@@ -9,9 +9,9 @@ body{
   font-family: 'Roboto', sans-serif;
 }
 .header{
-  /*background:radial-gradient( #9e9e9e,pink);*/
+  /background:radial-gradient( #9e9e9e,pink);/
   background: white;
-  /*background: radial-gradient(#ff8a80,white);*/
+  /background: radial-gradient(#ff8a80,white);/
 }
 .home{
   background: radial-gradient(#ff8a80,white);
@@ -47,7 +47,7 @@ body{
 nav{
   height: 100px;
   background-color:white ;
-  /*background: radial-gradient(#ff8a80,white);*/
+  /background: radial-gradient(#ff8a80,white);/
 }
 nav .fa{
   margin-right: 8px;
@@ -59,7 +59,7 @@ nav .fas{
 }
 
 
-/*NAVBAR MENUS SETTING*/
+/NAVBAR MENUS SETTING/
 nav ul{
   float: right;
    margin-right:20px ; 
@@ -124,7 +124,7 @@ p{
   color:#555;
 }
 
-/*FOOTER CSS*/
+/FOOTER CSS/
 footer{
   position: relative;
   bottom: 0px;
@@ -194,14 +194,14 @@ footer hr{
   position:absolute;
   display: none;
 }
-/*------------------------------------------END OF BASE.HTML CSS------------------------------*/
+/------------------------------------------END OF BASE.HTML CSS------------------------------/
 
 
 
 
 
-/*------------------------------HOME PAGE CSS--------------------------------------------------*/
-/*General CSS*/
+/------------------------------HOME PAGE CSS--------------------------------------------------/
+/General CSS/
 .container{
   max-width: 1330px;
   margin: auto;
@@ -242,7 +242,7 @@ footer hr{
 }
 
 
-/*CATEGORIES And Featured Products CSS*/
+/CATEGORIES And Featured Products CSS/
 
 .categories{
   margin: 70px 0;
@@ -319,7 +319,7 @@ footer hr{
 
 
 
-/*Offer Setion CSS*/
+/Offer Setion CSS/
 
 .offer{
   background: radial-gradient(#ff8a80,white);
@@ -399,7 +399,7 @@ small{
       left:0;
   }
 }
-/*-------------------------------------END OF MEDIA QUERY---------------------------------------------*/
+/-------------------------------------END OF MEDIA QUERY---------------------------------------------/
 
 
 
@@ -561,7 +561,7 @@ h5:after {
   cursor: pointer;
   color:red;
 }
-/*----------------------------END OF SIGNUP.HTML CSS-------------------------------*/
+/----------------------------END OF SIGNUP.HTML CSS-------------------------------/
 
 
 
@@ -570,7 +570,7 @@ h5:after {
 
 
 
-/*--------------------------FORGET PASSWORD CSS-------------------------*/
+/--------------------------FORGET PASSWORD CSS-------------------------/
 
 .forgettBack{
   padding:50px 0;
@@ -636,19 +636,4 @@ pre{
   margin-top: 10px;
 }
 
-/*-------------------------------------------END OF FORGET PASSWORD--------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/-------------------------------------------END OF FORGET PASSWORD--------------------------------------------/
