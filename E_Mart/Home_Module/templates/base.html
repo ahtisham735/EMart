@@ -44,11 +44,17 @@
                                 <li><a href="" /><i class="fa fa-lock"></i>Logout</li>
                             </ul>
                         </li>
+                        {%elif user.is_authenticated %}
+                            <li><a href="" style="color:purple"><i class="fa fa-user"></i>{{user.first_name}}<i class="fas fa-caret-down"></i></a>
+                                <ul>
+                                <li><a href="" /><i class="fa fa-home"></i>My Account</li>
+                                <li><a href="" /><i class="fa fa-user"></i>Update Profile</li>
+                                <li><a href="" /><i class="fa fa-shopping-cart"></i>My Orders</li>
+                                <li><a href="" /><i class="fa fa-lock"></i>Logout</li>
+                            </ul>
+                            </li>
                         {%else%}
                         <li><a href="{%url 'Home_Module:signup'%}"/><i class="fas fa-unlock-alt"></i>Login</li>
-                        {%endif%}
-                        {%if user.is_authenticated%}
-                            <a class="nav-link" href="">{{user.first_name}}<br></a>
                         {%endif%}
                         <li><a href=""><i class="fa fa-shopping-cart" ></i>Cart</a></li>
                     </ul>
