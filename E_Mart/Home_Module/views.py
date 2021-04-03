@@ -72,7 +72,11 @@ def home(request):
 #     else:
 #        return render(request,"Home_Module/signup.html")
 def forget(request):
-    return render(request,"Home_Module/ForgetPass.html")
+    if request.method=='GET':
+        return render(request,"Home_Module/ForgetPass.html")
+    elif request.method=='POST':
+        return render(request,"Home_Module/Home.html")
+    
 def contact(request):
     return render(request,"Home_Module/contact.html")
 

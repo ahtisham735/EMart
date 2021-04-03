@@ -1,6 +1,6 @@
 .form-box {
   width: 400px;
-  height:800px;
+  height: 600px;
   position: relative;
   margin: 6% auto;
   background: whitesmoke;
@@ -89,7 +89,7 @@
   padding: 10px 30px;
   cursor: pointer;
   display: block;
-  margin: 5px auto;
+  margin: 20px auto;
   background: -webkit-gradient(linear, right top, left top, from(#6a1b9a), to(pink));
   background: linear-gradient(to left, #6a1b9a, pink);
   border: 0;

@@ -23,25 +23,36 @@
 
     <body>
         <div class="header">
-            <div class="container">
-            <div class="navbar">
-                <div class="head">
-                    
-                    <h1>E-Mart</h1>
-                    <img src="{%static '/Images/menu.png'%}" class="menu-icon" onclick="menutoggle()"/> 
-                </div>
                 <nav>
+                    <input type="checkbox" id="check"></input> 
+                    <label for="check" class="checkbtn">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                    <label class="logo">E-Mart</label>
                     <ul id="MenuItems">
-                        <li><a  href="{%url 'Home_Module:home'%}"/>Home</li>
-                        <li><a href=""/>About</li>
-                        <li><a href="{%url 'Home_Module:contact'%}"/>Contact</li>
-                        <li><a href="{%url 'Home_Module:signup'%}"/>Login</li>
-                        <li><a href=""/>Product</li>
+                        <li><a  href="{%url 'Home_Module:home'%}"/><i class="fa fa-home"></i>Home</li>
+                        <li><a href=""/><i class="fa fa-user"></i>About</li>
+                        <li><a href="{%url 'Home_Module:contact'%}"/><i class="fa fa-phone"></i>Contact</li>
+                        <li><a href=""/><i class="fa fa-clone"></i>Product</li>
+                        {%if LoginCust is not None%}
+                        <li><a href="" style="color:purple"><i class="fa fa-user"></i>{{LoginCust.username}}<i class="fas fa-caret-down"></i></a>
+                            <ul>
+                                <li><a href="" /><i class="fa fa-home"></i>My Account</li>
+                                <li><a href="" /><i class="fa fa-user"></i>Update Profile</li>
+                                <li><a href="" /><i class="fas fa-key"></i> Update Password</li>
+                                <li><a href="" /><i class="fa fa-shopping-cart"></i>My Orders</li>
+                                <li><a href="" /><i class="fa fa-lock"></i>Logout</li>
+                            </ul>
+                        </li>
+                        {%else%}
+                        <li><a href="{%url 'Home_Module:signup'%}"/><i class="fas fa-unlock-alt"></i>Login</li>
+                        {%endif%}
+                        {%if user.is_authenticated%}
+                            <a class="nav-link" href="">{{user.first_name}}<br></a>
+                        {%endif%}
+                        <li><a href=""><i class="fa fa-shopping-cart" ></i>Cart</a></li>
                     </ul>
                 </nav>
-                <img class="cart-img" src="{%static '/Images/cart.jpg' %}"/>  
-            </div>
-        </div>
         </div>
       
         {%block body%}

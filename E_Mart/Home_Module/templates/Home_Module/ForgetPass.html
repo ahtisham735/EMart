@@ -1,11 +1,17 @@
 {%extends 'base.html'%}
 {% load static%}
-{% block content %}
+<head>
+%block staticfiles%
 
-<link rel="stylesheet" type="text/css" href="{%static '/css/forget.css'%}" >
-<div>
-        <form id="register" class="form_style">
-            <div class="form-box">
+%endblock%
+</head>
+{% block body %}
+
+
+<div class="container">
+        <form id="register" class="form_style" method="POST" action="{%url 'Home_Module:forget'%}">
+            {% csrf_token %}
+            <div class="forget-form-box">
                 <div>
                     <img class="rounded" src="{%static '/Images/forget.jpg'%}"/>
                 </div>
@@ -19,9 +25,9 @@
                     </pre>
                 </div>
                 <div>
-                    <input name="email" type="email" class="input_field" placeholder="Please Enter Your Email"/>
+                    <input name="email" type="email" class="forget_input_field" placeholder="Please Enter Your Email"/>
                 </div>
-                <button id="loin_btn" type="submit" class="submit_btn" >Send Verification Code</button>
+                <button id="login_btn" type="submit" class="forget_btn" >Send Verification Code</button>
                 <a  class="goBack" href="{%url 'Home_Module:signup'%}">Go back</a>
             </div>
         </form>

@@ -1,7 +1,5 @@
-body{
-    background-image: url("/Images/forgetBack.jpg");
-}
-.form-box{
+
+.forget-form-box{
     width:500px;
     height:450px;
     position:relative;
@@ -24,7 +22,7 @@ body{
     cursor: pointer;
 
 }
-.input_field{
+.forget_input_field{
     width: 50%;
     padding: 10px 0;
     margin: 25px 120px;
@@ -36,7 +34,7 @@ body{
     background: transparent;
 
 }
-.submit_btn{
+.forget_btn{
     width: 50%;
     padding: 10px 30px;
     cursor: pointer;
@@ -55,8 +53,6 @@ pre{
 .goBack{
     cursor: pointer;
     color:purple;
-}
-a{
     padding: 20px 30px 10px;
     margin-left: 190px;
 }
