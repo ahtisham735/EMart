@@ -7,7 +7,7 @@
 </head>
 {% block body %}
 
-
+<div class="forgettBack">
 <div class="container">
         <form id="register" class="form_style" method="POST" action="{%url 'Home_Module:forget'%}">
             {% csrf_token %}
@@ -31,5 +31,6 @@
                 <a  class="goBack" href="{%url 'Home_Module:signup'%}">Go back</a>
             </div>
         </form>
+</div>
 </div>
 {% endblock %}
