@@ -144,6 +144,7 @@ def change_password(request):
 def reset_password_done(request):
     username=request.POST['username']
     passwd=request.POST['password']
+    print(username+'hello')
     try:
         user=User.objects.get(username=username)
         user.set_password(passwd)
@@ -160,7 +161,7 @@ def reset_password(request,uidb64,token):
 
         if not token_generator.check_token(user, token):
             return render(request,"Home_Module/Home.html")
-        return render(request,"Home_Module/reset_password.html",context={"username":user.username})
+        return render(request,"Home_Module/reset_password.html",context={"username":user.username,"email":user.email})
         
 
 

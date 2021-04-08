@@ -1,4 +1,4 @@
-/* /-----------------------------------BASE.HTML CSS------------------------------------------- */
+/*-----------------------------------BASE.HTML CSS-------------------------------------------*/
 
 *{
   margin:0;
@@ -100,6 +100,32 @@ nav ul ul li{
   position: relative;
   padding: 5px;
   background:black;
+}
+nav ul .search-icon{
+  height:40px;
+  width: 240px;
+  display: inline-flex;
+  background: #f2f3f2;;
+  border-radius: 5px;
+}
+nav ul .search-icon input{
+  height: 100%;
+  width: 500px;
+  padding: 0 10px;
+  color:#000;
+  font-size: 16px;
+  border-radius: 5px 0 0 5px;
+}
+nav ul .search-icon .icon{
+  height: 100%;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 0 5px 5px 0;
+}
+nav ul .search-icon .icon span{
+  color: #cccc;
+  font-size: 16px;
 }
 .checkbtn{
   font-size: 30px;
@@ -655,3 +681,43 @@ pre{
 
 .error {
   background-color: red; }
+
+
+/*--------------------------------------------REST PASSWORD PAGE-----------------------------------------------*/
+.center{
+  position: absolute;
+  top:50%;
+  left:50%;
+  width:400px;
+  background:white;
+  border-radius: 10px;
+}
+.center h1{
+  text-align: center;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid sliver;
+}
+.center form{
+  padding: 0 40px;
+  box-sizing:border-box;
+}
+form .txt_field{
+  position: relative;
+  border-bottom: 2px solid #adadad;
+}
+.txt_field{
+  width:100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.txt_field label{
+  position: absolute;
+  top:50%;
+  left:5px;
+  color: #adadad;
+  
+}
