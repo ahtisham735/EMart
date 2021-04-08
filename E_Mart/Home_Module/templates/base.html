@@ -15,7 +15,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
        <script src="{% static 'JavaScript/home.js' %}"></script>
        <script  src="{%static  'javascript/SignUp.js' %}"></script>
        {%endblock%}
@@ -34,27 +34,32 @@
                         <li><a href=""/><i class="fa fa-user"></i>About</li>
                         <li><a href="{%url 'Home_Module:contact'%}"/><i class="fa fa-phone"></i>Contact</li>
                         <li><a href=""/><i class="fa fa-clone"></i>Product</li>
-                        {%if LoginCust is not None%}
-                        <li><a href="" style="color:purple"><i class="fa fa-user"></i>{{LoginCust.username}}<i class="fas fa-caret-down"></i></a>
+                        {%if user.is_authenticated %}
+                        <li><a href="" style="color:purple"><i class="fa fa-user"></i>{{user.username}}<i class="fas fa-caret-down"></i></a>
                             <ul>
                                 <li><a href="" /><i class="fa fa-home"></i>My Account</li>
+                                {%if not user.is_social_user%}
                                 <li><a href="" /><i class="fa fa-user"></i>Update Profile</li>
-                                <li><a href="" /><i class="fas fa-key"></i> Update Password</li>
+                                <li><a href="{%url 'Home_Module:update_password'%}" /><i class="fas fa-key"></i> Update Password</li>
+                                {%endif%}
                                 <li><a href="" /><i class="fa fa-shopping-cart"></i>My Orders</li>
-                                <li><a href="" /><i class="fa fa-lock"></i>Logout</li>
+                                <li><a href="{%url 'Home_Module:account_logout' user.username%}" /><i class="fa fa-lock"></i>Logout</li>
                             </ul>
                         </li>
+                    
                         {%else%}
                         <li><a href="{%url 'Home_Module:signup'%}"/><i class="fas fa-unlock-alt"></i>Login</li>
-                        {%endif%}
-                        {%if user.is_authenticated%}
-                            <a class="nav-link" href="">{{user.first_name}}<br></a>
                         {%endif%}
                         <li><a href=""><i class="fa fa-shopping-cart" ></i>Cart</a></li>
                     </ul>
                 </nav>
+               
         </div>
-      
+        {% for message in messages %}
+            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </div>
+        {% endfor %}
         {%block body%}
         {%endblock%}
         <!-----------------Brands-------------->

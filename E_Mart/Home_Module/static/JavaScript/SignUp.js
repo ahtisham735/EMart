@@ -160,6 +160,20 @@ handleChangeRegister=(id)=>{
     
    
 }
+resetPasswordValidation=()=>{
+    const error=document.getElementById("error")
+    var passwdPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{8,})")
+    if(!passwdPattern.test(val.value))
+        {
+            error.innerHTML="use 8 or more letters having atleast one lowercase,one uppercase and one special character";
+            passwordStatus=false;
+        }
+       else
+       {
+            passwordStatus=true;
+            element.innerHTML="";
+       }
+}
 function login(){
     
     var x=document.getElementById("login");
