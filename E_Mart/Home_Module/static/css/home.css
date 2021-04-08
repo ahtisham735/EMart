@@ -1,4 +1,4 @@
-/-----------------------------------BASE.HTML CSS-------------------------------------------/
+/*-----------------------------------BASE.HTML CSS-------------------------------------------*/
 
 *{
   margin:0;
@@ -9,9 +9,9 @@ body{
   font-family: 'Roboto', sans-serif;
 }
 .header{
-  /background:radial-gradient( #9e9e9e,pink);/
+  /*background:radial-gradient( #9e9e9e,pink);*/
   background: white;
-  /background: radial-gradient(#ff8a80,white);/
+  /*background: radial-gradient(#ff8a80,white);*/
 }
 .home{
   background: radial-gradient(#ff8a80,white);
@@ -47,7 +47,7 @@ body{
 nav{
   height: 100px;
   background-color:white ;
-  /background: radial-gradient(#ff8a80,white);/
+  /*background: radial-gradient(#ff8a80,white);*/
 }
 nav .fa{
   margin-right: 8px;
@@ -59,7 +59,7 @@ nav .fas{
 }
 
 
-/NAVBAR MENUS SETTING/
+/*NAVBAR MENUS SETTING*/
 nav ul{
   float: right;
    margin-right:20px ; 
@@ -101,6 +101,32 @@ nav ul ul li{
   padding: 5px;
   background:black;
 }
+nav ul .search-icon{
+  height:40px;
+  width: 240px;
+  display: inline-flex;
+  background: #f2f3f2;;
+  border-radius: 5px;
+}
+nav ul .search-icon input{
+  height: 100%;
+  width: 500px;
+  padding: 0 10px;
+  color:#000;
+  font-size: 16px;
+  border-radius: 5px 0 0 5px;
+}
+nav ul .search-icon .icon{
+  height: 100%;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 0 5px 5px 0;
+}
+nav ul .search-icon .icon span{
+  color: #cccc;
+  font-size: 16px;
+}
 .checkbtn{
   font-size: 30px;
   line-height: 80px;
@@ -124,7 +150,7 @@ p{
   color:#555;
 }
 
-/FOOTER CSS/
+/*FOOTER CSS*/
 footer{
   position: relative;
   bottom: 0px;
@@ -194,14 +220,14 @@ footer hr{
   position:absolute;
   display: none;
 }
-/------------------------------------------END OF BASE.HTML CSS------------------------------/
+/*------------------------------------------END OF BASE.HTML CSS------------------------------*/
 
 
 
 
 
-/------------------------------HOME PAGE CSS--------------------------------------------------/
-/General CSS/
+/*------------------------------HOME PAGE CSS--------------------------------------------------*/
+/*General CSS*/
 .container{
   max-width: 1330px;
   margin: auto;
@@ -242,7 +268,7 @@ footer hr{
 }
 
 
-/CATEGORIES And Featured Products CSS/
+/*CATEGORIES And Featured Products CSS*/
 
 .categories{
   margin: 70px 0;
@@ -319,7 +345,7 @@ footer hr{
 
 
 
-/Offer Setion CSS/
+/*Offer Setion CSS*/
 
 .offer{
   background: radial-gradient(#ff8a80,white);
@@ -399,7 +425,7 @@ small{
       left:0;
   }
 }
-/-------------------------------------END OF MEDIA QUERY---------------------------------------------/
+/*-------------------------------------END OF MEDIA QUERY---------------------------------------------*/
 
 
 
@@ -561,7 +587,7 @@ h5:after {
   cursor: pointer;
   color:red;
 }
-/----------------------------END OF SIGNUP.HTML CSS-------------------------------/
+/*----------------------------END OF SIGNUP.HTML CSS-------------------------------*/
 
 
 
@@ -570,7 +596,7 @@ h5:after {
 
 
 
-/--------------------------FORGET PASSWORD CSS-------------------------/
+/*--------------------------FORGET PASSWORD CSS-------------------------*/
 
 .forgettBack{
   padding:50px 0;
@@ -636,4 +662,44 @@ pre{
   margin-top: 10px;
 }
 
-/-------------------------------------------END OF FORGET PASSWORD--------------------------------------------/
+/*-------------------------------------------END OF FORGET PASSWORD--------------------------------------------*/
+
+
+/*--------------------------------------------REST PASSWORD PAGE-----------------------------------------------*/
+.center{
+  position: absolute;
+  top:50%;
+  left:50%;
+  width:400px;
+  background:white;
+  border-radius: 10px;
+}
+.center h1{
+  text-align: center;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid sliver;
+}
+.center form{
+  padding: 0 40px;
+  box-sizing:border-box;
+}
+form .txt_field{
+  position: relative;
+  border-bottom: 2px solid #adadad;
+}
+.txt_field{
+  width:100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.txt_field label{
+  position: absolute;
+  top:50%;
+  left:5px;
+  color: #adadad;
+  
+}
