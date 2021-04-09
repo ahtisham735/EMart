@@ -1,13 +1,12 @@
 from django.views import View
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
 from django import forms
 from django.urls import reverse
-from django.contrib import auth
+from django.contrib import auth,messages
 from django.conf import settings
 from django.contrib.auth import update_session_auth_hash
 from Home_Module.models import User
@@ -15,8 +14,8 @@ from .email_handler import token_generator,send_link
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from .Serializer import CustomerSerializer
+from .utility_functions import isUserLogin
 # Create your views here.
-
 
 @csrf_exempt
 def cust_api(request,name='',email=''):
@@ -45,16 +44,7 @@ def login(request):
         return render(request,"Home_Module/signup.html")
     if request.method=="POST":
         username= request.POST['username']
-        password= request.POST['password']
-
-            # if 'chkbox1' in request.POST:
-            #      isChecked = request.POST['chkbox1']
-            # else:
-            #      isChecked = False
-            # if request.session.get('is_Login', False):
-            #       return HttpResponseRedirect("You are already login.") 
-            # if isChecked:  
-            #     request.session['is_Login'] = True     
+        password= request.POST['password']  
         cust = auth.authenticate(username=username,password=password)
         if cust is None:
             errorMessage="Invalid Username or Password"
@@ -62,36 +52,36 @@ def login(request):
         if  not cust.is_active:
             errorMessage="Your account is not active.please check your email address"
             return render(request,"Home_Module/SignUp.html",context={"errorMessage":errorMessage})
-        return render(request,"Home_Module/Home.html",context={"LoginCust":cust})
+        request.session['user']=cust.username
+        return render(request,"Home_Module/Home.html",context={"user":cust})
     
            
 def home(request):
+    user=isUserLogin(request)
+    if user is not None:
+        return render(request,"Home_Module/Home.html",context={"user":user})
     return render(request,"Home_Module/Home.html")
- 
-# def signup(request):
-#     isLog = request.session.get('is_Login', False)
-#     if isLog:
-#        return HttpResponse("You are already login.")
-#     else:
-#        return render(request,"Home_Module/signup.html")
+
 def forget(request):
     if request.method!="POST":
         return render(request,"Home_Module/ForgetPass.html")
     else:
         email=request.POST['email']
-        try:
-            user=User.objects.get(email=email,is_staff=False)
-            if not user.is_active:
-                return render(request,"Home_Module/ForgetPass.html",context={"errorMessage":"Your account is not active.please activate your account first"})
-            else:
-                email_subject="Reset Password"
-                email_body=f'Hey {user.username}\n You have requested a password reset.Please click the following link to  reset your password\n'
-                send_link(email_subject,email_body,user,'reset_password')
-                message=f'Please check your inbox.we have sent an email at {user.email} for password reset'
-                return render(request, 'Home_Module/generic_response.html',context={"message":message,"title":"Reset Password"})
-
-        except User.DoesNotExist:
-            return render(request,"Home_Module/ForgetPass.html",context={"errorMessage":"User does not exist"})
+        if len(email)==0:
+            messages.error(request,"Please enter your email")   
+        else:     
+            try:
+                user=User.objects.get(email=email,is_staff=False)
+                if not user.is_active:
+                    messages.warning(request,"your account is not active .please check your inbox")
+                else:
+                    email_subject="Reset Password"
+                    email_body=f'Hey {user.username}\n You have requested a password reset.Please click the following link to  reset your password\n'
+                    send_link(email_subject,email_body,user,'reset_password')
+                    messages.info(request,f'Please check your inbox.we have sent an email at {user.email} for password reset')
+            except User.DoesNotExist:
+                messages.error(request,"No such user exist")
+        return HttpResponseRedirect(reverse("Home_Module:forget"))
             
 def contact(request):
     return render(request,"Home_Module/contact.html")
@@ -116,8 +106,41 @@ def signup(request):
         return render(request, 'Home_Module/generic_response.html',context={"message":message,"title":"Email verification"})
 
 
-def logout(request):
-    return render(request,"Home_Module/logout.html")
+def logout(request,username):
+    try:
+        user=User.objects.get(username=username)
+        return render(request,"Home_Module/logout.html",context={"user":user})
+    except User.DoesNotExist:
+        return HttpResponseRedirect(reverse("Home_Module:signup"))
+def cust_logout(request):
+    try:
+        del request.session['user']
+        return HttpResponseRedirect(reverse("Home_Module:home"))
+    except KeyError:
+        return HttpResponseRedirect(reverse("Home_Module:signup"))
+    
+def change_password(request):
+    user=isUserLogin(request)
+    if user is None:
+        return HttpResponseRedirect(reverse("Home_Module:signup"))
+    if request.method=="GET": 
+        return render(request,"Home_Module/change_password.html",context={"user":user})
+    if request.method=="POST":
+        passwd=request.POST['password']
+        chkPasswd=auth.authenticate(username=user.username,password=passwd)
+        if chkPasswd is None:
+            messages.error(request, 'You have entered wrong password')
+            return HttpResponseRedirect(reverse("Home_Module:update_password"))
+        newPasswd=request.POST['newPasswd']
+        user.set_password(newPasswd)
+        user.save()
+        update_session_auth_hash(request,user)
+        messages.success(request,"your password has been changed")
+        return HttpResponseRedirect(reverse("Home_Module:update_password"))
+
+
+   
+
 def reset_password_done(request):
     username=request.POST['username']
     passwd=request.POST['password']
@@ -127,10 +150,11 @@ def reset_password_done(request):
         user.set_password(passwd)
         user.save()
         update_session_auth_hash(request, user)
-        message='your password has been reset.'
-        return render(request,"Home_Module/generic_response.html",context={"message":message,"title":"Password changed"})
+        messages.success(request,'your password has been reset.')
+        return HttpResponseRedirect(reverse("Home_Module:reset_password_done"))
     except User.DoesNotExist:
-        return render(request,"Home_Module/generic_response.html",context={"message":"something has went wrong.Please try again later ","title":"Error"})
+        messages.error(request,"something has went wrong.please try again later")
+        return HttpResponseRedirect(reverse("Home_Module:reset_password_done"))
 def reset_password(request,uidb64,token):
         id = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=id)

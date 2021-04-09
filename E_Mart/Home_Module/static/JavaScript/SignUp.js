@@ -41,6 +41,7 @@ handleChangeRegister=(id)=>{
     const val=document.getElementById(`${id}`)
     const element =document.getElementById(`${id}Error`)
     var regbtn=document.getElementById('regbtn')
+
     if(val.value.length===0){
         element.innerHTML="It is a required field";
         return;                     
@@ -83,6 +84,20 @@ handleChangeRegister=(id)=>{
     }
     
    
+}
+resetPasswordValidation=()=>{
+    const error=document.getElementById("error")
+    var passwdPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{8,})")
+    if(!passwdPattern.test(val.value))
+        {
+            error.innerHTML="use 8 or more letters having atleast one lowercase,one uppercase and one special character";
+            passwordStatus=false;
+        }
+       else
+       {
+            passwordStatus=true;
+            element.innerHTML="";
+       }
 }
 function login(){
     

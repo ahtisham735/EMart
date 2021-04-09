@@ -11,8 +11,10 @@ urlpatterns=[
     path('customer/username=<str:name>',views.cust_api,name="cust_api"),
     path('customer/email=<str:email>',views.cust_api,name="cust_api"),
     path('contact',views.contact,name="contact"),
-    path('logout/',views.logout,name="account_logout"),
-    path("reset_password_done",views.reset_password_done,name="reset_password_done")
+    path('<str:username>logout/',views.logout,name="account_logout"),
+    path("reset_password_done",views.reset_password_done,name="reset_password_done"),
+    path('update_password',views.change_password,name="update_password"),
+    path("cust_logout",views.cust_logout,name="cust_logout"),
   
 
     

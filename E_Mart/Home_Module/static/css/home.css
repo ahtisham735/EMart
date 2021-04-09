@@ -662,6 +662,24 @@ pre{
 }
 
 /*-------------------------------------------END OF FORGET PASSWORD--------------------------------------------*/
+/* For messages*/
+.success, .warning, .danger {
+  padding-left: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid black;
+  margin: 20px; }
+
+
+
+.success {
+  background-color: green; }
+
+.warning {
+  background-color: yellow; }
+
+.error {
+  background-color: red; }
 
 
 /*--------------------------------------------REST PASSWORD PAGE-----------------------------------------------*/
