@@ -98,6 +98,8 @@ def signup(request):
         user.set_password(password)
         user.is_active = False
         user.is_social_user=False
+        if 'is_seller' in request.POST:
+            user.is_seller=True
         user.save()
         email_subject="Activate your account"
         email_body=f'Hey {user.username}\n Thanks for regestring on E_Mart.We are very delighted to have you.Please click the following link to activate your account\n'

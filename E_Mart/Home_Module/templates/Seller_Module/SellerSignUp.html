@@ -32,18 +32,19 @@
         <div class="card-back">
             <img src="back.jpg" class="img-back">
             <h2>REGISTER</h2>
-            <form >
+            <form method="POST" action="{%url 'Home_Module:signup'%}">
                 {% csrf_token %}
+                <input type="hidden" name="is_seller" value="seller">
                 <div>
-                <input  name="SellerName" id="SellerName"   type="text" class="input-box" placeholder="Name" />
+                <input  name="username" id="username"   type="text" class="input-box" placeholder="Username" />
                 <span id="NameError" class="error_style"></span>
                 </div>
                  <div>
-                <input  name="SellerEmail" id="SellerEmail"   type="email" class="input-box" placeholder="Email" />
+                <input  name="email" id="email"   type="email" class="input-box" placeholder="Email" />
                 <span id="EmailError" class="error_style"></span>
                 </div>
                  <div>
-                <input  name="SellerPswd" id="SellerPswd"   type="password" class="input-box" placeholder="Password" />
+                <input  name="password" id="password"   type="password" class="input-box" placeholder="Password" />
                 <span id="NameError" class="error_style"></span>
                 </div>
                  <div>
