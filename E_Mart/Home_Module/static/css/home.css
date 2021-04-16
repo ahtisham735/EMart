@@ -373,7 +373,6 @@ small{
 .col-5 img:hover{
   filter: grayscale(0%);
 }
-
 /* ---------------------------media query for MENUS-------------------------------------------*/
 @media only screen and (max-width: 952px){
   .logo{
