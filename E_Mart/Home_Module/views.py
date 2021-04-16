@@ -144,15 +144,14 @@ def change_password(request):
 def reset_password_done(request):
     username=request.POST['username']
     passwd=request.POST['password']
-    print(username+'hello')
     try:
         user=User.objects.get(username=username)
         user.set_password(passwd)
         user.save()
         update_session_auth_hash(request, user)
         messages.success(request,'your password has been reset.')
-        return HttpResponseRedirect(reverse("Home_Module:reset_password_done"))
-    except User.DoesNotExist:
+        return HttpResponseRedirect(reverse("Home_Module:signup"))
+    except:
         messages.error(request,"something has went wrong.please try again later")
         return HttpResponseRedirect(reverse("Home_Module:reset_password_done"))
 def reset_password(request,uidb64,token):

@@ -666,7 +666,7 @@ pre{
 /* For messages*/
 .success, .warning, .danger {
   padding-left: 20px;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   border: 1px solid black;
   margin: 20px; }
@@ -674,13 +674,16 @@ pre{
 
 
 .success {
-  background-color: green; }
+  color: green; }
 
 .warning {
-  background-color: yellow; }
+  color: yellow; }
 
 .error {
-  background-color: red; }
+  color: red; }
+.info{
+  color: gray;
+}
 
 
 /*--------------------------------------------REST PASSWORD PAGE-----------------------------------------------*/

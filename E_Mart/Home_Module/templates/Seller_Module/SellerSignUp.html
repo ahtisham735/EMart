@@ -1,0 +1,81 @@
+{% load static%}
+<html>
+<head>
+    <title>Seller Center</title>
+    <link rel="stylesheet" href="{%static '/css/SellerSignUp.css'%}">
+    
+</head>
+    <body>
+        <div class="container">
+        <div class="card">
+        <div class="inner-box" id="card">
+        <div class="card-front">
+            <img src="back.jpg" class="img-back">
+            <h2>LOGIN</h2>
+            <form method="POST" action="{%url 'Home_Module:Seller_login'%}">
+                {% csrf_token %}
+                <div>
+               <input  name="SelerEmail" id="SelerEmail"   type="email" class="input-box" placeholder="Email" />
+                <span id="EmailEror" class="error_style"></span>
+                </div>
+                 <div>
+                <input  name="SelerPswd" id="SelerPswd"   type="password" class="input-box" placeholder="Password" />
+                <span id="NameEror" class="error_style"></span>
+                </div>
+                <input type="checkbox" class="input-check"><span class="input-span">Remember me</span>
+                <button type="submit" class="submit-btn">Submit</button>
+                
+            </form>
+           <p class="forget"> <a href="">Forget password</a></p>
+            <p class="message">Not Registered?<a href="#" onclick="openRegister()">Register</a></p>
+       </div>
+        <div class="card-back">
+            <img src="back.jpg" class="img-back">
+            <h2>REGISTER</h2>
+            <form >
+                {% csrf_token %}
+                <div>
+                <input  name="SellerName" id="SellerName"   type="text" class="input-box" placeholder="Name" />
+                <span id="NameError" class="error_style"></span>
+                </div>
+                 <div>
+                <input  name="SellerEmail" id="SellerEmail"   type="email" class="input-box" placeholder="Email" />
+                <span id="EmailError" class="error_style"></span>
+                </div>
+                 <div>
+                <input  name="SellerPswd" id="SellerPswd"   type="password" class="input-box" placeholder="Password" />
+                <span id="NameError" class="error_style"></span>
+                </div>
+                 <div>
+                <input  name="SellercnfrmPswd" id="SellercnfrmPswd"   type="password" class="input-box" placeholder="Confirm password" />
+                <span id="NameError" class="error_style"></span>
+                </div>
+                <button type="submit" class="submit-btn">Submit</button>
+                
+            </form>
+            
+<!--            <button type="button" class="btn" onclick="openLogin()">I've an account</button>-->
+            <p class="message">Registered?<a href="#" onclick="openLogin()">Login</a></p>
+       </div>
+                    
+        </div>
+            
+        </div>
+        
+        </div>
+    
+        <script>
+            var card=document.getElementById("card");
+            function openRegister()
+            {
+                card.style.transform = "rotateY(-180deg)";
+            }
+            function openLogin()
+            {
+                card.style.transform = "rotateY(0deg)";
+            }
+        </script>
+        
+        
+    </body>
+</html>

@@ -36,7 +36,7 @@
                     <div class="form-box">
                         <div class="btn-box">
                             <div id="btn_back"></div>
-                            <button type="submit" class="toggle-btn" onclick="login()">Login In</button>
+                            <button type="submit" class="toggle-btn" onclick="login()">Login  </button>
                             <button type="submit" class="toggle-btn" onclick="register()">Register</button>
                         </div>
                         <div class="div_head">
@@ -46,11 +46,11 @@
                             {% csrf_token %}
                             <div>
                                 <input type="text" name="username" id="loginUsername" class="input_field" placeholder="username*" ></input>
-                                <span id="nameError"></span>
+                                <span id="nameError" class="error_style"></span>
                             </div>
                             <div>
                                 <input id="loginPasswd" name="password" type="password" class="input_field" placeholder="Password*" ></input>
-                                <span id="passwdError" style="color:red; font-size:20px">{{errorMessage}}</span>
+                                <span id="pswdError" class="error_style">{{errorMessage}}</span>
                             </div>
                             <div>
                                 <input type="checkbox" id="chkbox1" class="check_box"/><span class="checkbox_style">Remember Password</span>
