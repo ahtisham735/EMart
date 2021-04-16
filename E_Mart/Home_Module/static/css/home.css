@@ -683,17 +683,12 @@ pre{
 
 
 /*--------------------------------------------REST PASSWORD PAGE-----------------------------------------------*/
-.center{
-  position: absolute;
-  top:50%;
-  left:50%;
-  width:400px;
-  background:white;
+/*.center{
+  background:gray;
   border-radius: 10px;
 }
 .center h1{
   text-align: center;
-  padding: 0 0 20px 0;
   border-bottom: 1px solid sliver;
 }
 .center form{
@@ -719,4 +714,42 @@ form .txt_field{
   left:5px;
   color: #adadad;
   
+}*/
+
+.change_pass{
+  position: relative;
+  margin-top: 10px;
+  width:500px;
+  height: 400px;
 }
+.change_pass form{
+  padding: 0 40px;
+  box-sizing:border-box;
+}
+.change_pass h1{
+  text-align: center;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid plum;
+}
+
+.change_pass form .txt_field{
+  position: relative;
+  border-bottom: 2px solid #adadad;
+}
+.txt_field{
+  width:80%;
+  padding: 5px 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+  margin-top: 10px;
+}
+.txt_field label{
+  position: absolute;
+  top:50%;
+  left:5px;
+  color: #adadad;
+}
+
