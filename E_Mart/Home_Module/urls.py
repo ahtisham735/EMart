@@ -1,5 +1,5 @@
 from django.urls import path
-from .import views
+from .import views,Seller_views
 from django.contrib.auth import views as auth_views
 app_name='Home_Module'
 urlpatterns=[
@@ -15,6 +15,8 @@ urlpatterns=[
     path("reset_password_done",views.reset_password_done,name="reset_password_done"),
     path('update_password',views.change_password,name="update_password"),
     path("cust_logout",views.cust_logout,name="cust_logout"),
+    path("Seller_center",Seller_views.seller_center,name="seller_center"),
+    path("Seller_login",Seller_views.seller_login,name="Seller_login")
   
 
     

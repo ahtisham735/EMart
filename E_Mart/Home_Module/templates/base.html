@@ -39,9 +39,9 @@
                         </li>-->
                         <li><a  href="{%url 'Home_Module:home'%}"/><i class="fa fa-home"></i>Home</li>
                         <li><a href=""/><i class="fa fa-user"></i>About</li>
-                        <li><a href="{%url 'Home_Module:contact'%}"/><i class="fa fa-phone"></i>Contact</li>
+                        <li><a href="{%url 'Home_Module:seller_center'%}"/><i class="fa fa-phone"></i>Sell on E Mart</li>
                         <li><a href=""/><i class="fa fa-clone"></i>Product</li>
-                        {%if user.is_authenticated %}
+                        {%if user.is_authenticated and not user.is_staff %}
                         <li><a href="" style="color:purple"><i class="fa fa-user"></i>{{user.username}}<i class="fas fa-caret-down"></i></a>
                             <ul>
                                 <li><a href="" /><i class="fa fa-home"></i>My Account</li>
