@@ -10,7 +10,6 @@ loginSubmit=()=>{
     const username=document.getElementById("loginUsername")
     var nameError=document.getElementById("nameError")
     var pswdError=document.getElementById("pswdError")
-    var submit=true;
     if(username.value.length===0){
         nameError.innerHTML="Please Enter Username"
         return false;
@@ -23,7 +22,8 @@ loginSubmit=()=>{
         pswdError.innerHTML="Please Enter Password"
         return false;
     }
-    else{
+    else
+    {
         pswdError.innerHTML=""
     }
         return true;

@@ -53,5 +53,8 @@ class User(AbstractUser):
     def has_module_perms(self,app_Label):
         return True
 
+
+
+
   
 

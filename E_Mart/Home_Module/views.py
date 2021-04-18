@@ -48,14 +48,26 @@ def login(request):
         cust = auth.authenticate(username=username,password=password)
         if cust is None:
             errorMessage="Invalid Username or Password"
-            return render(request,"Home_Module/SignUp.html",context={"errorMessage":errorMessage})
-        if  not cust.is_active:
+        elif  not cust.is_active:
             errorMessage="Your account is not active.please check your email address"
+        else: 
+            if 'is_seller' in request.POST: #checking if the request has come from seller center or not
+                if not cust.is_seller:# if request has come from seller center ,checking if user is registered as seller
+                    errorMessage="you are not registered as seller"
+                else:
+                    request.session['seller']=cust.username
+                    return render(request,"Seller_Module/Home.html")
+            else:
+                if cust.is_seller:
+                    errorMessage="you are not registered as Customer"
+                else:
+                    request.session['user']=cust.username
+                    return render(request,"Home_Module/Home.html",context={"user":cust})
+        if "is_seller" in request.POST:
+            return render(request,"Seller_Module/SellerSignUp.html",context={"errorMessage":errorMessage})
+        else:
             return render(request,"Home_Module/SignUp.html",context={"errorMessage":errorMessage})
-        request.session['user']=cust.username
-        return render(request,"Home_Module/Home.html",context={"user":cust})
     
-           
 def home(request):
     user=isUserLogin(request)
     if user is not None:
@@ -98,6 +110,8 @@ def signup(request):
         user.set_password(password)
         user.is_active = False
         user.is_social_user=False
+        if 'is_seller' in request.POST:
+            user.is_seller=True
         user.save()
         email_subject="Activate your account"
         email_body=f'Hey {user.username}\n Thanks for regestring on E_Mart.We are very delighted to have you.Please click the following link to activate your account\n'
