@@ -237,3 +237,32 @@ handleResetChange=(id)=>{
         resetbtn.disabled=true; 
     }
 }
+handlePassChange=(id)=>{
+    const val=document.getElementById(`${id}`)
+    const element =document.getElementById(`${id}Error`)
+    var changebtn=document.getElementById('resetbtn')
+    if(val.value.length===0){
+        element.innerHTML="It is a required field";
+        return;                     
+    }
+    if(id==="password")
+    {
+        Password(val,element);
+    }
+    if(id==="newpassword")
+    {
+        Password(val,element);
+    }
+    if(id==="cnfrmPassword")
+    {
+        cnfrmPassword();
+    }
+    if(passwordStatus&&cnfrmPasswordStatus)
+    {
+        changebtn.disabled=false;  
+    }
+    else
+    {
+        changebtn.disabled=true; 
+    }
+}

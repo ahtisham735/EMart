@@ -1,0 +1,20 @@
+.success, .warning, .danger {
+    padding-left: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    border: 1px solid black;
+    margin: 20px; }
+  
+  
+  
+  .success {
+    color: green; }
+  
+  .warning {
+    color: yellow; }
+  
+  .error {
+    color: red; }
+  .info{
+    color: gray;
+  }
