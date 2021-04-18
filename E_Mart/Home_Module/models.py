@@ -54,7 +54,13 @@ class User(AbstractUser):
         return True
 
 
-
+class SellerDetail(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
+    shop=models.CharField(max_length=255)
+    phone=models.CharField(max_length=11)
+    cnic=models.CharField(max_length=13,unique=True)
+    address=models.CharField(max_length=255)
+    account_no=models.CharField(max_length=14)
 
   
 
