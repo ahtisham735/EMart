@@ -1,9 +1,8 @@
-{% load static%}
+{%load static%}
 <html>
 <head>
     <title>Seller Center</title>
     <link rel="stylesheet" href="{%static '/css/SellerSignUp.css'%}">
-    
 </head>
     <body>
         <div class="container">
@@ -12,18 +11,19 @@
         <div class="card-front">
             <img src="back.jpg" class="img-back">
             <h2>LOGIN</h2>
-            <form method="POST" action="{%url 'Home_Module:Seller_login'%}">
+            <form method="POST" action="{%url 'Home_Module:login'%}" onsubmit="return loginSubmit()">
                 {% csrf_token %}
                 <div>
-               <input  name="SelerEmail" id="SelerEmail"   type="email" class="input-box" placeholder="Email" />
-                <span id="EmailEror" class="error_style"></span>
+                <input type="hidden" name="is_seller" value="seller">
+               <input  name="username" id="loginUsername"   type="text" class="input-box" placeholder="Username" />
+                <span id="nameError" class="error_style"></span>
                 </div>
-                 <div>
-                <input  name="SelerPswd" id="SelerPswd"   type="password" class="input-box" placeholder="Password" />
-                <span id="NameEror" class="error_style"></span>
+                <div>
+                <input  name="password" id="loginPasswd"   type="password" class="input-box" placeholder="Password" />
+                <span id="pswdError" class="error_style">{{errorMessage}}</span>
                 </div>
                 <input type="checkbox" class="input-check"><span class="input-span">Remember me</span>
-                <button type="submit" class="submit-btn">Submit</button>
+                <button id="login_btn"   class="submit_btn" >Login</button>
                 
             </form>
            <p class="forget"> <a href="">Forget password</a></p>
@@ -36,22 +36,23 @@
                 {% csrf_token %}
                 <input type="hidden" name="is_seller" value="seller">
                 <div>
-                <input  name="username" id="username"   type="text" class="input-box" placeholder="Username" />
-                <span id="NameError" class="error_style"></span>
+                <input  name="username" id="username"  onkeyup="handleChangeRegister(id)" onfocus="handleFocus(id)"  type="text" class="input-box" placeholder="Username" />
+                <span id="usernameError" class="error_style"></span>
                 </div>
                  <div>
-                <input  name="email" id="email"   type="email" class="input-box" placeholder="Email" />
-                <span id="EmailError" class="error_style"></span>
+                <input  name="email" id="email" onkeyup="handleChangeRegister(id)" onfocus="handleFocus(id)"   type="email" class="input-box" placeholder="Email" />
+                <span id="emailError" class="error_style"></span>
                 </div>
                  <div>
-                <input  name="password" id="password"   type="password" class="input-box" placeholder="Password" />
-                <span id="NameError" class="error_style"></span>
+                <input  name="password" id="password" onkeyup="handleChangeRegister(id)" onfocus="handleFocus(id)"   type="password" class="input-box" placeholder="Password" />
+                <span id="passwordError" class="error_style"></span>
                 </div>
                  <div>
-                <input  name="SellercnfrmPswd" id="SellercnfrmPswd"   type="password" class="input-box" placeholder="Confirm password" />
-                <span id="NameError" class="error_style"></span>
+                <input  name="cnfrmPassword" id="cnfrmPassword" onkeyup="handleChangeRegister(id)" onfocus="handleFocus(id)" id="SellercnfrmPswd"   type="password" class="input-box" placeholder="Confirm password" />
+                <span id="cnfrmPasswordError" class="error_style"></span>
                 </div>
-                <button type="submit" class="submit-btn">Submit</button>
+                <input id="chkbox" type="checkbox" onchange="handleChangeRegister(id)" class="check_box"/><span class="checkbox_style" id="registerSpan">I agree all terms&policy of E-MART.</span>
+                <button id="regbtn" disabled type="submit" class="submit-btn">Register</button>
                 
             </form>
             
@@ -65,17 +66,7 @@
         
         </div>
     
-        <script>
-            var card=document.getElementById("card");
-            function openRegister()
-            {
-                card.style.transform = "rotateY(-180deg)";
-            }
-            function openLogin()
-            {
-                card.style.transform = "rotateY(0deg)";
-            }
-        </script>
+        <script  src="{%static  'javascript/SignUp.js' %}"></script>
         
         
     </body>

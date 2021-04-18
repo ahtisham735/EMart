@@ -5,4 +5,6 @@ from django.http import HttpResponse,HttpResponseRedirect
 def seller_center(request):
     return render(request,"Seller_Module/SellerSignUp.html")
 def seller_login(request):
-    return render(request,"Seller_Module/Home.html")
+    if request.method=="GET":
+        return render(request,"Seller_Module/SellerSignUp.html")
+   
