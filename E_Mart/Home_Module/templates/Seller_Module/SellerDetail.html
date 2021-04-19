@@ -8,7 +8,7 @@
 <body>
 <div class="container">  
 <h2>Detail Information</h2>
-        <form method="POST" action="{%url 'Home_Module:SellerDetail' %}">
+        <form method="POST" action="{%url 'Home_Module:SellerDetail' %}" onsubmit="return detailValidation()">
           {%csrf_token%}
          <div class="txt_field">
             <input  type="text" name="shop" placeholder="Shope Name"/>
