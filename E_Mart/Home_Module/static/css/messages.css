@@ -1,4 +1,4 @@
-.success, .warning, .danger {
+.success, .warning, .danger,.error,.info,.danger {
     padding-left: 20px;
     font-size: 25px;
     font-weight: bold;

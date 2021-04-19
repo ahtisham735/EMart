@@ -198,13 +198,16 @@ class Verification(View):
             user = User.objects.get(pk=id)
 
             if not token_generator.check_token(user, token):
+                messages.error(request,"this token has been expired")
                 return render(request,"Home_Module/Home.html")
 
             if user.is_active:
+                messages.info(request,"your account is already active")
                 return redirect('/')
             user.is_active = True
             user.save()
-            return redirect('/')
+            messages.success(request,"your account has been activated")
+            return HttpResponseRedirect(reverse("Home_Module:signup"))
 
         except Exception as ex:
             pass
