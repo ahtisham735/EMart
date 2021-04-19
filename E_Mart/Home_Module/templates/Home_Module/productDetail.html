@@ -1,0 +1,112 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block body%}
+    <div class="small-container single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="{%static '/Images/gallery-1.jpg' %}" id="productImg" />
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                        <img src="{%static '/Images/gallery-1.jpg' %}" class="small-img" onclick="clickMe(this)" />
+                    </div>
+                    <div class="small-img-col">
+                        <img src="{%static '/Images/gallery-2.jpg' %}" class="small-img" onclick="clickMe(this)" />
+                    </div>
+                     <div class="small-img-col">
+                        <img src="{%static '/Images/gallery-3.jpg' %}" class="small-img" onclick="clickMe(this)" />
+                    </div>
+                     <div class="small-img-col">
+                        <img src="{%static '/Images/gallery-4.jpg' %}" class="small-img" onclick="clickMe(this)" />
+                    </div>
+                
+                </div>
+            
+            </div>
+            <div class="col-2">
+            <h1>Red T-shirt by Khadii </h1>
+            <h3>Price: $50.00</h3><br>
+            <h3>Product Details<i class="fa fa-indent"></i></h3>
+            <br>
+            <p>EMART is one of the best online-shopping website.<br>You can buy quality products within suitable prices.<br>abacagahrfktcgsdfdyh ajhsgdftfhdjsmajhsdyrh kasjduru <br>LOOT LO MELA LOOT LO MELA.</p>
+            
+            <select>
+                <option>Select Size</option>
+                <option>XXL</option>
+                <option>XL</option>
+                <option>Large</option>
+                <option>Medium</option>
+                <option>Small</option>
+            </select>
+            <input type="number" value="1"></input><br>
+            <div class="btn-style">
+                <a href="" class= "fb_btn fb-btn-back">Add to cart</a>
+                <a href="" class= "fb_btn ">BUY Now</a>
+            </div>
+            
+            
+            </div>
+        </div>
+    </div>
+    
+    <div class="small-container">
+        <div clas="small-container">
+            <div class="row row-2">
+                <h2>Related Images</h2>
+                <a>View More</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <img src="{%static '/Images/product-1.jpg' %}">
+                <h4 class="productsH4">Red printed T-Shirt</h4>
+                <div class="rating">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                </div>
+                <p>$50.00</p>
+        
+            </div>
+            <div class="col-4">
+                <img src="{%static '/Images/product-2.jpg' %}"/>
+                <h4 class="productsH4">Shoes</h4>
+                <div class="rating">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                </div>
+                <p>$50.00</p>
+        
+            </div>
+            <div class="col-4">
+                <img src="{%static '/Images/product-3.jpg' %}"/>
+                <h4 class="productsH4">Jeans</h4>
+                <div class="rating">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                </div>
+                <p>$50.00</p>
+        
+            </div>
+            <div class="col-4">
+                <img src="{%static '/Images/product-4.jpg' %}"/>
+                <h4 class="productsH4">Black printed T-Shirt</h4>
+                <div class="rating">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                </div>
+                <p>$50.00</p>
+            </div>
+        </div>
+    </div>
+{%endblock%}

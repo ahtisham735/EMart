@@ -103,6 +103,14 @@ def forget(request):
 def contact(request):
     return render(request,"Home_Module/contact.html")
 
+def products(request):
+    if request.method!="POST":
+        return render(request,"Home_Module/products.html")
+    else:
+        return render(request,"Home_Module/productDetail.html")
+        
+def productDetail(request):
+    return render(request,"Home_Module/productDetail.html")
 def signup(request):
     if request.method=='GET':
         return render(request,"Home_Module/signup.html")
