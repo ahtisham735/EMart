@@ -56,10 +56,11 @@ def login(request):
                     errorMessage="you are not registered as seller"
                 else:
                     request.session['seller']=cust.username
+
                     try:                     
-                        user=SellerDetail.objects.query(user=cust.username)
+                        user=SellerDetail.objects.get(pk=cust.id)
                         return render(request,"Seller_Module/Home.html")
-                    except:
+                    except SellerDetail.DoesNotExist:
                         return HttpResponseRedirect(reverse("Home_Module:SellerDetail"))
             else:
                 if cust.is_seller:
