@@ -1,60 +1,62 @@
 
+
 .resetBack{
-    padding:50px 0;
-    background: radial-gradient(#ff8a80,white);;
-  
-  }
-.center{
-    position: relative;
-    
-    width:500px;
-    height: 400px;
-    background:whitesmoke;
-    border-radius: 10px;
-  }
-  .center h1{
-    text-align: center;
-    padding: 0 0 20px 0;
-    border-bottom: 1px solid plum;
-  }
-  .center form{
-    padding: 0 40px;
-    box-sizing:border-box;
-  }
-  form .txt_field{
-    position: relative;
-    border-bottom: 2px solid #adadad;
-  }
-  .txt_field{
-    width:80%;
-    padding: 5px 5px;
-    height: 40px;
-    font-size: 16px;
-    border: none;
-    background: none;
-    outline: none;
-    margin-top: 10px;
-  }
-  .txt_field label{
-    position: relative;
-    top:50%;
-    left:5px;
-    color: #adadad;
-  }
-  .submit_btn {
-      margin-top: 50px;
-      width: 50%;
-      height: 50px;
-      border:1px solid;
-      background: linear-gradient(to right, #6a1b9a, pink);
-      border-radius: 25px;
-      color:#e9f4fb;
+  padding:50px 0;
+  background: radial-gradient(#ff8a80,white);;
+
 }
-.error_style {
-    color: red;
-    display: block;
-    font-size: 15px;
-    text-align: left;
-    margin-left: 45px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  }
+.center{
+  position: absolute;
+  top:20%;
+  left:30%;
+  width:500px;
+  height: 400px;
+  background:whitesmoke;
+  border-radius: 10px;
+}
+.center h1{
+  text-align: center;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid plum;
+}
+.center form{
+  padding: 0 40px;
+  box-sizing:border-box;
+}
+form .txt_field{
+  position: relative;
+  border-bottom: 2px solid #adadad;
+}
+.txt_field{
+  width:80%;
+  padding: 5px 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+  margin-top: 10px;
+}
+.txt_field label{
+  position: absolute;
+  top:50%;
+  left:5px;
+  color: #adadad;
+}
+.submit_btn {
+    margin-top: 50px;
+    width: 50%;
+    height: 50px;
+    border:1px solid;
+    background: linear-gradient(to right, #6a1b9a, pink);
+    border-radius: 25px;
+    color:#e9f4fb;
+}
+.error_style{
+  color: red;
+  display: block;
+  font-size: 15px;
+  text-align: left;
+  margin-left: 45px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

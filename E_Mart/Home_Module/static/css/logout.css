@@ -1,0 +1,28 @@
+.paragraph{
+    margin:20px 100px;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: crimson;
+}
+.logout-form{
+    width:500px;
+    height:200px;
+    position:relative;
+    margin:6% auto;
+    background: radial-gradient(pink,white);
+    padding: 5px;
+    border: black;
+  }
+  .logout-div{
+      margin-left: 100px;
+      padding-left: 25px;
+  }
+  .styling{
+      background-color: black;
+  }
+  .main-div{
+    border: 2px solid crimson;
+    border-radius: 4px;
+  }

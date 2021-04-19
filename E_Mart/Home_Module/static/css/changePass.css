@@ -1,0 +1,20 @@
+form .txt_field{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+  }
+.txt_field{
+    width:80%;
+    padding: 5px 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    margin-top: 10px;
+  }
+  .txt_field label{
+    position: absolute;
+    top:50%;
+    left:5px;
+    color: #adadad;
+  }

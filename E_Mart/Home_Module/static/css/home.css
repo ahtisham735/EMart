@@ -578,10 +578,11 @@ h5:after {
 .error_style {
   color: red;
   display: block;
-  font-size: 15px;
-  margin-left: 10px;
+  font-size:15px;
+  margin-left:10px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
 .regPointer{
   cursor: pointer;
   color:red;
@@ -599,7 +600,7 @@ h5:after {
 
 .forgettBack{
   padding:50px 0;
-  background: radial-gradient(#ff8a80,white);;
+  background: radial-gradient(#ff8a80,white);
 
 }
 .forget-form-box{
@@ -662,24 +663,4 @@ pre{
 }
 
 /*-------------------------------------------END OF FORGET PASSWORD--------------------------------------------*/
-/* For messages*/
-.success, .warning, .danger {
-  padding-left: 20px;
-  font-size: 25px;
-  font-weight: bold;
-  border: 1px solid black;
-  margin: 20px; }
 
-
-
-.success {
-  color: green; }
-
-.warning {
-  color: yellow; }
-
-.error {
-  color: red; }
-.info{
-  color: gray;
-}
