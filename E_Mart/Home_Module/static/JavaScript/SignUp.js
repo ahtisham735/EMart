@@ -35,6 +35,7 @@ handleFocus=(id)=>{
     if(val.value.length===0){
         element.innerHTML="It is a required field";        
     }
+  
        
 }
 handleChangeRegister=(id)=>{
@@ -61,7 +62,7 @@ handleChangeRegister=(id)=>{
     }
     else if(id==="cnfrmPassword")
     {
-        cnfrmPassword();
+        cnfrmPassword(val,'password');
     }
     else if(id==='chkbox')
     {
@@ -85,37 +86,8 @@ handleChangeRegister=(id)=>{
     
    
 }
-resetPasswordValidation=()=>{
-    const error=document.getElementById("error")
-    var passwdPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{8,})")
-    if(!passwdPattern.test(val.value))
-        {
-            error.innerHTML="use 8 or more letters having atleast one lowercase,one uppercase and one special character";
-            passwordStatus=false;
-        }
-       else
-       {
-            passwordStatus=true;
-            element.innerHTML="";
-       }
-}
-function login(){
-    
-    var x=document.getElementById("login");
-    var y=document.getElementById("register");
-    var z=document.getElementById("btn_back");  
-    x.style.left="50px";
-    y.style.left="450px";
-    z.style.left="0px";
-    }
-function register(){
-    var x=document.getElementById("login");
-    var y=document.getElementById("register");
-    var z=document.getElementById("btn_back");
-    x.style.left="-400px";
-    y.style.left="50px";
-    z.style.left="110px";
-}
+
+
 //utility Function
 Email=(val,element)=>{
     fetch(`http://localhost:8000/customer/email=${val.value}`)
@@ -158,7 +130,7 @@ Username=(val,element)=>{
 Password=(val,element)=>{
     const cnfrmPasswd=document.querySelector('#cnfrmPassword')
     if(cnfrmPasswd.value.length!=0){
-        if(!PasswordVerification()){
+        if(!PasswordVerification(val,cnfrmPasswd)){
              cnfrmPasswordStatus=false;
          
         }else{
@@ -178,8 +150,9 @@ Password=(val,element)=>{
          element.innerHTML="";
     }
 }
-cnfrmPassword=()=>{
-    if(!PasswordVerification())
+cnfrmPassword=(val,id)=>{
+    const passwd=document.getElementById(id)
+    if(!PasswordVerification(passwd,val))
         {
             cnfrmPasswordStatus=false;
         }else
@@ -189,17 +162,10 @@ cnfrmPassword=()=>{
 }
 
 
-PasswordVerification=()=>{
+PasswordVerification=(passwd,cnfrmPasswd)=>{
     
-    const passwd=document.getElementById('password')
-    const cnfrmPasswd=document.getElementById('cnfrmPassword')
     const element=document.getElementById('cnfrmPasswordError')
-    /*if(passwd.value=="" && cnfrmPasswd.value=="")
-    {
-        passwd.innerHTML="It is required";
-        cnfrmPasswd.innerHTML="It is required";
-        return false;
-    }*/
+ 
     if(passwd.value!==cnfrmPasswd.value)
     {
         element.innerHTML="Password not matched"
@@ -220,13 +186,13 @@ handleResetChange=(id)=>{
         element.innerHTML="It is a required field";
         return;                     
     }
-    if(id==="password")
+    if(id==="newPassword")
     {
         Password(val,element);
     }
     if(id==="cnfrmPassword")
     {
-        cnfrmPassword();
+        cnfrmPassword(val,'newPassword');
     }
     if(passwordStatus&&cnfrmPasswordStatus)
     {
@@ -237,32 +203,21 @@ handleResetChange=(id)=>{
         resetbtn.disabled=true; 
     }
 }
-handlePassChange=(id)=>{
-    const val=document.getElementById(`${id}`)
-    const element =document.getElementById(`${id}Error`)
-    var changebtn=document.getElementById('resetbtn')
-    if(val.value.length===0){
-        element.innerHTML="It is a required field";
-        return;                     
+
+function login(){
+    
+    var x=document.getElementById("login");
+    var y=document.getElementById("register");
+    var z=document.getElementById("btn_back");  
+    x.style.left="50px";
+    y.style.left="450px";
+    z.style.left="0px";
     }
-    if(id==="password")
-    {
-        Password(val,element);
-    }
-    if(id==="newpassword")
-    {
-        Password(val,element);
-    }
-    if(id==="cnfrmPassword")
-    {
-        cnfrmPassword();
-    }
-    if(passwordStatus&&cnfrmPasswordStatus)
-    {
-        changebtn.disabled=false;  
-    }
-    else
-    {
-        changebtn.disabled=true; 
-    }
+function register(){
+    var x=document.getElementById("login");
+    var y=document.getElementById("register");
+    var z=document.getElementById("btn_back");
+    x.style.left="-400px";
+    y.style.left="50px";
+    z.style.left="110px";
 }

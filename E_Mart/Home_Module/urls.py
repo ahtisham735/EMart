@@ -18,7 +18,7 @@ urlpatterns=[
     path('update_password',views.change_password,name="update_password"),
     path("cust_logout",views.cust_logout,name="cust_logout"),
     path("Seller_center",Seller_views.seller_center,name="seller_center"),
-    path("Seller_login",Seller_views.seller_login,name="Seller_login")
+    path("SellerDetail",Seller_views.seller_detail,name="SellerDetail"),
   
 
     

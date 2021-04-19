@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.contrib import auth,messages
 from django.conf import settings
 from django.contrib.auth import update_session_auth_hash
-from Home_Module.models import User
+from Home_Module.models import User,SellerDetail
 from .email_handler import token_generator,send_link
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
@@ -56,7 +56,11 @@ def login(request):
                     errorMessage="you are not registered as seller"
                 else:
                     request.session['seller']=cust.username
-                    return render(request,"Seller_Module/Home.html")
+                    try:                     
+                        user=SellerDetail.objects.query(user=cust.username)
+                        return render(request,"Seller_Module/Home.html")
+                    except:
+                        return HttpResponseRedirect(reverse("Home_Module:SellerDetail"))
             else:
                 if cust.is_seller:
                     errorMessage="you are not registered as Customer"
@@ -69,7 +73,7 @@ def login(request):
             return render(request,"Home_Module/SignUp.html",context={"errorMessage":errorMessage})
     
 def home(request):
-    user=isUserLogin(request)
+    user=isUserLogin(request,'user')
     if user is not None:
         return render(request,"Home_Module/Home.html",context={"user":user})
     return render(request,"Home_Module/Home.html")
@@ -142,7 +146,7 @@ def cust_logout(request):
         return HttpResponseRedirect(reverse("Home_Module:signup"))
     
 def change_password(request):
-    user=isUserLogin(request)
+    user=isUserLogin(request,'user')
     if user is None:
         return HttpResponseRedirect(reverse("Home_Module:signup"))
     if request.method=="GET": 

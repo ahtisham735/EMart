@@ -1,38 +1,39 @@
+{%load static %}
 <html>
 <head>
     <title>Details</title>
-    <link rel="stylesheet" href="{%static '/css/SellerDetail.css'%">
+    <link rel="stylesheet" href="{%static '/css/SellerDetail.css'%}">
     
 </head>
 <body>
 <div class="container">  
 <h2>Detail Information</h2>
-        <form method="post">
+        <form method="POST" action="{%url 'Home_Module:SellerDetail' %}">
+          {%csrf_token%}
          <div class="txt_field">
-            <input  type="text" placeholder="Shope Name"/>
+            <input  type="text" name="shop" placeholder="Shope Name"/>
              <span id="NameEror" class="error_style"></span>
           </div> 
         <div class="txt_field">
-            <input  type="text" placeholder="Contact"/>
+            <input  type="text" name="phone" placeholder="Phone No i.e 03001122333"/>
             <span id="NameEror" class="error_style"></span>
           </div> 
         <div class="txt_field">
-            <input  type="text" placeholder="CNIC"/>
+            <input  type="text" name="cnic" placeholder="CNIC i.e 3110170901355"/>
            <span id="NameEror" class="error_style"></span>
           </div>
         <div class="txt_field">
-            <input  type="text" placeholder="Address"/>
+            <input  type="text" name="address" placeholder="Address"/>
             <span id="NameEror" class="error_style"></span>
           </div>
         <div class="txt_field">
-            <input  type="text" placeholder="Account"/>
+            <input  type="text" name="account" placeholder="Bank Account No."/>
             <span id="NameEror" class="error_style"></span>
           </div> 
             
             <button type="submit" class="submit-btn">Submit</button>
                 
             </form>
-            <p class="message">Do you want to skip?<a href="#">Skip</a></p>
               
         </div>
 
