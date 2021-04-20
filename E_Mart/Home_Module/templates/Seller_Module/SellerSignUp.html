@@ -15,14 +15,14 @@
                 {% csrf_token %}
                 <div>
                 <input type="hidden" name="is_seller" value="seller">
-               <input  name="username" id="loginUsername"   type="text" class="input-box" placeholder="Username" />
+               <input  name="username" id="loginUsername" value="{{username}}"   type="text" class="input-box" placeholder="Username" />
                 <span id="nameError" class="error_style"></span>
                 </div>
                 <div>
-                <input  name="password" id="loginPasswd"   type="password" class="input-box" placeholder="Password" />
+                <input  name="password" id="loginPasswd" value="{{password}}"  type="password" class="input-box" placeholder="Password" />
                 <span id="pswdError" class="error_style">{{errorMessage}}</span>
                 </div>
-                <input type="checkbox" class="input-check"><span class="input-span">Remember me</span>
+                <input type="checkbox" name="remember" class="input-check"><span class="input-span">Remember me</span>
                 <button id="login_btn"   class="submit_btn" >Login</button>
                 
             </form>

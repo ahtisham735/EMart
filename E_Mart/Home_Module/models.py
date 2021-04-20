@@ -61,6 +61,14 @@ class SellerDetail(models.Model):
     cnic=models.CharField(max_length=13,unique=True)
     address=models.CharField(max_length=255)
     account_no=models.CharField(max_length=14)
+class Products(models.Model):
+    sellerId=models.ForeignKey(User,on_delete=models.CASCADE,related_name="sellerId")
+    productName=models.CharField(max_length=255,blank=False)
+    brand=models.CharField(max_length=255,blank=False)
+    price=models.PositiveIntegerField(blank=False)
+    quantity=models.PositiveIntegerField(blank=False)
+
+
 
   
 

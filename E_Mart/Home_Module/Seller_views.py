@@ -5,7 +5,13 @@ from django.shortcuts import render,redirect,reverse
 from django.http import HttpResponse,HttpResponseRedirect
 
 def seller_center(request):
-    return render(request,"Seller_Module/SellerSignUp.html")
+    user=isUserLogin(request,'seller')
+    if user is None:
+        if "usernameSeller" in request.session:
+            return render(request,"Seller_Module/SellerSignUp.html",context={"username":request.session['usernameSeller'],"password":request.session['passwordSeller']})     
+        else:
+             return render(request,"Seller_Module/SellerSignUp.html")
+    return render(request,"Seller_Module/Seller_base.html",context={"user":user})
 def seller_detail(request):
     seller=isUserLogin(request,'seller')
     if request.method=="GET":
@@ -20,7 +26,14 @@ def seller_detail(request):
         detail.account_no=request.POST['account']
         detail.address=request.POST['address']
         detail.save()
-        return render(request,"Seller_Module/Home.html")
+        return render(request,"Seller_Module/Seller_base.html")
+def seller_logout(request):
+    user=isUserLogin(request,'seller')
+    try:
+        del request.session['seller']
+        return HttpResponseRedirect(reverse("Home_Module:seller_center"))
+    except KeyError:
+        return HttpResponseRedirect(reverse("Home_Module:seller_center"))
 
 
         

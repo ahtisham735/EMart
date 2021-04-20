@@ -1,13 +1,12 @@
-{%extends 'base.html'%}
+{%extends variable %}
 {% load i18n %}
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 {% block body %}
   <div class="container">
-  {%if user.is_social_user%}
-    <form  class="logout-form main-div" method="post" action="{% url 'account_logout' %}">
-  {%else%}
-    <form  class="logout-form main-div" method="post" action="{% url 'Home_Module:cust_logout' %}">
-  {%endif%}
+  <form  class="logout-form main-div" method="post" {%if user.is_social_user%} action="{% url 'account_logout' %}" 
+  {%elif user.is_seller%} action="{% url 'Home_Module:seller_logout' %}" 
+  {%else%} action="{% url 'Home_Module:cust_logout' %}" {%endif%}>
+
   {% csrf_token %}
     <div class="heading">
       <h1>{% trans "Sign Out" %}</h1>
@@ -18,7 +17,7 @@
     {% endif %}
     <div class="logout-div">
       <button type="submit" class="fb_btn styling">{% trans 'Sign Out' %}</button>
-      <button type="submit" class="fb_btn styling">{% trans 'Cancel' %}</button>
+      <a {%if user.is_seller%} href="{%url 'Home_Module:seller_center'%}" {%else%} href="{%url 'Home_Module:home'%}" {%endif%} class="fb_btn styling">{% trans 'Cancel' %}</a>
     </div>
     </form>
 </div>

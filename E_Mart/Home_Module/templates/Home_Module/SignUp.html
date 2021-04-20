@@ -42,15 +42,15 @@
                         <form id="login"  class="input-group" method="POST" action="{%url 'Home_Module:login'%}"  onsubmit="return loginSubmit()">
                             {% csrf_token %}
                             <div>
-                                <input type="text" name="username" id="loginUsername" class="input_field" placeholder="username*" ></input>
+                                <input type="text" name="username" id="loginUsername" class="input_field" placeholder="username*"  value="{{username}}"></input>
                                 <span id="nameError" class="error_style"></span>
                             </div>
                             <div>
-                                <input id="loginPasswd" name="password" type="password" class="input_field" placeholder="Password*" ></input>
+                                <input id="loginPasswd" name="password" type="password" class="input_field" placeholder="Password*" value="{{password}}"></input>
                                 <span id="pswdError" class="error_style">{{errorMessage}}</span>
                             </div>
                             <div>
-                                <input type="checkbox" id="chkbox1" class="check_box"/><span class="checkbox_style">Remember Password</span>
+                                <input type="checkbox" name="remember" id="chkbox1" class="check_box"/><span class="checkbox_style">Remember me</span>
                                 <button id="loin_btn"   class="submit_btn" >Login</button>
                                 <a  class="forget" href="{% url 'Home_Module:forget'%}">Forgot Password?</a>
                                 <h5>or</h5>

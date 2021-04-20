@@ -41,31 +41,41 @@ def cust_api(request,name='',email=''):
 
 def login(request):
     if request.method=="GET":
+        if "username" in request.session:
+            return render(request,"Home_Module/signup.html",context={"username":request.session['username'],"password":request.session['password']})
         return render(request,"Home_Module/signup.html")
     if request.method=="POST":
         username= request.POST['username']
         password= request.POST['password']  
         cust = auth.authenticate(username=username,password=password)
+   
         if cust is None:
             errorMessage="Invalid Username or Password"
         elif  not cust.is_active:
             errorMessage="Your account is not active.please check your email address"
         else: 
+            
             if 'is_seller' in request.POST: #checking if the request has come from seller center or not
                 if not cust.is_seller:# if request has come from seller center ,checking if user is registered as seller
                     errorMessage="you are not registered as seller"
                 else:
+                    if request.POST.get("remember"):
+                        request.session['usernameSeller']=username
+                        request.session['passwordSeller']=password
                     request.session['seller']=cust.username
 
                     try:                     
                         user=SellerDetail.objects.get(pk=cust.id)
-                        return render(request,"Seller_Module/Home.html")
+                        return HttpResponseRedirect(reverse("Home_Module:seller_center"))
                     except SellerDetail.DoesNotExist:
                         return HttpResponseRedirect(reverse("Home_Module:SellerDetail"))
             else:
                 if cust.is_seller:
-                    errorMessage="you are not registered as Customer"
+                    errorMessage="you are not registered as a Customer"
                 else:
+                    if request.POST.get("remember"):
+                        request.session['username']=username
+                        request.session['password']=password
                     request.session['user']=cust.username
                     return render(request,"Home_Module/Home.html",context={"user":cust})
         if "is_seller" in request.POST:
@@ -104,16 +114,18 @@ def contact(request):
     return render(request,"Home_Module/contact.html")
 
 def products(request):
-    if request.method!="POST":
-        return render(request,"Home_Module/products.html")
-    else:
-        return render(request,"Home_Module/productDetail.html")
-        
+    user=isUserLogin(request,'user')
+    if user is not None:
+        return render(request,"Home_Module/products.html",context={"user":user})
+    return render(request,"Home_Module/products.html")
 def productDetail(request):
-    return render(request,"Home_Module/productDetail.html")
+    user=isUserLogin(request,'user')
+    if user is not None:
+        return render(request,"Home_Module/productDetail.html",context={"user":user})
+    return render(request,"Home_Module/productDetail.html",context={})
 def signup(request):
     if request.method=='GET':
-        return render(request,"Home_Module/signup.html")
+        return HttpResponseRedirect(reverse("Home_Module:login"))
     
     elif request.method=='POST':
         email=request.POST['email']
@@ -136,7 +148,7 @@ def signup(request):
 def logout(request,username):
     try:
         user=User.objects.get(username=username)
-        return render(request,"Home_Module/logout.html",context={"user":user})
+        return render(request,"Home_Module/logout.html",context={"user":user,"variable":"base.html"})
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse("Home_Module:signup"))
 def cust_logout(request):

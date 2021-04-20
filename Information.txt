@@ -28,3 +28,4 @@ installed libraries(backend):
 2:django-allauth...(pip install django-allauth)...to provides social authentication
 3:djangorestframework-3.12.2(pip install djangorestframework)...for creating api's
 4:django-cors-headers-3.7.0(pip install django-cors-headers) ...for allowing other origins to access our api's 
+5:Pillow(python -m pip install Pillow ...for storing images in db)

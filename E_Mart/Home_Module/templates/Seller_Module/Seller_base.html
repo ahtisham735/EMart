@@ -6,6 +6,7 @@
 	<title>Seller Center</title>
 	<link rel="stylesheet" href="{%static '/css/home_Seller.css'%}">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <link rel="stylesheet" href="{%static '/css/logout.css'%}"/>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script>
 		$(document).ready(function(){
@@ -32,9 +33,7 @@
         <li><a href="#">
           <i class="fas fa-bell"></i>
           </a></li>
-        <li><a href="https://www.google.com"></a>
-          <i class="fas fa-user"></i>
-          </a></li>
+        <li>{{user.username}}</li>
       </ul>
     </div>
   </div>
@@ -80,17 +79,19 @@
           </a></li>
         <li><a href="#">
           <span class="icon"><i class="fas fa-leaf"></i></span>
-          <span class="title">Accounts & Settings</span>
+          <span class="title">Account</span>
           </a></li>
-        <li><a href="#">
+        <li><a href="{%url 'Home_Module:seller_logout' %}">
            <span class="icon"><i class="fas fa-leaf"></i></span>
-           <span class="title">Seller Documents</span>
+           <span class="title">Logout</span>
            </a></li> 
     </ul>
   </div>
   
   <div class="main_container">
     <h2 class="title">Page</h2>
+    {%block body%}
+    {%endblock%}
     <div class="row" id="r1">
       
     </div>
