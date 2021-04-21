@@ -30,7 +30,8 @@
       <div class="logo">EMart</div>
       <ul>
         <li><a href="#">
-          <i class="fas fa-search"></i></a></li>
+          <span class="fas fa-search"></span></a>
+        </li>
         <li><a href="#">
           <i class="fas fa-bell"></i>
           </a></li>
@@ -38,58 +39,31 @@
       </ul>
     </div>
   </div>
-  
   <div class="sidebar">
-      <ul>
-        <li><a href="#">
-          <span class="icon"><i class="fas fa-leaf"></i></span>
-          <span class="title">Products</span>
-          </a></li> 
-          <li><a href="#">
-            <span class="icon"><i class="fas fa-leaf"></i></span>
-            <span class="title">Order & Reviews</span>
-            </a></li>
-             <li><a href="#">
-              <span class="icon"><i class="fas fa-leaf"></i></span>
-              <span class="title">Promotionns</span>
-              </a></li> 
-              <li><a href="#">
-                <span class="icon"><i class="fas fa-leaf"></i></span>
-                <span class="title">Store Decoration</span>
-                </a></li> 
-                <li><a href="#">
-                  <span class="icon"><i class="fas fa-leaf"></i></span>
-                  <span class="title">Growth Center</span>
-                  </a></li> 
+    <ul>
+      <li><a href=""><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+      <li><a href="">Products</a></li>
+      <li><a href="">Order & Reviews</a></li>
+      <li><a href="">Promotionns</a></li>
+      <li><a href="">Advertising</a></li>
+      <li><a href="">Finance</a></li>
+      <li class="dropdown"><a href=""><i class="fa fa-cog" aria-hidden="true"></i>Settings<span>&rsaquo;</span></a>
+        <ul>
+          <li><a href=""><i class="fa fa-user-circle-o" aria-hidden="true"></i>Profile</a></li>
+          <li><a href=""><i class="fa fa-pencil" aria-hidden="true"></i>Update Password</a></li>
+          <li><a href="">My Shop</a></li>
+        </ul>
+      
+      </li>
+      <li><a href=""><i class="fa fa-lock" aria-hidden="true"></i>Logout</a></li>
 
-            <li><a href="#">
-              <span class="icon"><i class="fas fa-leaf"></i></span>
-              <span class="title">Business Advisor</span>
-              </a></li>
-        <li><a href="{% url 'Home_Module:update_password' user.username%}">
-          <span class="icon"><i class="fas fa-leaf"></i></span>
-          <span class="title">Change Password</span>
-          </a></li>
-    
-     
-        <li><a href="#">
-         <ul>
-          <li>profile</li>
-         </ul>
-          <span class="icon"><i class="fas fa-leaf"></i></span>
-          <span class="title">Account</span>
-          </a></li>
-        <li><a href="{%url 'Home_Module:account_logout' user.username %}">
-           <span class="icon"><i class="fas fa-leaf"></i></span>
-           <span class="title">Logout</span>
-           </a></li> 
     </ul>
   </div>
   
   <div class="main_container">
     <h2 class="title">Page</h2>
-    {%block body%}
-    {%endblock%}
+   {% block body %}
+   {% endblock %}
     <div class="row" id="r1">
       
     </div>
@@ -105,7 +79,8 @@
     
     </div>
 </div>
-<script  src="{%static  'javascript/SignUp.js' %}"></script>
+	<script  src="{%static  'javascript/Seller.js' %}"></script>
+        <script  src="{%static  'javascript/SignUp.js' %}"></script>
 </body>
 </html>
        
