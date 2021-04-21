@@ -149,11 +149,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 LOGIN_REDIRECT_URL = "/"
-STATIC_URL = '/static/'
+
 SITE_ID=1
+
+STATIC_URL = '/static/'
+MEDIA_URL='/Images/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
+MEDIA_ROOT=os.path.join(BASE_DIR,'Home_Module/static/Images')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

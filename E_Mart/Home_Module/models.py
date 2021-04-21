@@ -64,10 +64,11 @@ class SellerDetail(models.Model):
 class Products(models.Model):
     sellerId=models.ForeignKey(User,on_delete=models.CASCADE,related_name="sellerId")
     productName=models.CharField(max_length=255,blank=False)
+    description=models.CharField(max_length=255,blank=False,default="")
     brand=models.CharField(max_length=255,blank=False)
     price=models.PositiveIntegerField(blank=False)
     quantity=models.PositiveIntegerField(blank=False)
-
+    image=models.ImageField(upload_to='products/images',default="")
 
 
   
