@@ -25,7 +25,8 @@ body {
 .wrapper .top_navbar .hamburger {
   width: 70px;
   height: 100%;
-  background: #2e4ead;
+  background: #cfd8dc;
+  /*background: #2e4ead;*/
   padding: 15px 17px;
   border-top-left-radius: 20px;
   cursor: pointer;
@@ -34,7 +35,7 @@ body {
 .wrapper .top_navbar .hamburger div {
   width: 35px;
   height: 4px;
-  background: #92a6e2;
+  background: black;
   margin: 5px 0;
   border-radius: 5px;
 }
@@ -83,58 +84,68 @@ body {
   color: #fff;
 }
 
+
+/*Sidebar*/
 .wrapper .sidebar {
   position: fixed;
   top: 70px;
   left: 10px;
-  background: #2e4ead;
+  background: linear-gradient(#83d1f3,#cfd8dc,#b39ddb);
   width: 200px;
   height: calc(100% - 80px);
   border-bottom-left-radius: 20px;
   transition: all 0.3s ease;
 }
-
-.wrapper .sidebar ul li a {
-  display: block;
-  padding: 20px;
-  color: #fff;
+ .sidebar ul{
   position: relative;
-  margin-bottom: 1px;
-  color: #92a6e2;
-  white-space: nowrap;
+  list-style-type: none;
+}
+ .wrapper .sidebar ul li a {
+   display: flex;
+   text-decoration: none;
+   color:black;
+   padding: 10px 30px;
+   height: 50px;
+   transition: .5s ease;
+   border-radius: 0 30px;
 }
 
-.wrapper .sidebar ul li a:before {
-  content: "";
+.wrapper .sidebar ul li a:hover{
+  background: #7986cb;
+}
+.sidebar ul ul{
   position: absolute;
+  left: 200px;
+  width: 250px;
+  top:0;
+  background: linear-gradient(#83d1f3,#cfd8dc);
+  border-radius: 5px;
+  display:none;
+}
+.sidebar ul span{
+  position: absolute;
+  right: 20px;
+  font-size: 1.5em;
+
+}
+.sidebar ul .dropdown{
+  position: relative;
+}
+.sidebar ul .dropdown:hover > ul{
+  display: initial;
+}
+/*sub-menus code*/
+.sidebar ul .dropdown-content ul{
+  position: absolute;
+  left: 200px;
   top: 0;
-  left: 0;
-  width: 3px;
-  height: 100%;
-  background: #92a6e2;
-  display: none;
+
+}
+.sidebar ul .dropdown-content:hover ul{
+  display: initial;
 }
 
-.wrapper .sidebar ul li a span.icon {
-  margin-right: 10px;
-  display: inline-block;
-}
-
-.wrapper .sidebar ul li a span.title {
-  display: inline-block;
-}
-
-.wrapper .sidebar ul li a:hover,
-.wrapper .sidebar ul li a.active {
-  background: #4360b5;
-  color: #fff;
-}
-
-.wrapper .sidebar ul li a:hover:before,
-.wrapper .sidebar ul li a.active:before {
-  display: block;
-}
-
+/* Container css*/
 .wrapper .main_container {
   width: (100% - 200px);
   margin-top: 70px;
@@ -142,7 +153,6 @@ body {
   padding: 15px;
   transition: all 0.3s ease;
 }
-
 .wrapper .main_container .item {
   background: #fff;
   margin-bottom: 10px;
@@ -150,53 +160,6 @@ body {
   font-size: 14px;
   line-height: 22px;
 }
-
-.wrapper.collapse .sidebar {
-  width: 70px;
-}
-
-.wrapper.collapse .sidebar ul li a {
-  text-align: center;
-}
-
-.wrapper.collapse .sidebar ul li a span.icon {
-  margin: 0;
-}
-
-.wrapper.collapse .sidebar ul li a span.title {
-  display: none;
-}
-
-.wrapper.collapse .main_container {
-  width: (100% - 70px);
-  margin-left: 70px;
-}
-
-.dropdown {
-  position: fixed;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
+.fa{
+  margin-right: 5px;
 }
