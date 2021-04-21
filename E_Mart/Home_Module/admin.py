@@ -17,7 +17,7 @@ class SellerDetailRegister(admin.ModelAdmin):
     list_filter=()
     fieldsets=()
 class ProductsAdmin(admin.ModelAdmin):
-    list_display=('pk','sellerId','productName','brand','price','quantity')
+    list_display=('pk','sellerId','productName','brand','price','quantity','image')
     search_fields=('pk','sellerId','brand','productName')
     filter_horizontal=() 
     list_filter=()

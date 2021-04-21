@@ -28,7 +28,6 @@ def seller_detail(request):
         detail.save()
         return render(request,"Seller_Module/Seller_base.html")
 def seller_logout(request):
-    user=isUserLogin(request,'seller')
     try:
         del request.session['seller']
         return HttpResponseRedirect(reverse("Home_Module:seller_center"))

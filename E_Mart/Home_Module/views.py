@@ -1,6 +1,6 @@
 from django.views import View
 from django.shortcuts import render,redirect
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect,HttpResponseNotFound
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.contrib import auth,messages
 from django.conf import settings
 from django.contrib.auth import update_session_auth_hash
-from Home_Module.models import User,SellerDetail
+from Home_Module.models import User,SellerDetail,Products
 from .email_handler import token_generator,send_link
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
@@ -115,9 +115,10 @@ def contact(request):
 
 def products(request):
     user=isUserLogin(request,'user')
+    context={"products":Products.objects.all()}
     if user is not None:
-        return render(request,"Home_Module/products.html",context={"user":user})
-    return render(request,"Home_Module/products.html")
+        context['user']=user
+    return render(request,"Home_Module/products.html",context=context)
 def productDetail(request):
     user=isUserLogin(request,'user')
     if user is not None:
@@ -148,6 +149,14 @@ def signup(request):
 def logout(request,username):
     try:
         user=User.objects.get(username=username)
+        if user.is_seller:
+            seller=isUserLogin(request,"seller")
+            if seller is None:
+                return HttpResponseRedirect(reverse("Home_Module:seller_center"))
+            return render(request,"Home_Module/logout.html",context={"user":user,"variable":"Seller_Module/Seller_base.html"})
+        cust=isUserLogin(request,"user")
+        if cust is None:
+            return HttpResponseRedirect(reverse("Home_Module:signup"))
         return render(request,"Home_Module/logout.html",context={"user":user,"variable":"base.html"})
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse("Home_Module:signup"))
@@ -158,27 +167,38 @@ def cust_logout(request):
     except KeyError:
         return HttpResponseRedirect(reverse("Home_Module:signup"))
     
-def change_password(request):
-    user=isUserLogin(request,'user')
-    if user is None:
-        return HttpResponseRedirect(reverse("Home_Module:signup"))
-    if request.method=="GET": 
-        return render(request,"Home_Module/change_password.html",context={"user":user})
-    if request.method=="POST":
-        passwd=request.POST['password']
-        chkPasswd=auth.authenticate(username=user.username,password=passwd)
-        if chkPasswd is None:
-            messages.error(request, 'You have entered wrong password')
-            return HttpResponseRedirect(reverse("Home_Module:update_password"))
-        newPasswd=request.POST['newPasswd']
-        user.set_password(newPasswd)
-        user.save()
-        update_session_auth_hash(request,user)
-        messages.success(request,"your password has been changed")
-        return HttpResponseRedirect(reverse("Home_Module:update_password"))
+def change_password(request,username):
+    try:
+        user=User.objects.get(username=username)  
+        if request.method=="GET": 
+            if user.is_seller:
+                seller=isUserLogin(request,"seller")
+                if seller is None:
+                    return HttpResponseRedirect(reverse("Home_Module:seller_center"))
+                else:
+                    return render(request,"Home_Module/change_password.html",context={"user":user,"variable":"Seller_Module/Seller_base.html"})
+            else:
+                user=isUserLogin(request,'user')
+                if user is None:
+                    return HttpResponseRedirect(reverse("Home_Module:signup"))
+                return render(request,"Home_Module/change_password.html",context={"user":user,"variable":"base.html"})
+        if request.method=="POST":
+            passwd=request.POST['password']
+            chkPasswd=auth.authenticate(username=user.username,password=passwd)
+            if chkPasswd is None:
+                messages.error(request, 'You have entered wrong password')
+                return HttpResponseRedirect(reverse("Home_Module:update_password",args=(user.username,)))
+                #return redirect('/')
+            newPasswd=request.POST['newPasswd']
+            user.set_password(newPasswd)
+            user.save()
+            update_session_auth_hash(request,user)
+            messages.success(request,"your password has been changed")
+            return redirect('/')
+            #return HttpResponseRedirect(reverse("Home_Module:update_password",args=(user.username,)))
+    except User.DoesNotExist:
+         return HttpResponseNotFound("User does not exist")
 
-
-   
 
 def reset_password_done(request):
     username=request.POST['username']

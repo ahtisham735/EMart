@@ -11,31 +11,31 @@
         <form method="POST" action="{%url 'Home_Module:SellerDetail' %}" onsubmit="return detailValidation()">
           {%csrf_token%}
          <div class="txt_field">
-            <input  type="text" name="shop" placeholder="Shope Name"/>
-             <span id="NameEror" class="error_style"></span>
+            <input  type="text" id="shopName" onkeyup="allnumeric(id)" name="shop" placeholder="Shope Name"/>
+             <span id="shopEror" class="error_style"></span>
           </div> 
         <div class="txt_field">
-            <input  type="text" name="phone" placeholder="Phone No i.e 03001122333"/>
-            <span id="NameEror" class="error_style"></span>
+            <input  type="text" id="PhoneNo" onkeyup="allnumeric(id)" name="phone" placeholder="Phone No i.e 03001122333"/>
+            <span id="phoneEror" class="error_style"></span>
           </div> 
         <div class="txt_field">
-            <input  type="text" name="cnic" placeholder="CNIC i.e 3110170901355"/>
-           <span id="NameEror" class="error_style"></span>
+            <input  type="text" id="cnic" onkeyup="allnumeric(id)" name="cnic" placeholder="CNIC i.e 3110170901355"/>
+           <span id="cnicEror" class="error_style"></span>
           </div>
         <div class="txt_field">
-            <input  type="text" name="address" placeholder="Address"/>
-            <span id="NameEror" class="error_style"></span>
+            <input  type="text" id="address" onkeyup="allnumeric(id)" name="address" placeholder="Address"/>
+            <span id="AddressEror" class="error_style"></span>
           </div>
         <div class="txt_field">
-            <input  type="text" name="account" placeholder="Bank Account No."/>
-            <span id="NameEror" class="error_style"></span>
+            <input  type="text" id="account" onkeyup="allnumeric(id)" name="account" placeholder="Bank Account No."/>
+            <span id="AccountEror" class="error_style"></span>
           </div> 
             
-            <button type="submit" class="submit-btn">Submit</button>
+            <button type="submit" id="subbtn" disabled class="submit-btn">Submit</button>
                 
             </form>
               
         </div>
-
+        <script  src="{%static  'javascript/Seller.js' %}"></script>
     </body>
 </html>

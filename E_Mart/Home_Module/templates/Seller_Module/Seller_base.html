@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<title>Seller Center</title>
 	<link rel="stylesheet" href="{%static '/css/home_Seller.css'%}">
+  <link rel="stylesheet" href="{%static '/css/changePass.css'%}"/>
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   <link rel="stylesheet" href="{%static '/css/logout.css'%}"/>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -65,23 +66,20 @@
               <span class="icon"><i class="fas fa-leaf"></i></span>
               <span class="title">Business Advisor</span>
               </a></li>
-        <li><a href="#">
+        <li><a href="{% url 'Home_Module:update_password' user.username%}">
           <span class="icon"><i class="fas fa-leaf"></i></span>
-          <span class="title">Advertising</span>
+          <span class="title">Change Password</span>
           </a></li>
+    
+     
         <li><a href="#">
-          <span class="icon"><i class="fas "></i></span>
-          <span class="title">Finance</span>
-          </a></li>
-        <li><a href="#">
-          <span class="icon"><i class="fas fa-leaf"></i></span>
-          <span class="title">Seller Support</span>
-          </a></li>
-        <li><a href="#">
+         <ul>
+          <li>profile</li>
+         </ul>
           <span class="icon"><i class="fas fa-leaf"></i></span>
           <span class="title">Account</span>
           </a></li>
-        <li><a href="{%url 'Home_Module:seller_logout' %}">
+        <li><a href="{%url 'Home_Module:account_logout' user.username %}">
            <span class="icon"><i class="fas fa-leaf"></i></span>
            <span class="title">Logout</span>
            </a></li> 
@@ -107,7 +105,7 @@
     
     </div>
 </div>
-	
+<script  src="{%static  'javascript/SignUp.js' %}"></script>
 </body>
 </html>
        
