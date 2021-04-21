@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Seller Center</title>
-    <link rel="stylesheet" href="{%static '/css/SellerSignUp.css'%}">
+    <link rel="stylesheet" href="{%static '/css/seller/SellerSignUp.css'%}">
 </head>
     <body>
         <div class="container">
@@ -30,7 +30,7 @@
             <p class="message">Not Registered?<a href="#" onclick="openRegister()">Register</a></p>
        </div>
         <div class="card-back">
-            <img src="back.jpg" class="img-back">
+            <img src="{%static '/Images/login.jpg'%}" class="img-back">
             <h2>REGISTER</h2>
             <form method="POST" action="{%url 'Home_Module:signup'%}">
                 {% csrf_token %}
@@ -66,8 +66,8 @@
         
         </div>
     
-        <script  src="{%static  'javascript/Seller.js' %}"></script>
-        <script  src="{%static  'javascript/SignUp.js' %}"></script>
+        <script  src="{%static  'javascript/seller/Seller.js' %}"></script>
+        <script  src="{%static  'javascript/home/SignUp.js' %}"></script>
         
         
     </body>

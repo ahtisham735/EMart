@@ -122,7 +122,7 @@ def products(request):
 def productDetail(request):
     user=isUserLogin(request,'user')
     if user is not None:
-        return render(request,"Home_Module/productDetail.html",context={"user":user})
+        return render(request,"Home_Module/productDetail.html",context={'user':user})
     return render(request,"Home_Module/productDetail.html",context={})
 def signup(request):
     if request.method=='GET':
