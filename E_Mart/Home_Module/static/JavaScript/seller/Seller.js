@@ -41,7 +41,7 @@ detailValidation=()=>{
         cnicEror.innerHTML="CNIC should be 13 digits" 
         submit= false    
     }
-    if(account.value.length==14){
+    if(accountNumber.value.length==14){
         AccountEror.innerHTML=""      
     }
     else{
@@ -52,59 +52,56 @@ detailValidation=()=>{
     return submit;
 }
 
-function allnumeric(id)
+function allnumeric(id, er)
 {
     const val=document.getElementById(`${id}`)
-    const element =document.getElementById(`${id}Error`)
+    const element =document.getElementById(`${er}`)
     var numbers = /^[0-9]+$/;
-    if(id==='PhoneNo'){
+    if(id=='PhoneNo'){
         if(val.value.match(numbers))
         {
-            phoneEror.innerHTML=""
+            element.innerHTML=""
             PhoneStatus=true
         }     
         else
         {
             PhoneStatus=false
-            phoneEror.innerHTML=""
-            phoneEror.innerHTML="Enter Digits only"
+            element.innerHTML="Enter Digits only"
         }
     }
     
-    if(id==='account'){
+    if(id=='account'){
         if(val.value.match(numbers))
         {
-            AccountEror.innerHTML=""
+            element.innerHTML=""
              AccountStatus=true
         }     
         else
         {
-            AccountEror.innerHTML=""
-            AccountEror.innerHTML="Enter Digits only"
+            element.innerHTML="Enter Digits only"
             AccountStatus=false
 
         }
     }
 
-    if(id==='cnic'){
+    if(id=='cnic'){
         if(val.value.match(numbers))
         {
-            cnicEror.innerHTML=""
+            element.innerHTML=""
             CnicStatus=true
         }     
         else
         {
-            cnicEror.innerHTML=""
-            cnicEror.innerHTML="Enter Digits only"
+            element.innerHTML="Enter Digits only"
             CnicStatus=false
 
         }
     }
-    if(id==='shopName'){
-        shopEror.innerHTML=""
+    if(id=='shopName'){
+        element.innerHTML=""
     }
-    if(id==='address'){
-        AddressEror.innerHTML=""
+    if(id=='address'){
+        element.innerHTML=""
     }
     
 
