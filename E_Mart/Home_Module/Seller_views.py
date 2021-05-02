@@ -10,7 +10,7 @@ def seller_center(request):
         if "usernameSeller" in request.session:
             return render(request,"Seller_Module/SellerSignUp.html",context={"username":request.session['usernameSeller'],"password":request.session['passwordSeller']})     
         else:
-             return render(request,"Seller_Module/SellerSignUp.html")
+            return render(request,"Seller_Module/SellerSignUp.html")
     return render(request,"Seller_Module/Seller_base.html",context={"user":user})
 def seller_detail(request):
     seller=isUserLogin(request,'seller')
