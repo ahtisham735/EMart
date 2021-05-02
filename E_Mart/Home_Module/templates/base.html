@@ -28,11 +28,11 @@
     <body>
         <div class="header">
                 <nav>
-                    <input type="checkbox" id="check"></input> 
-                    <label for="check" class="checkbtn">
-                        <i class="fas fa-bars"></i>
-                    </label>
-                    <label class="logo">E-Mart</label>
+                    <div class="icon">E-Mart</div>
+                    <div class="search-box">
+                        <input type="search" placeholder="Search Here">
+                        <span class="fa fa-search"></span>
+                    </div>
                     <ul id="MenuItems">
                         <!--<li class="search-icon">
                             <input type="search" placeholder="Search"></input>
@@ -41,10 +41,6 @@
                             </label>
                         </li>-->
                         <li><a  href="{%url 'Home_Module:home'%}"/><i class="fa fa-home"></i>Home</li>
-                        <li><a href=""/><i class="fa fa-user"></i>About</li>
-                        <li><a href="{%url 'Home_Module:seller_center'%}"/><i class="fa fa-phone"></i>Sell on E Mart</li>
-
-                        <li><a href="{%url 'Home_Module:products'%}"/><i class="fa fa-clone"></i>Product</li>
                         {%if user.is_authenticated and not user.is_staff %}
                         <li><a href="" style="color:purple"><i class="fa fa-user"></i>{{user.username}}<i class="fas fa-caret-down"></i></a>
                             <ul>
@@ -61,6 +57,11 @@
                         {%else%}
                         <li><a href="{%url 'Home_Module:signup'%}"/><i class="fas fa-unlock-alt"></i>Login</li>
                         {%endif%}
+
+                        <li><a href=""/><i class="fas fa-info"></i>About</li>
+                        <li><a href="{%url 'Home_Module:seller_center'%}"/><i class="fa fa-phone"></i>Sell on E Mart</li>
+
+                        <li><a href="{%url 'Home_Module:products'%}"/><i class="fa fa-clone"></i>Product</li>
                         <li><a href=""><i class="fa fa-shopping-cart" ></i>Cart</a></li>
                     </ul>
                 </nav>
@@ -153,7 +154,7 @@
                 </div>
                 </div>
                 <hr>
-                <p class="copyright">@Copyroght 2021-EMART.com</p>
+                <p class="copyright">&#169; Copyroght 2021-EMART.com</p>
             </footer>
         </body>
 </html>
