@@ -68,7 +68,13 @@ class Products(models.Model):
     brand=models.CharField(max_length=255,blank=False)
     price=models.PositiveIntegerField(blank=False)
     quantity=models.PositiveIntegerField(blank=False)
-    image=models.ImageField(upload_to='products/images',default="")
+    image1=models.ImageField(upload_to='products/images',default="")
+    image2=models.ImageField(upload_to='products/images',default="")
+    image3=models.ImageField(upload_to='products/images',default="")
+    image4=models.ImageField(upload_to='products/images',default="")
+    category=models.CharField(max_length=255,default="")
+   
+
 
 
   

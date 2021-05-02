@@ -33,6 +33,11 @@ def seller_logout(request):
         return HttpResponseRedirect(reverse("Home_Module:seller_center"))
     except KeyError:
         return HttpResponseRedirect(reverse("Home_Module:seller_center"))
+def add_product(request):
+    user=isUserLogin(request,'seller')
+    if user is None:
+        HttpResponseRedirect(reverse("Home_Module/seller_center"))
+    return render(request,"Seller_Module/addproduct.html",context={"user":user})
 
 
         

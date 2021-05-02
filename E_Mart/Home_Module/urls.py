@@ -12,14 +12,15 @@ urlpatterns=[
     path('customer/email=<str:email>',views.cust_api,name="cust_api"),
     path('contact',views.contact,name="contact"),
     path('products',views.products,name="products"),
-    path('productDetail',views.productDetail,name="productDetail"),
-    path('<str:username>logout/',views.logout,name="account_logout"),
+    path('productDetail/<int:id>',views.productDetail,name="productDetail"),
+    path('logout/<str:username>',views.logout,name="account_logout"),
     path("reset_password_done",views.reset_password_done,name="reset_password_done"),
-    path('<str:username>update_password/',views.change_password,name="update_password"),
+    path('update_password/<str:username>',views.change_password,name="update_password"),
     path("cust_logout",views.cust_logout,name="cust_logout"),
     path("Seller_center",Seller_views.seller_center,name="seller_center"),
-    path("SellerDetail",Seller_views.seller_detail,name="SellerDetail"),
-    path("seller_logout",Seller_views.seller_logout,name="seller_logout")
+    path("SellerDetail/",Seller_views.seller_detail,name="SellerDetail"),
+    path("seller_logout",Seller_views.seller_logout,name="seller_logout"),
+    path("add_product",Seller_views.add_product,name="add_product")
   
 
     

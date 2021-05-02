@@ -119,11 +119,12 @@ def products(request):
     if user is not None:
         context['user']=user
     return render(request,"Home_Module/products.html",context=context)
-def productDetail(request):
+def productDetail(request,id):
+    product=Products.objects.get(pk=id)
     user=isUserLogin(request,'user')
     if user is not None:
         return render(request,"Home_Module/productDetail.html",context={"user":user})
-    return render(request,"Home_Module/productDetail.html",context={})
+    return render(request,"Home_Module/productDetail.html",context={"product":product})
 def signup(request):
     if request.method=='GET':
         return HttpResponseRedirect(reverse("Home_Module:login"))
@@ -194,8 +195,8 @@ def change_password(request,username):
             user.save()
             update_session_auth_hash(request,user)
             messages.success(request,"your password has been changed")
-            return redirect('/')
-            #return HttpResponseRedirect(reverse("Home_Module:update_password",args=(user.username,)))
+            #return redirect('/')
+            return HttpResponseRedirect(reverse("Home_Module:update_password",args=(user.username,)))
     except User.DoesNotExist:
          return HttpResponseNotFound("User does not exist")
 

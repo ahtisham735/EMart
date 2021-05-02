@@ -4,39 +4,31 @@
     <div class="small-container single-product">
         <div class="row">
             <div class="col-2">
-                <img src="{%static '/Images/gallery-1.jpg' %}" id="productImg" />
+                <img src="{{product.image1.url}}" id="productImg" alt="no image"/>
                 <div class="small-img-row">
                     <div class="small-img-col">
-                        <img src="{%static '/Images/gallery-1.jpg' %}" class="small-img" onclick="clickMe(this)" />
+                        <img src="{{product.image1.url}}"  alt="no image" class="small-img" onclick="clickMe(this)" />
                     </div>
                     <div class="small-img-col">
-                        <img src="{%static '/Images/gallery-2.jpg' %}" class="small-img" onclick="clickMe(this)" />
+                        <img src="{{product.image2.url}}"  alt="no image" class="small-img" onclick="clickMe(this)" />
                     </div>
                      <div class="small-img-col">
-                        <img src="{%static '/Images/gallery-3.jpg' %}" class="small-img" onclick="clickMe(this)" />
+                        <img src="{{product.image3.url}}"  alt="no image" class="small-img" onclick="clickMe(this)" />
                     </div>
                      <div class="small-img-col">
-                        <img src="{%static '/Images/gallery-4.jpg' %}" class="small-img" onclick="clickMe(this)" />
+                        <img src="{{product.image4.url}}"  alt="no image" class="small-img" onclick="clickMe(this)" />
                     </div>
                 
                 </div>
             
             </div>
             <div class="col-2">
-            <h1>Red T-shirt by Khadii </h1>
-            <h3>Price: $50.00</h3><br>
+            <h1>{{product.productName}} by {{product.brand}} </h1>
+            <h3>Price:{{product.price}} rupees</h3><br>
             <h3>Product Details<i class="fa fa-indent"></i></h3>
             <br>
-            <p>EMART is one of the best online-shopping website.<br>You can buy quality products within suitable prices.<br>abacagahrfktcgsdfdyh ajhsgdftfhdjsmajhsdyrh kasjduru <br>LOOT LO MELA LOOT LO MELA.</p>
-            
-            <select>
-                <option>Select Size</option>
-                <option>XXL</option>
-                <option>XL</option>
-                <option>Large</option>
-                <option>Medium</option>
-                <option>Small</option>
-            </select>
+            <p>{{product.description}}</p>
+         
             <input type="number" value="1"></input><br>
             <div class="btn-style">
                 <a href="" class= "fb_btn fb-btn-back">Add to cart</a>
