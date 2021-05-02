@@ -20,7 +20,9 @@ urlpatterns=[
     path("Seller_center",Seller_views.seller_center,name="seller_center"),
     path("SellerDetail/",Seller_views.seller_detail,name="SellerDetail"),
     path("seller_logout",Seller_views.seller_logout,name="seller_logout"),
-    path("add_product",Seller_views.add_product,name="add_product")
+    path("add_product",Seller_views.add_product,name="add_product"),
+    path('SellerDetail',Seller_views.seller_detail,name="SellerDetail"),
+    path("seller_logout",Seller_views.seller_logout,name="seller_logout")
   
 
     

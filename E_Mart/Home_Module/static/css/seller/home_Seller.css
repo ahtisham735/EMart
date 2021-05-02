@@ -90,7 +90,8 @@ body {
   position: fixed;
   top: 70px;
   left: 10px;
-  background: linear-gradient(#83d1f3,#cfd8dc,#b39ddb);
+  background: linear-gradient(#5c6bc0,#cfd8dc,#b39ddb);
+  /*background: linear-gradient(#83d1f3,#cfd8dc,#b39ddb);*/
   width: 200px;
   height: calc(100% - 80px);
   border-bottom-left-radius: 20px;
