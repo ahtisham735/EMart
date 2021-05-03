@@ -1,7 +1,9 @@
 from django.views import View
+from .forms import AddProductForm
 from .models import User,SellerDetail
 from .utility_functions import isUserLogin
 from django.shortcuts import render,redirect,reverse
+from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect
 
 def seller_center(request):
@@ -37,7 +39,22 @@ def add_product(request):
     user=isUserLogin(request,'seller')
     if user is None:
         HttpResponseRedirect(reverse("Home_Module/seller_center"))
-    return render(request,"Seller_Module/addproduct.html",context={"user":user})
+    if request.method=="GET":
+        form=AddProductForm()
+        return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form})
+    else:
+        form=AddProductForm(request.POST,request.FILES)
+        if form.is_valid():
+            product=form.save(commit=False)
+            product.sellerId=user
+            product.save()
+            messages.success(request,"Product Added Successfully")
+            return HttpResponseRedirect(reverse("Home_Module:seller_center"))
+        else:
+            messages.error(request,form.errors)
+            return HttpResponseRedirect(reverse("Home_Module:seller_center"))
+
+        
 
 
         
