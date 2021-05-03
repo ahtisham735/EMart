@@ -13,6 +13,7 @@ urlpatterns=[
     path('contact',views.contact,name="contact"),
     path('products',views.products,name="products"),
     path('productDetail/<int:id>',views.productDetail,name="productDetail"),
+    path('cart/',views.cart,name="cart"),
     path('logout/<str:username>',views.logout,name="account_logout"),
     path("reset_password_done",views.reset_password_done,name="reset_password_done"),
     path('update_password/<str:username>',views.change_password,name="update_password"),
