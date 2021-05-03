@@ -1,0 +1,42 @@
+{%load static %}
+<html>
+<head>
+    <title>Details</title>
+    <link rel="stylesheet" href="{%static '/css/seller/SellerDetail.css'%}">
+    <script  src="{%static  'javascript/seller/SellerDetailUpdate.js' %}"></script>
+    
+</head>
+<body>
+<div class="container">  
+<h2>Update Detail</h2>
+        <form method="POST" action="{%url 'Home_Module:SellerDetailUpdate'%}" onsubmit="return detailUpdateValidation()">
+          {%csrf_token%}
+         <div class="txt_field">
+            <input  type="text" id="shopName" value="{{detail.shop}}" onkeyup="allnumeric(id,'shopEror')" name="shop" placeholder="Shope Name"/>
+             <span id="shopEror" class="error_style"></span>
+          </div> 
+        <div class="txt_field">
+            <input   type="text" id="PhoneNo" value="{{detail.phone}}" onkeyup="allnumeric(id,'phoneEror')" name="phone" placeholder="Phone No i.e 03001122333"/>
+            <span id="phoneEror" class="error_style"></span>
+          </div> 
+        <div class="txt_field">
+            <input    type="text" id="cnic" value="{{detail.cnic}}" onkeyup="allnumeric(id,'cnicEror')" name="cnic" placeholder="CNIC i.e 3110170901355"/>
+           <span id="cnicEror" class="error_style"></span>
+          </div>
+        <div class="txt_field">
+            <input   type="text" id="address" value="{{detail.address}}" onkeyup="allnumeric(id,'AddressEror')" name="address" placeholder="Address"/>
+            <span id="AddressEror" class="error_style"></span>
+          </div>
+        <div class="txt_field">
+            <input  type="text" id="account" value="{{detail.account_no}}" onkeyup="allnumeric(id,'AccountEror')" name="account" placeholder="Bank Account No."/>
+            <span id="AccountEror" class="error_style"></span>
+          </div> 
+            
+            <button type="submit" id="subbtn"  class="submit-btn">Submit</button>
+                
+            </form>
+              
+        </div>
+       
+    </body>
+</html>

@@ -1,8 +1,7 @@
-var PhoneStatus=false
-var CnicStatus=false
-var AccountStatus=false
-
-detailValidation=()=>{
+var PhoneStatus=true
+var CnicStatus=true
+var AccountStatus=true
+detailUpdateValidation=()=>{
     const shopNam=document.getElementById("shopName")
     const phoneNo=document.getElementById("PhoneNo")
     var cnicNo=document.getElementById("cnic")
@@ -114,22 +113,10 @@ function allnumeric(id, er)
 
     if(PhoneStatus&&CnicStatus&&AccountStatus)
     {
-        subbtn.disabled=false;  
+        document.getElementById("subbtn").disabled=false;  
     }
     else
     {
-        subbtn.disabled=true; 
+        document.getElementById("subbtn").disabled=true; 
     }
    } 
-
-
-function openRegister()
-{
-    var card=document.getElementById("card");
-    card.style.transform = "rotateY(-180deg)";
-}
-function openLogin()
-{
-    var card=document.getElementById("card");
-    card.style.transform = "rotateY(0deg)";
-} 

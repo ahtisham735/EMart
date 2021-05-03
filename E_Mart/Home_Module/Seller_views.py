@@ -56,6 +56,19 @@ def add_product(request):
 
         
 
-
-        
-   
+def seller_detail_update(request):
+    user=isUserLogin(request,'seller')
+    detail=SellerDetail.objects.get(pk=user.id)
+    if request.method=="GET":
+        if user is None:
+            return HttpResponseRedirect(reverse("Home_Module:seller_center"))     
+        return render(request,"Seller_Module/SellerDetailUpdate.html",context={"detail":detail})
+    if request.method=="POST":
+        detail.shop=request.POST['shop']
+        detail.cnic=request.POST['cnic']
+        detail.phone=request.POST['phone']
+        detail.account_no=request.POST['account']
+        detail.address=request.POST['address']
+        detail.save()
+        messages.success(request,"Updated")
+        return HttpResponseRedirect(reverse("Home_Module:seller_center"))

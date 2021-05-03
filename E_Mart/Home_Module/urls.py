@@ -22,7 +22,8 @@ urlpatterns=[
     path("seller_logout",Seller_views.seller_logout,name="seller_logout"),
     path("add_product",Seller_views.add_product,name="add_product"),
     path('SellerDetail',Seller_views.seller_detail,name="SellerDetail"),
-    path("seller_logout",Seller_views.seller_logout,name="seller_logout")
+    path("seller_logout",Seller_views.seller_logout,name="seller_logout"),
+    path('SellerDetailUpdate',Seller_views.seller_detail_update,name="SellerDetailUpdate"),
   
 
     
