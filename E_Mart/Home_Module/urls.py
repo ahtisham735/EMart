@@ -13,6 +13,7 @@ urlpatterns=[
     path('contact',views.contact,name="contact"),
     path('products',views.products,name="products"),
     path('productDetail/<int:id>',views.productDetail,name="productDetail"),
+    path('cart/',views.cart,name="cart"),
     path('logout/<str:username>',views.logout,name="account_logout"),
     path("reset_password_done",views.reset_password_done,name="reset_password_done"),
     path('update_password/<str:username>',views.change_password,name="update_password"),
@@ -22,7 +23,8 @@ urlpatterns=[
     path("seller_logout",Seller_views.seller_logout,name="seller_logout"),
     path("add_product",Seller_views.add_product,name="add_product"),
     path('SellerDetail',Seller_views.seller_detail,name="SellerDetail"),
-    path("seller_logout",Seller_views.seller_logout,name="seller_logout")
+    path("seller_logout",Seller_views.seller_logout,name="seller_logout"),
+    path('SellerDetailUpdate',Seller_views.seller_detail_update,name="SellerDetailUpdate"),
   
 
     

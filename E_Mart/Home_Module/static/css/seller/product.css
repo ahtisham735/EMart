@@ -1,0 +1,45 @@
+h1{
+    margin:20px;
+}
+select{
+    border:1px solid #ff523b;
+    padding: 5px;
+    display: block;
+    margin: 20px;
+}
+select:focus{
+    outline: none;
+}
+.input{
+    width: 30%;
+    height:30px;
+    margin:20px;
+    background:ghostwhite;
+    font-family: "Roboto",sans-serif;
+    font-size:14px;
+    display: block;
+
+
+
+
+
+}
+::placeholder{
+    padding: 2px;
+}
+button{
+
+    display: inline-block;
+    background:linear-gradient(to right,blue,#ff4081);
+    color:#fff;
+    padding: 8px 30px;
+    margin:30px 0;
+    border-radius: 30px;
+    transition: background 0.5s;
+    
+}
+button:hover{
+    background:blue;
+}
+
+

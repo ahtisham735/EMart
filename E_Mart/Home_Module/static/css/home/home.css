@@ -22,6 +22,10 @@ body{
 .fa{
   color: palevioletred;
 }
+.fa{
+  color: palevioletred;
+  margin-right: 2px;
+}
 nav{
   display: flex;
   width: 100%;
@@ -33,6 +37,7 @@ nav{
 nav .icon{
   font-size: 35px;
   font-weight: 800;
+  margin-top: 10px;
   color: black;
   cursor: pointer;
 }
@@ -42,14 +47,18 @@ nav ul{
   margin: auto 0;
 }
 nav ul li{
-  margin: 0 2px;
+  display: inline-block;
+  line-height:80px;
+  margin: 0 5px;
 }
 nav ul li a{
+  display: block;
+  padding: 0 15px;
   color: black;
-  font-size: 18px;
+  font-size: 17px;
   text-decoration: none;
-  letter-spacing: 1px;
-  padding: 5px 10px;
+  line-height: 60px;
+ 
 }
 nav ul li a:hover{
   background: none;
@@ -123,9 +132,73 @@ nav ul ul li{
   padding: 5px;
   background:black;
 }
+nav ul ul li a{
+  color: white;
+}
 nav ul li:hover ul{
   display: block;
 }
+@media only screen and (max-width:1250px) {
+  nav{
+      display: block;
+      padding: 0;
+  }
+  nav .icon{
+      display: inline-block;
+      padding: 15px 30px;
+  }
+  nav .search-box{
+      width: 100%;
+      display: inline-flex;
+      justify-content: center;
+      margin-bottom: 15px;
+  }
+  nav .search-box input{
+      width: 90%;
+  }
+  nav ul{
+      display: flex;
+      flex-direction: column;
+      background:rgb(121, 116, 116);
+      visibility: hidden;
+      transition: 0.3s;
+  }
+  nav ul li{
+      text-align: center;
+  }
+  nav ul li a{
+      color:black;
+      font-size: 28px;
+      padding: 5px;
+      display: block;
+  }
+  nav .fa{
+      margin-right: 10px;
+  }
+
+  nav .bar{
+      display: block;
+      position: absolute;
+      top:20px;
+      right: 80px;
+      cursor: pointer;
+  }
+  nav .bar #times{
+      display: none;
+  }
+  #check:checked ~nav .bar #times{
+      display: block;
+  }
+  #check:checked ~nav .bar #bars{
+      display: none;
+  }
+  #check:checked ~nav ul{
+      visibility: visible;
+      height: 400px;
+  }
+}
+
+
 a{
   text-decoration: none;
   color:#555;
@@ -361,68 +434,6 @@ small{
   filter: grayscale(0%);
 }
 /* ---------------------------media query for MENUS-------------------------------------------*/
-@media only screen and (max-width:1250px) {
-  nav{
-      display: block;
-      padding: 0;
-  }
-  nav .icon{
-      display: inline-block;
-      padding: 15px 30px;
-  }
-  nav .search-box{
-      width: 100%;
-      display: inline-flex;
-      justify-content: center;
-      margin-bottom: 15px;
-  }
-  nav .search-box input{
-      width: 90%;
-  }
-  nav ul{
-      display: flex;
-      flex-direction: column;
-      background:rgb(121, 116, 116);
-      visibility: hidden;
-      transition: 0.3s;
-  }
-  nav ul li{
-      text-align: center;
-  }
-  nav ul li a{
-      color:black;
-      font-size: 28px;
-      padding: 5px;
-      display: block;
-  }
-  nav .fa{
-      margin-right: 10px;
-  }
-
-  nav .bar{
-      display: block;
-      position: absolute;
-      top:20px;
-      right: 80px;
-      cursor: pointer;
-  }
-  nav .bar #times{
-      display: none;
-  }
-  #check:checked ~nav .bar #times{
-      display: block;
-  }
-  #check:checked ~nav .bar #bars{
-      display: none;
-  }
-  #check:checked ~nav ul{
-      visibility: visible;
-      height: 400px;
-  }
-
-  
-  
-}
 
 /*-------------------------------------END OF MEDIA QUERY---------------------------------------------*/
 

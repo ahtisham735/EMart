@@ -1,8 +1,10 @@
 {%extends 'Seller_Module/Seller_base.html'%}
 {%block body%}
-<h1>Add new product</h1>
-<form>
-    <label>Product Name*</label>
+<h1>Add a new product</h1>
+<form method="POST" action="{%url 'Home_Module:add_product'%}" enctype="multipart/form-data">
+    {%csrf_token%}
+   {{form}}
+    <!-- <label>Product Name*</label>
     <input type="text" placeholder="Ex Red T-Shirt"><br>
     <label>Select Category*</label>
     <select>
@@ -25,10 +27,10 @@
     <input type="file" accept="image/*"/><br>
     <input type="file" accept="image/*"/><br>
     <label>Add product Description</label>
-    <textarea ></textarea>
+    <textarea ></textarea> -->
 
  
-    <input type="submit">
+    <button class="">submit</button>
 
 
 
