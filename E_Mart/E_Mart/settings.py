@@ -47,6 +47,7 @@ INSTALLED_APPS = [
      #to ensure only authorize domains can access our Api's
     'corsheaders',
 
+
     #to use Allauth library
     'django.contrib.sites',
     'allauth',
