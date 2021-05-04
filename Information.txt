@@ -24,9 +24,11 @@ Git Commands:
 2: 
 
 installed libraries(backend):
+
 1:django-3.1.7 (pip install django) backend framework
 2:django-allauth...(pip install django-allauth)...to provides social authentication
 3:djangorestframework-3.12.2(pip install djangorestframework)...for creating api's
 4:django-cors-headers-3.7.0(pip install django-cors-headers) ...for allowing other origins to access our api's 
 5:Pillow(python -m pip install Pillow ...for storing images in db)
 5:django-reset-migrations-0.4.0 (pip install django-reset-migrations)..for reseting migrations
+5: pip install six .......to Install Six
