@@ -78,3 +78,6 @@ select:focus{
 .fb-btn-back{
     background-color: #ff523b;
 }
+.input{
+    width: 50px;
+}

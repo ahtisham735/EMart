@@ -61,6 +61,9 @@ class SellerDetail(models.Model):
     cnic=models.CharField(max_length=13,unique=True)
     address=models.CharField(max_length=255)
     account_no=models.CharField(max_length=14)
+    def __str__(self):
+        return self.cnic
+
 category_choice=[('men',"Men's Fashion"),('women',"Women's Fashion"),('WBJ',"Watches,Bags & Jewelery")]
 class Products(models.Model):
     sellerId=models.ForeignKey(User,on_delete=models.CASCADE,related_name="sellerId")
@@ -74,6 +77,9 @@ class Products(models.Model):
     image4=models.ImageField(upload_to='products/images',default=None)
     category=models.CharField(max_length=255,choices=category_choice)
     description=models.CharField(max_length=255,blank=False,default=None)
+class Cart(models.Model):
+    quantity=models.PositiveIntegerField(blank=False)
+    products=models.ManyToManyField(Products,blank=True,related_name="products")
    
 
 
