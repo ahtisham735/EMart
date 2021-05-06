@@ -156,9 +156,10 @@ def logout(request,username):
                 return HttpResponseRedirect(reverse("Home_Module:seller_center"))
             return render(request,"Home_Module/logout.html",context={"user":user,"variable":"Seller_Module/Seller_base.html"})
         cust=isUserLogin(request,"user")
-        if cust is None:
+        if cust is None and not user.is_social_user:
             return HttpResponseRedirect(reverse("Home_Module:signup"))
         return render(request,"Home_Module/logout.html",context={"user":user,"variable":"base.html"})
+            
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse("Home_Module:signup"))
 def cust_logout(request):
@@ -221,6 +222,12 @@ def reset_password(request,uidb64,token):
         if not token_generator.check_token(user, token):
             return render(request,"Home_Module/Home.html")
         return render(request,"Home_Module/reset_password.html",context={"username":user.username,"email":user.email})
+
+def cart(request):
+    if not User.is_authenticated:
+        messages.error(request,"you have to login first")
+        return HttpResponseRedirect(reverse("Home_Module:signup"))
+    return render(request,"Home_Module/cart.html")
         
 
 

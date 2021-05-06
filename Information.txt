@@ -21,11 +21,26 @@ commands to remember:
  
 Git Commands:
 1:git reset <file> or git reset ...to remove added files
-2: 
+2: python manage.py migrate --run-syncdb
 
 installed libraries(backend):
+
 1:django-3.1.7 (pip install django) backend framework
 2:django-allauth...(pip install django-allauth)...to provides social authentication
 3:djangorestframework-3.12.2(pip install djangorestframework)...for creating api's
 4:django-cors-headers-3.7.0(pip install django-cors-headers) ...for allowing other origins to access our api's 
 5:Pillow(python -m pip install Pillow ...for storing images in db)
+5:django-reset-migrations-0.4.0 (pip install django-reset-migrations)..for reseting migrations
+5: pip install six .......to Install Six
+
+
+
+
+Social Logins:
+1: Facebook:
+Client-ID: 349147976437440
+Key:f37936286fcaf1e175767deb5c1fff9c
+
+2: Google:
+Client ID: 670249004337-3ie34cv9fpr35hmmp0i6k1vgmsjmlq29.apps.googleusercontent.com/
+Key: fBIXL88-4Olafp5t_JImhy-b

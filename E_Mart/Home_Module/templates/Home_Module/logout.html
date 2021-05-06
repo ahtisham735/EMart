@@ -3,7 +3,7 @@
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 {% block body %}
   <div class="container">
-  <form  class="logout-form main-div" method="post" {%if user.is_social_user%} action="{% url 'account_logout' %}" 
+  <form  class="logout-form main-div" method="post" {%if user.is_social_user%} action="/accounts/logout/" 
   {%elif user.is_seller%} action="{% url 'Home_Module:seller_logout' %}" 
   {%else%} action="{% url 'Home_Module:cust_logout' %}" {%endif%}>
 

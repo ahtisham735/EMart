@@ -1,6 +1,66 @@
 from django import forms
-class AddProductForm(forms.Form):
-    #username=current_password=forms.HiddenInput(max_length=100,required=True,widget=forms.CharField(attrs={'hidden'}))
-    productName=forms.CharField(max_length=100,required=True,widget=forms.PasswordInput(attrs={'placeholder':"Enter your password",'id':'current_passwd'}))
-    category=forms.CharField(max_length=100,required=True,widget=forms.PasswordInput(attrs={'placeholder':"Enter new password",'id':'new_passwd'}))
-    #cnfrm_passwd=forms.CharField(max_length=100,required=True,widget=forms.PasswordInput(attrs={'placeholder':"confirm new password",'id':'cnfrm_passwd'}))
+from django.forms import ModelForm
+from Home_Module.models import Products
+class AddProductForm(ModelForm):
+    productName=forms.CharField(label="Product Name",
+        widget=forms.TextInput(
+            attrs={"placeholder":"Ex. Nikon Coolpix A300 Digital Camera","class":"input","autocomplete":"off"}
+        )
+    )
+    brand=forms.CharField(label="Brand Name",
+        widget=forms.TextInput(
+            attrs={"placeholder":"Rolex","class":"input","autocomplete":"off"}
+        )
+
+    )
+    description=forms.CharField(label="Description",required=True,
+        widget=forms.Textarea(
+            attrs={"autocomplete":"off","class":"input"}
+        )
+
+    )
+    price=forms.CharField(label="Price",
+        widget=forms.NumberInput(
+            attrs={"class":"input","autocomplete":"off","min":"1"}
+        )
+
+    )
+    quantity=forms.CharField(label="Quantity",
+        widget=forms.NumberInput(
+            attrs={"class":"input","autocomplete":"off","min":"1"}
+        )
+
+    )
+    image1=forms.CharField(label="Image1",required=True,
+        widget=forms.FileInput(
+            attrs={"class":"input","autocomplete":"off","accept":"image/*"}
+        )
+
+    )
+    image2=forms.CharField(label="Image2",required=False,
+        widget=forms.FileInput(
+            attrs={"class":"input","autocomplete":"off","accept":"image/*"}
+        )
+
+    )
+    image3=forms.CharField(label="Image3",required=False,
+        widget=forms.FileInput(
+            attrs={"class":"input","autocomplete":"off","accept":"image/*"}
+        )
+
+    )
+    image4=forms.CharField(label="Image4",required=False,
+        widget=forms.FileInput(
+            attrs={"class":"input","autocomplete":"off","accept":"image/*"}
+        )
+
+    )
+ 
+    class Meta:
+        model=Products
+        exclude = ['sellerId']
+
+    # #username=current_password=forms.HiddenInput(max_length=100,required=True,widget=forms.CharField(attrs={'hidden'}))
+    # productName=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={"placeholder":"Ex Red T-Shirt"}))
+    # category=forms.CharField(max_length=100,required=True,widget=forms.Select(choices=category_choice))
+    # #cnfrm_passwd=forms.CharField(max_length=100,required=True,widget=forms.PasswordInput(attrs={'placeholder':"confirm new password",'id':'cnfrm_passwd'}))

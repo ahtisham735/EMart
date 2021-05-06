@@ -9,15 +9,21 @@
                     <div class="small-img-col">
                         <img src="{{product.image1.url}}"  alt="no image" class="small-img" onclick="clickMe(this)" />
                     </div>
+                    {%if product.image2%}
                     <div class="small-img-col">
                         <img src="{{product.image2.url}}"  alt="no image" class="small-img" onclick="clickMe(this)" />
                     </div>
+                    {%endif%}
+                    {%if product.image3%}
                      <div class="small-img-col">
                         <img src="{{product.image3.url}}"  alt="no image" class="small-img" onclick="clickMe(this)" />
                     </div>
+                    {%endif%}
+                    {%if product.image4%}
                      <div class="small-img-col">
                         <img src="{{product.image4.url}}"  alt="no image" class="small-img" onclick="clickMe(this)" />
                     </div>
+                    {%endif%}
                 
                 </div>
             
@@ -29,7 +35,7 @@
             <br>
             <p>{{product.description}}</p>
          
-            <input type="number" value="1"></input><br>
+            <input type="number" min="1" max="{{product.quantity}}" class="input" ></input><br>
             <div class="btn-style">
                 <a href="" class= "fb_btn fb-btn-back">Add to cart</a>
                 <a href="" class= "fb_btn ">BUY Now</a>

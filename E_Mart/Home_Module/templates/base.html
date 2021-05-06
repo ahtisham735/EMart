@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>E-Mart</title>
         <link rel="stylesheet" href="{%static '/css/home/home.css'%}"/>
+        <link rel="stylesheet" href="{%static '/css/home/cart.css'%}"/>
         <link rel="stylesheet" href="{%static '/css/home/changePass.css'%}"/>
         <link rel="stylesheet" href="{%static '/css/home/logout.css'%}"/>
         <link rel="stylesheet" href="{%static '/css/home/messages.css'%}"/>
@@ -27,22 +28,21 @@
 
     <body>
         <div class="header">
-                <nav>
-                    <div class="icon">E-Mart</div>
-                    <div class="search-box">
-                        <input type="search" placeholder="Search Here">
-                        <span class="fa fa-search"></span>
-                    </div>
-                    <ul id="MenuItems">
-                        <!--<li class="search-icon">
-                            <input type="search" placeholder="Search"></input>
-                            <label class="icon">
-                                <span class="fas fa-search"></span>
-                            </label>
-                        </li>-->
-                        <li><a  href="{%url 'Home_Module:home'%}"/><i class="fa fa-home"></i>Home</li>
+            <div class="wrapper">
+            <nav>
+                <input type="checkbox" id="show-search">
+                <input type="checkbox" id="show-menu">
+                <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+                <div class="content">
+                    <div class="logo"><a href="">E-MART</a></div>
+                    <ul class="links">
+                        <li><a href="{%url 'Home_Module:home'%}"><i class="fa fa-home"></i>Home</a></li>
+                        <li><a href=""><i class="fas fa-info"></i>About</a></li>
+                        <li><a  href="{%url 'Home_Module:seller_center'%}"><i class="fa fa-phone"></i>Sell On EMART</a></li>
                         {%if user.is_authenticated and not user.is_staff %}
-                        <li><a href="" style="color:purple"><i class="fa fa-user"></i>{{user.username}}<i class="fas fa-caret-down"></i></a>
+                        <li><a href="" class="desktop-link" style="color:purple"><i class="fa fa-user"></i>{{user.username}}</i></a>
+                            <input type="checkbox" id="show-menus">
+                            <label for="show-menus"><i class="fa fa-user"></i>{{user.username}}</i></label>
                             <ul>
                                 <li><a href="" /><i class="fa fa-home"></i>My Account</li>
                                 {%if not user.is_social_user%}
@@ -53,19 +53,20 @@
                                 <li><a href="{%url 'Home_Module:account_logout' user.username%}" /><i class="fa fa-lock"></i>Logout</li>
                             </ul>
                         </li>
-                    
                         {%else%}
                         <li><a href="{%url 'Home_Module:signup'%}"/><i class="fas fa-unlock-alt"></i>Login</li>
                         {%endif%}
-
-                        <li><a href=""/><i class="fas fa-info"></i>About</li>
-                        <li><a href="{%url 'Home_Module:seller_center'%}"/><i class="fa fa-phone"></i>Sell on E Mart</li>
-
-                        <li><a href="{%url 'Home_Module:products'%}"/><i class="fa fa-clone"></i>Product</li>
-                        <li><a href=""><i class="fa fa-shopping-cart" ></i>Cart</a></li>
+                        <li><a href="{%url 'Home_Module:products'%}"><i class="fa fa-clone"></i>Products</a></li>
+                        <li><a href="{%url 'Home_Module:cart'%}"><i class="fa fa-shopping-cart"></i>Cart</a></li>
                     </ul>
+                </div>
+                <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+                <form action="" class="search-box">
+                    <input type="text" placeholder="Type Something to Search...">
+                    <button class="go-icon"><i class="fas fa-long-arrow-alt-right fa-lg"></i></button>
+                </form>
                 </nav>
-               
+            </div>
         </div>
         {% for message in messages %}
             <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>
@@ -75,27 +76,27 @@
         {%block body%}
         {%endblock%}
         <!-----------------Brands-------------->
-<div class="brands">
-    <div class="small-container">
-        <div class="row">
-            <div class="col-5">
-                <img src="{%static '/Images/logo-godrej.png'%}"/>
-            </div>
-            <div class="col-5">
-                <img src="{%static '/Images/logo-oppo.png'%}"/>
-            </div>
-            <div class="col-5">
-                <img src="{%static '/Images/logo-coca-cola.png'%}"/>
-            </div>
-            <div class="col-5">
-                <img src="{%static '/Images/logo-paypal.png'%}"/>
-            </div>
-            <div class="col-5">
-                <img src="{%static '/Images/logo-philips.png'%}"/>
+        <div class="brands">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-5">
+                        <img src="{%static '/Images/logo-godrej.png'%}"/>
+                    </div>
+                    <div class="col-5">
+                        <img src="{%static '/Images/logo-oppo.png'%}"/>
+                    </div>
+                    <div class="col-5">
+                        <img src="{%static '/Images/logo-coca-cola.png'%}"/>
+                    </div>
+                    <div class="col-5">
+                        <img src="{%static '/Images/logo-paypal.png'%}"/>
+                    </div>
+                    <div class="col-5">
+                        <img src="{%static '/Images/logo-philips.png'%}"/>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
       
 <!------------------------FOOTER-------------------->
             <footer>

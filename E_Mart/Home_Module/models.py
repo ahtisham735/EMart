@@ -61,18 +61,22 @@ class SellerDetail(models.Model):
     cnic=models.CharField(max_length=13,unique=True)
     address=models.CharField(max_length=255)
     account_no=models.CharField(max_length=14)
+    def __str__(self):
+        return self.cnic
+
+category_choice=[('men',"Men's Fashion"),('women',"Women's Fashion"),('WBJ',"Watches,Bags & Jewelery")]
 class Products(models.Model):
     sellerId=models.ForeignKey(User,on_delete=models.CASCADE,related_name="sellerId")
-    productName=models.CharField(max_length=255,blank=False)
-    description=models.CharField(max_length=255,blank=False,default="")
+    productName=models.CharField(max_length=255,blank=False)  
     brand=models.CharField(max_length=255,blank=False)
     price=models.PositiveIntegerField(blank=False)
     quantity=models.PositiveIntegerField(blank=False)
-    image1=models.ImageField(upload_to='products/images',default="")
-    image2=models.ImageField(upload_to='products/images',default="")
-    image3=models.ImageField(upload_to='products/images',default="")
-    image4=models.ImageField(upload_to='products/images',default="")
-    category=models.CharField(max_length=255,default="")
+    image1=models.ImageField(upload_to='products/images',default=None)
+    image2=models.ImageField(upload_to='products/images',default=None)
+    image3=models.ImageField(upload_to='products/images',default=None)
+    image4=models.ImageField(upload_to='products/images',default=None)
+    category=models.CharField(max_length=255,choices=category_choice)
+    description=models.CharField(max_length=255,blank=False,default=None)
    
 
 

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+	<div class="small-container cart-page">
+        <div>
+        <a href="{%url 'Home_Module:home'%}" class= "Cartbtn">&#x2190;Continue Shopping </a>
+        </div>
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>SubTotal</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="{%static 'Images/buy-1.jpg'%}">
+                        <div>
+                            <p>Red Printed Tshirt</p>
+                            <small>Price:$50.00</small>
+                            <a href="">Remove</a>
+                        </div>
+                    </div>
+                </td>
+                <td><input type="number" value="1"></td>
+                <td>$50.00</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="{%static 'Images/buy-2.jpg'%}">
+                        <div>
+                            <p>Stylo Shoes</p>
+                            <small>Price:$50.00</small>
+                            <a href="">Remove</a>
+                        
+                        </div>
+                    
+                    
+                    </div>
+                </td>
+                <td><input type="number" value="1"></td>
+                <td>$50.00</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="{%static 'Images/buy-3.jpg'%}">
+                        <div>
+                            <p>Jeans</p>
+                            <small>Price:$50.00</small>
+                            <a href="">Remove</a>
+                        
+                        </div>
+                    </div>
+                </td>
+                <td><input type="number" value="1"></td>
+                <td>$50.00</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="{%static 'Images/buy-2.jpg'%}">
+                        <div>
+                            <p>English Shoes</p>
+                            <small>Price:$50.00</small>
+                            <a href="">Remove</a>
+                        
+                        </div>
+                    </div>
+                </td>
+                <td><input type="number" value="1"></td>
+                <td>$50.00</td>
+            </tr>
+        </table>
+        <a href="" class= "Checkoutbtn">Checkout &#8594; </a>
+    </div>
+{% endblock %}

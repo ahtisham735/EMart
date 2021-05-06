@@ -1,103 +1,98 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-.container{
-    width: 100%;
-    height: 100vh;
-    font-family: sans-serif;
-    background: #92a6e2;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+.container {
+  width: 100%;
+  height: 100%;
+  font-family: sans-serif;
+  background: #92a6e2;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.card{
-    width: 350px;
-    height: 480px;
-   box-shadow: 0 0 40px 20px rgba(0,0,0,0.26);
-    perspective: 1000px;
-    
+.card {
+  width: 350px;
+  height: 480px;
+  box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.26);
+  perspective: 1000px;
+  margin: 70px;
 }
-.inner-box{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 1s;
-    
+.inner-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s;
 }
-.card-front, .card-back{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-size: cover;
-    background: rgba(7,40,195,0.8);
-    padding: 55px;
-    box-sizing: border-box;
-    backface-visibility: hidden;
-    
-    
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background: #b1cbbb;
+  /*changing the color of the form*/
+  padding: 55px;
+  box-sizing: border-box;
+  backface-visibility: hidden;
 }
-.img-back{
-    width:100px;
-	height: 100px;
-	border-radius: 50%;
-	position: absolute;
-	top:-50px;
-	left: calc(50% - 50px);
+.img-back {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
 }
-.card-back{
-    transform: rotateY(180deg);
+.card-back {
+  transform: rotateY(180deg);
 }
-.card h2{
-    font-weight: normal;
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
-    
+.card h2 {
+  font-weight: normal;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
 }
-.input-box{
-    font-family: "Roboto",sans-serif;
-	outline: 1;
-	background:#f2f2f2;
-	width: 100%;
-	border: 0;
-	margin-top: 10px;
-	padding: 12px;
-	box-sizing: border-box;
-	font-size:14px;
-    text-align: center;
-	border-radius: 20px;
-
+.input-box {
+  font-family: "Roboto", sans-serif;
+  outline: 1;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin-top: 10px;
+  padding: 12px;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 20px;
 }
-::placeholder{
-    color:cornflowerblue ;
-    font-size: 12px;
+::placeholder {
+  color: cornflowerblue;
+  font-size: 12px;
 }
-button{
-    margin-top: 10px;
-    font-family: "Roboto", sans-serif;
-	text-transform: uppercase;
-	outline: 0;
-	background: #4CAF50;
-	width: 100%;
-	border: 0;
-	padding:10px;
-	color: #FFFFFF;
-	font-size:12px;
-	cursor:pointer;
-	border-radius: 20px;
-
+button {
+  margin-top: 10px;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4caf50;
+  width: 100%;
+  border: 0;
+  padding: 10px;
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 20px;
 }
 
-.input-span{
-    font-size: 13px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+.input-span {
+  font-size: 13px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .error_style {
   color: red;
@@ -108,29 +103,82 @@ button{
   font-family: "Roboto", sans-serif;
 }
 
-.input-check{
-    margin-top: 10px;
-    margin-bottom: 10px;
+.input-check {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.card .forget a{
-    color: #fff;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-    font-size: 13px;
-    margin-top: 8px;
+.card .forget a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  font-size: 13px;
+  margin-top: 8px;
 }
 
-.card .message{
-	margin: 15px, 0, 0;
-	color: aliceblue;
-	font-size: 12px;
-    text-align: center;
-    margin-top: 10px;
-	
+.card .message {
+  margin: 15px, 0, 0;
+  color: aliceblue;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
 }
-.card .message a{
-	color: #4CAF50;
-	text-decoration: none;
+.card .message a {
+  color: #4caf50;
+  text-decoration: none;
+}
+.container {
+  max-width: 1330px;
+  margin: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.row {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.col-2 {
+  flex-basis: 50%;
+  min-width: 300px;
+}
+.col-2 img {
+  max-width: 100%;
+  padding: 50px 0;
+}
+.col-2 h1 {
+  font-size: 50px;
+  line-height: 60px;
+  margin: 25px 0;
+}
+.Visitbtn {
+  display: inline-block;
+  background: linear-gradient(to right, blue, #ff4081);
+  color: #fff;
+  padding: 8px 30px;
+  margin: 30px 0;
+  border-radius: 30px;
+  transition: background 0.5s;
+}
+.Visitbtn:hover {
+  background: #caa6a2;
+}
+.content {
+  opacity: 0.8;
+  margin-left: 30px;
+}
+.visibility {
+  font-family: "Crimson Text", serif;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+}
+.emart {
+  color: aqua;
+}
+.abc {
+  margin-left: 0px;
+  margin-right: 80px;
 }

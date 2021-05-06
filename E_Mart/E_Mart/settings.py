@@ -46,6 +46,8 @@ INSTALLED_APPS = [
      'rest_framework',
      #to ensure only authorize domains can access our Api's
     'corsheaders',
+    'reset_migrations',
+
 
     #to use Allauth library
     'django.contrib.sites',
