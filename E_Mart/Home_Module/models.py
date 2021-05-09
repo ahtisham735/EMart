@@ -77,7 +77,12 @@ class Products(models.Model):
     image4=models.ImageField(upload_to='products/images',default=None)
     category=models.CharField(max_length=255,choices=category_choice)
     description=models.CharField(max_length=255,blank=False,default=None)
-   
+    def __str__(self):
+        return self.productName
+class Cart(models.Model):
+    user=models.ForeignKey(User,related_name="user",on_delete=models.CASCADE)
+    product=models.ForeignKey(Products,on_delete=models.CASCADE,related_name="products")
+    qty=models.PositiveIntegerField(default=1)
 
 
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from Home_Module.models import User,SellerDetail,Products
+from Home_Module.models import User,SellerDetail,Products,Cart
 # Register your models here.
 
 class CustomAdmin(UserAdmin):
@@ -22,6 +22,13 @@ class ProductsAdmin(admin.ModelAdmin):
     filter_horizontal=() 
     list_filter=()
     fieldsets=()
+class CartAdmin(admin.ModelAdmin):
+    list_display=('pk','user','product','qty')
+    search_fields=('pk','user','product')
+    filter_horizontal=() 
+    list_filter=()
+    fieldsets=()
+admin.site.register(Cart,CartAdmin)
 admin.site.register(User,CustomAdmin)
 admin.site.register(SellerDetail,SellerDetailRegister)
 admin.site.register(Products,ProductsAdmin)

@@ -221,3 +221,19 @@ function register(){
     y.style.left="50px";
     z.style.left="110px";
 }
+function test(){
+    console.log("dkjkad")
+    alert("akasad")
+}
+document.addEventListener('DOMContentLoaded',()=>{
+    console.log("abc")
+    var price=document.getElementById('price')
+   var p=price.innerText.split(":")
+   console.log(p[1])
+    const qty=document.getElementById('qty')
+   var sub=document.getElementById('sub')
+   sub.innerText=parseInt(p[1])*parseInt(qty.value)
+
+   
+   
+});

@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.contrib import auth,messages
 from django.conf import settings
 from django.contrib.auth import update_session_auth_hash
-from Home_Module.models import User,SellerDetail,Products
+from Home_Module.models import User,SellerDetail,Products,Cart
 from .email_handler import token_generator,send_link
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
@@ -122,9 +122,26 @@ def products(request):
 def productDetail(request,id):
     product=Products.objects.get(pk=id)
     user=isUserLogin(request,'user')
-    if user is not None:
-        return render(request,"Home_Module/productDetail.html",context={"user":user})
-    return render(request,"Home_Module/productDetail.html",context={"product":product})
+    if user is None:
+            user=request.user
+    if request.method=="GET":
+        if user is not None:
+            return render(request,"Home_Module/productDetail.html",context={"user":user,"product":product})
+        return render(request,"Home_Module/productDetail.html",context={"product":product})
+    if request.method=="POST":   
+        if not user in User.objects.all():
+            messages.error(request,"You have to login first")
+            return HttpResponseRedirect(reverse("Home_Module:signup"))
+        product=Products.objects.get(pk=id)
+        cart=None
+        try:
+            cart=Cart.objects.get(user=user,product=product)
+            cart.qty=cart.qty+int(request.POST['qty'])
+        except Cart.DoesNotExist:
+            cart=Cart.objects.create(user=user,product=product)
+            cart.qty=request.POST['qty']
+        cart.save()
+        return HttpResponseRedirect(reverse("Home_Module:products"))
 def signup(request):
     if request.method=='GET':
         return HttpResponseRedirect(reverse("Home_Module:login"))
@@ -224,10 +241,19 @@ def reset_password(request,uidb64,token):
         return render(request,"Home_Module/reset_password.html",context={"username":user.username,"email":user.email})
 
 def cart(request):
-    if not User.is_authenticated:
-        messages.error(request,"you have to login first")
+    user=isUserLogin(request,'user')
+    if user is None:
+        user=request.user
+    if request.method=="GET":
+        if user in User.objects.all():
+            if not user.is_admin:
+                carts=Cart.objects.filter(user=user)
+                return render(request,"Home_Module/cart.html",context={"user":user,"carts":carts})
+        messages.error(request,"You have to login first")
         return HttpResponseRedirect(reverse("Home_Module:signup"))
-    return render(request,"Home_Module/cart.html")
+
+
+    
         
 
 
@@ -242,11 +268,11 @@ class Verification(View):
                 return render(request,"Home_Module/Home.html")
 
             if user.is_active:
-                messages.info(request,"your account is already active")
+                messages.info(request,"Your account is already active")
                 return redirect('/')
             user.is_active = True
             user.save()
-            messages.success(request,"your account has been activated")
+            messages.success(request,"Your account has been activated")
             return HttpResponseRedirect(reverse("Home_Module:signup"))
 
         except Exception as ex:

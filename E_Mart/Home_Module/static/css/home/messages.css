@@ -1,20 +1,30 @@
 .success, .warning, .danger,.error,.info,.danger {
-    padding-left: 20px;
-    font-size: 25px;
-    font-weight: bold;
-    border: 1px solid black;
-    margin: 20px; }
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  font-size: 18px;
+}
   
   
   
   .success {
-    color: green; }
-  
-  .warning {
-    color: yellow; }
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc }
   
   .error {
-    color: red; }
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7; }
+  
+  .warning {
+    color: #664d03;
+    background-color: #fff3cd;
+    border-color: #ffecb5; }
   .info{
-    color: gray;
+    color: #055160;
+    background-color: #cff4fc;
+    border-color: #b6effb;
   }
