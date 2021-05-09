@@ -141,7 +141,7 @@ def productDetail(request,id):
             cart=Cart.objects.create(user=user,product=product)
             cart.qty=request.POST['qty']
         cart.save()
-        return HttpResponseRedirect(reverse("Home_Module:products"))
+        return HttpResponseRedirect(reverse("Home_Module:cart"))
 def signup(request):
     if request.method=='GET':
         return HttpResponseRedirect(reverse("Home_Module:login"))
@@ -161,7 +161,10 @@ def signup(request):
         email_body=f'Hey {user.username}\n Thanks for regestring on E_Mart.We are very delighted to have you.Please click the following link to activate your account\n'
         send_link(email_subject,email_body,user,'activate')
         message=f'Please check your inbox.we have sent an email at {user.email} for email verification'
-        return render(request, 'Home_Module/generic_response.html',context={"message":message,"title":"Email verification"})
+        messages.info(request,message)
+        if user.is_seller:
+            return HttpResponseRedirect(reverse("Home_Module:seller_center"))
+        return HttpResponseRedirect(reverse("Home_Module:home"))
 
 
 def logout(request,username):
