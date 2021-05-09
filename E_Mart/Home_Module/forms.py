@@ -60,6 +60,10 @@ class AddProductForm(ModelForm):
         model=Products
         exclude = ['sellerId']
 
+
+
+
+
     # #username=current_password=forms.HiddenInput(max_length=100,required=True,widget=forms.CharField(attrs={'hidden'}))
     # productName=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={"placeholder":"Ex Red T-Shirt"}))
     # category=forms.CharField(max_length=100,required=True,widget=forms.Select(choices=category_choice))

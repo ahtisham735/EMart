@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="{%static '/css/home/changePass.css'%}"/>
   <link rel="stylesheet" href="{%static '/css/home/messages.css'%}"/>
   <link rel="stylesheet" href="{%static '/css/seller/product.css'%}"/>
+  <link rel="stylesheet" href="{%static '/css/seller/AllProduct.css'%}"/>
+  <link rel="stylesheet" href="{%static '/css/seller/deleteProduct.css'%}"/>
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   <link rel="stylesheet" href="{%static '/css/home/logout.css'%}"/>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -47,7 +49,7 @@
       <li class="dropdown"><a href=""><i class="fa fa-cog" aria-hidden="true"></i>Products<span>&rsaquo;</span></a>
         <ul>
             <li><a href="{%url 'Home_Module:add_product' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Add product</a></li>
-            <li><a href=""><i class="fa fa-pencil" aria-hidden="true"></i>Manage Products</a></li>
+            <li><a href="{%url 'Home_Module:AllProduct' %}"><i class="fa fa-pencil" aria-hidden="true"></i>Manage Products</a></li>
             
           </ul>
         
