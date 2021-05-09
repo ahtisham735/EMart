@@ -5,26 +5,27 @@
         <div>
         <a href="{%url 'Home_Module:home'%}" class= "Cartbtn">&#x2190;Continue Shopping </a>
         </div>
-        <table>
+        <table id="table">
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>SubTotal</th>
             </tr>
             {%for cart in carts%}
+            <input type="hidden"  value={{cart.id}} > 
             <tr>
                 <td>
                     <div class="cart-info">
                         <img  src="{{cart.product.image1.url}}">
                         <div>
                             <p>{{cart.product}}</p>
-                            <small id="price">Price:{{cart.product.price}}</small>
+                            <small id="p{{cart.id}}">Price:{{cart.product.price}}</small>
                             <a href="">Remove</a>
                         </div>
                     </div>
                 </td>
-                <td><input id="qty" type="number" value="{{cart.qty}}"></td>
-                <td id="sub" onload="console.log(loaded)"></td>
+                <td><input id="qty{{cart.id}}" name={{cart.id}} onchange="calsubTotal(name)" type="number" value="{{cart.qty}}"></td>
+                <td id="sub{{cart.id}}" ></td>
             </tr>
             {%endfor%}
             
@@ -32,3 +33,4 @@
         <button  href="" class= "Checkoutbtn">Checkout &#8594; </button>
     </div>
 {% endblock %}
+

@@ -65,7 +65,7 @@ def login(request):
                     request.session['seller']=cust.username
 
                     try:                     
-                        user=SellerDetail.objects.get(pk=cust.id)
+                        user=SellerDetail.objects.get(user=cust)
                         return HttpResponseRedirect(reverse("Home_Module:seller_center"))
                     except SellerDetail.DoesNotExist:
                         return HttpResponseRedirect(reverse("Home_Module:SellerDetail"))

@@ -55,7 +55,7 @@ class User(AbstractUser):
 
 
 class SellerDetail(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
+    user=models.OneToOneField(User,on_delete=models.CASCADE,null=True, blank=True)
     shop=models.CharField(max_length=255)
     phone=models.CharField(max_length=11)
     cnic=models.CharField(max_length=13,unique=True)
@@ -66,7 +66,7 @@ class SellerDetail(models.Model):
 
 category_choice=[('men',"Men's Fashion"),('women',"Women's Fashion"),('WBJ',"Watches,Bags & Jewelery")]
 class Products(models.Model):
-    sellerId=models.ForeignKey(User,on_delete=models.CASCADE,related_name="sellerId")
+    sellerId=models.ForeignKey(User,on_delete=models.CASCADE,related_name="sellerId",null=True, blank=True)
     productName=models.CharField(max_length=255,blank=False)  
     brand=models.CharField(max_length=255,blank=False)
     price=models.PositiveIntegerField(blank=False)
@@ -80,8 +80,8 @@ class Products(models.Model):
     def __str__(self):
         return self.productName
 class Cart(models.Model):
-    user=models.ForeignKey(User,related_name="user",on_delete=models.CASCADE)
-    product=models.ForeignKey(Products,on_delete=models.CASCADE,related_name="products")
+    user=models.ForeignKey(User,related_name="user",on_delete=models.CASCADE,null=True, blank=True)
+    product=models.ForeignKey(Products,on_delete=models.CASCADE,related_name="products",null=True, blank=True)
     qty=models.PositiveIntegerField(default=1)
 
 
