@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>E-Mart</title>
         <link rel="stylesheet" href="{%static '/css/home/home.css'%}"/>
+        <link rel="stylesheet" href="{%static '/css/home/checkout.css'%}"/>
         <link rel="stylesheet" href="{%static '/css/home/cart.css'%}"/>
         <link rel="stylesheet" href="{%static '/css/home/changePass.css'%}"/>
         <link rel="stylesheet" href="{%static '/css/home/logout.css'%}"/>
@@ -56,14 +57,14 @@
                         {%else%}
                         <li><a href="{%url 'Home_Module:signup'%}"/><i class="fas fa-unlock-alt"></i>Login</li>
                         {%endif%}
-                        <li><a href="{%url 'Home_Module:products'%}"><i class="fa fa-clone"></i>Products</a></li>
                         <li><a href="{%url 'Home_Module:cart'%}"><i class="fa fa-shopping-cart"></i>Cart</a></li>
                     </ul>
                 </div>
                 <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
-                <form action="" class="search-box">
-                    <input type="text" placeholder="Type Something to Search...">
-                    <button class="go-icon"><i class="fas fa-long-arrow-alt-right fa-lg"></i></button>
+                <form class="search-box" Method="GET" action="{%url 'Home_Module:search'%}">
+                    {% csrf_token %}
+                    <input type="text" placeholder="Type Something to Search..." name="query">
+                    <button class="go-icon" type="submit"><i class="fas fa-long-arrow-alt-right fa-lg"></i></button>
                 </form>
                 </nav>
             </div>
