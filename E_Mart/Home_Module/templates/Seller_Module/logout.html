@@ -1,0 +1,21 @@
+{%extends 'Seller_Module/Seller_base.html'%}
+{%load static%}
+{%block css%}
+<link rel="stylesheet" href="{%static '/css/seller/logout.css'%}"/>
+{%endblock%}
+{%block body%}
+<div class="color">
+    <div class="center">
+        <h1 id="logout">Log Out</h1>
+            <h1>
+        <form method="POST" action="{%url 'Home_Module:seller_logout'%}">
+            {% csrf_token %}
+            <div>
+                <h6>Are You Sure You Want to Log Out</h5>
+             <button id="resetbtn" type="submit"  class="btn">Log Out</button>
+             <a id="resetbtn" href="{%url 'Home_Module:seller_center'%}"  class="anchor">Cancel</a>
+        </form>
+            </div>
+    </div>
+</div>
+{%endblock%}

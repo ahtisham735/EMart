@@ -174,7 +174,7 @@ def logout(request,username):
             seller=isUserLogin(request,"seller")
             if seller is None:
                 return HttpResponseRedirect(reverse("Home_Module:seller_center"))
-            return render(request,"Home_Module/logout.html",context={"user":user,"variable":"Seller_Module/Seller_base.html"})
+            return render(request,"Seller_Module/logout.html",context={"user":user})
         cust=isUserLogin(request,"user")
         if cust is None and not user.is_social_user:
             return HttpResponseRedirect(reverse("Home_Module:signup"))
@@ -198,7 +198,7 @@ def change_password(request,username):
                 if seller is None:
                     return HttpResponseRedirect(reverse("Home_Module:seller_center"))
                 else:
-                    return render(request,"Home_Module/change_password.html",context={"user":user,"variable":"Seller_Module/Seller_base.html"})
+                    return render(request,"Seller_Module/UpdatePassword.html",{"user":user})
             else:
                 user=isUserLogin(request,'user')
                 if user is None:
@@ -212,11 +212,13 @@ def change_password(request,username):
                 return HttpResponseRedirect(reverse("Home_Module:update_password",args=(user.username,)))
                 #return redirect('/')
             newPasswd=request.POST['newPasswd']
-            user.set_password(newPasswd)
-            user.save()
-            update_session_auth_hash(request,user)
-            messages.success(request,"your password has been changed")
-            #return redirect('/')
+            if newPasswd==passwd:
+                messages.warning(request,"New Password cannot be same as current password")
+            else:
+                user.set_password(newPasswd)
+                user.save()
+                update_session_auth_hash(request,user)
+                messages.success(request,"your password has been changed")
             return HttpResponseRedirect(reverse("Home_Module:update_password",args=(user.username,)))
     except User.DoesNotExist:
          return HttpResponseNotFound("User does not exist")
