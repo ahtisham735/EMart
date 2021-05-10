@@ -5,14 +5,15 @@
 	<meta charset="UTF-8">
 	<title>Seller Center</title>
 	<link rel="stylesheet" href="{%static '/css/seller/home_Seller.css'%}">
-  <link rel="stylesheet" href="{%static '/css/home/changePass.css'%}"/>
+  {%block css%}
+  {%endblock%}
+
   <link rel="stylesheet" href="{%static '/css/home/messages.css'%}"/>
   <link rel="stylesheet" href="{%static '/css/seller/product.css'%}"/>
   <link rel="stylesheet" href="{%static '/css/seller/AllProduct.css'%}"/>
   <link rel="stylesheet" href="{%static '/css/seller/deleteProduct.css'%}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-  <link rel="stylesheet" href="{%static '/css/home/logout.css'%}"/>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script>
 		$(document).ready(function(){
@@ -62,7 +63,7 @@
       <li class="dropdown"><a href=""><i class="fa fa-cog" aria-hidden="true"></i>Settings<span>&rsaquo;</span></a>
       <ul>
           <li><a href="{%url 'Home_Module:SellerDetailUpdate' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Profile</a></li>
-          <li><a href="{%url 'Home_Module:update_password' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i>Update Password</a></li>
+          <li><a href="{%url 'Home_Module:update_password' user.username%}"><i class="fa fa-pencil" aria-hidden="true"></i>Update Password</a></li>
           <li><a href="">My Shop</a></li>
         </ul>
       

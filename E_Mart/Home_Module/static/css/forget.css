@@ -1,0 +1,64 @@
+.forget-form-box {
+  width: 500px;
+  height: 450px;
+  position: relative;
+  margin: 6% auto;
+  background: whitesmoke;
+  padding: 5px;
+}
+
+.rounded {
+  margin: 25px 180px auto;
+  position: relative;
+  -webkit-box-shadow: 0 0 20px 9px pink;
+          box-shadow: 0 0 20px 9px pink;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.heading {
+  color: black;
+  width: 250px;
+  margin: 35px 150px auto;
+  cursor: pointer;
+}
+
+.forget_input_field {
+  width: 50%;
+  padding: 10px 0;
+  margin: 25px 120px;
+  border: none;
+  border-top: 0;
+  border-bottom: 1px solid black;
+  border-left: 0;
+  border-right: 0;
+  background: transparent;
+}
+
+.forget_btn {
+  width: 50%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin: 0px auto;
+  background: -webkit-gradient(linear, right top, left top, from(blue), to(#f50057));
+  background: linear-gradient(to left, blue, #f50057);
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+}
+
+pre {
+  color: black;
+  margin: 10px 30px auto;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.goBack {
+  cursor: pointer;
+  color: purple;
+  padding: 20px 30px 10px;
+  margin-left: 190px;
+}
+/*# sourceMappingURL=forget.css.map */
