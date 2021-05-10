@@ -8,10 +8,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet">
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{%static '/css/seller/SellerSignUp.css'%}">
-
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{%static '/css/seller/SellerSignUp.css'%}">
+        <link rel="stylesheet" href="{%static '/css/home/messages.css'%}"/>
 </head>
     <body>
         <div class="container">
@@ -19,6 +19,11 @@
                 <div class="col-2">
                   <div class="abc">
                     <div class="visibility">
+                        {% for message in messages %}
+                        <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
                         <h1 class="emart">EMART</h1>
                         <h3>Step In to</h3><h1> Seller Center!</h1>
                         <h2>Three Easy steps to Start Selling</h2>
@@ -37,11 +42,10 @@
                             <br>
                             Once you get start with,Your Online Shop is ready
                         </p>
-                      </div>
-                        
-                        
+                      </div> 
                     </div>
                 </div>
+                <a href="{%url 'Home_Module:home'%}" class= "Backbtn">&#x2190;Go Back </a>
             </div>
         <div class="col-2">      
         <div class="card">
@@ -53,7 +57,7 @@
                 {% csrf_token %}
                 <div>
                 <input type="hidden" name="is_seller" value="seller">
-               <input  name="username" id="loginUsername" value="{{username}}"   type="text" class="input-box" placeholder="Username" />
+               <input  name="username" autofocus id="loginUsername" value="{{username}}"   type="text" class="input-box" placeholder="Username" />
                 <span id="nameError" class="error_style"></span>
                 </div>
                 <div>
@@ -75,7 +79,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="is_seller" value="seller">
                 <div>
-                <input  name="username" id="username"  onkeyup="handleChangeRegister(id)" onfocus="handleFocus(id)"  type="text" class="input-box" placeholder="Username" />
+                <input  name="username" autofocus id="username"  onkeyup="handleChangeRegister(id)" onfocus="handleFocus(id)"  type="text" class="input-box" placeholder="Username" />
                 <span id="usernameError" class="error_style"></span>
                 </div>
                  <div>
