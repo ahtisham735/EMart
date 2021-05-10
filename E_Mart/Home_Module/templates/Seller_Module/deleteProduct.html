@@ -2,12 +2,13 @@
 {%load static %}
 {%block body%}
    
-    
     <form id="form1" action="{%url 'Home_Module:delete_product' item.pk %}" method="POST">
-        <h5>Are you sure you want to delete '{{item.productName}}'?</h5>
         {%csrf_token%}
-        <a href="{%url 'Home_Module:AllProduct' %}" class="button1 button2">Cancel</a>
-        <button class="button1">Confirm</button>
-        
+        <h2>Remove Item!</h2><br>
+        <h5> Are you sure you want to delete '{{item.productName}}'?</h5><br>  <br>
+            <div class="div1"> 
+               <a href="{%url 'Home_Module:AllProduct' %}" class="btn buttonCancel">Cancel</a> 
+               <input class="btn buttonSubmit" type="submit" value="Submit">
+            </div>
     </form>
 {%endblock%} 

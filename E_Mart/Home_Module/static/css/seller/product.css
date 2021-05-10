@@ -18,17 +18,11 @@ select:focus{
     font-family: "Roboto",sans-serif;
     font-size:14px;
     display: block;
-
-
-
-
-
 }
 ::placeholder{
     padding: 2px;
 }
-button{
-
+.buttonSub{
     display: inline-block;
     background:linear-gradient(to right,blue,#ff4081);
     color:#ffffff;
@@ -38,14 +32,8 @@ button{
     transition: background 0.5s;
     
 }
-button:hover{
+.buttonSub:hover{
     background:blue;
 }
-a:link, a:visited {
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-  }
+
 

@@ -123,6 +123,11 @@ function allnumeric(id, er)
    } 
 
 
+
+
+
+
+   
 function openRegister()
 {
     var card=document.getElementById("card");

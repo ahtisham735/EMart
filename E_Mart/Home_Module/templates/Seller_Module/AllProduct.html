@@ -22,8 +22,8 @@
                 <td>   {{i.category}} </td>
                 <td>   {{i.price}}  </td>
                 <td>
-                <a href="{%url 'Home_Module:edit_product' i.pk %}" class="button1">Edit</a>
-                <a href="{%url 'Home_Module:delete_product' i.pk %}"class="button1">Remove</a>              
+                <a href="{%url 'Home_Module:edit_product' i.pk %}" class="button1 button2" role="button">Edit</a>
+                <a href="{%url 'Home_Module:delete_product' i.pk %}" class="button1 button3" role="button">Remove</a>
                 </td>
              </tr>
             {% endfor %}          
