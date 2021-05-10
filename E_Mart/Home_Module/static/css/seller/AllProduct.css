@@ -1,0 +1,44 @@
+.button1{
+  background:linear-gradient(to right,blue,#ff4081);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 13px 15px;
+  margin:10px 0;
+  transition: background 0.5s; 
+}
+.button1:hover{
+  background:blue;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #e6f2ff80;
+  counter-reset: rowNumber 0;
+}
+
+th, td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+th {
+  background-color: #607991;
+  color: white;
+}
+tr:hover {background-color:#f5f5f5;}
+
+tbody tr::before {
+  display: table-cell;
+  padding: 30px 0px;
+  margin:10px 0;
+  border-bottom: 1px solid #ddd;
+  content: counter(rowNumber) ".";
+  counter-increment: rowNumber 1;
+  text-align: center;
+}

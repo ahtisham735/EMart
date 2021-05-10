@@ -24,3 +24,4 @@
         var ProductImg=document.getElementById("productImg");
         ProductImg.src=smallImg.src;
     }
+  

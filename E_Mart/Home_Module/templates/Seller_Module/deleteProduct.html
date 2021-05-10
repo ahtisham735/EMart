@@ -1,0 +1,13 @@
+{%extends 'Seller_Module/Seller_base.html'%}
+{%load static %}
+{%block body%}
+   
+    
+    <form id="form1" action="{%url 'Home_Module:delete_product' item.pk %}" method="POST">
+        <h5>Are you sure you want to delete '{{item.productName}}'?</h5>
+        {%csrf_token%}
+        <a href="{%url 'Home_Module:AllProduct' %}" class="button1 button2">Cancel</a>
+        <button class="button1">Confirm</button>
+        
+    </form>
+{%endblock%} 

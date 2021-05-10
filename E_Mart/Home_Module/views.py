@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.contrib import auth,messages
 from django.conf import settings
 from django.contrib.auth import update_session_auth_hash
-from Home_Module.models import User,SellerDetail,Products
+from Home_Module.models import User,SellerDetail,Products,Cart
 from .email_handler import token_generator,send_link
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
@@ -65,7 +65,7 @@ def login(request):
                     request.session['seller']=cust.username
 
                     try:                     
-                        user=SellerDetail.objects.get(pk=cust.id)
+                        user=SellerDetail.objects.get(user=cust)
                         return HttpResponseRedirect(reverse("Home_Module:seller_center"))
                     except SellerDetail.DoesNotExist:
                         return HttpResponseRedirect(reverse("Home_Module:SellerDetail"))
@@ -136,9 +136,32 @@ def productDetail(request,id):
     else:
         print(relatedProd)
     user=isUserLogin(request,'user')
+<<<<<<< HEAD
     if user is not None:
         return render(request,"Home_Module/productDetail.html",context={"user":user})
     return render(request,"Home_Module/productDetail.html",context={"product":product,"rProd": relatedProd})
+=======
+    if user is None:
+            user=request.user
+    if request.method=="GET":
+        if user is not None:
+            return render(request,"Home_Module/productDetail.html",context={"user":user,"product":product})
+        return render(request,"Home_Module/productDetail.html",context={"product":product})
+    if request.method=="POST":   
+        if not user in User.objects.all():
+            messages.error(request,"You have to login first")
+            return HttpResponseRedirect(reverse("Home_Module:signup"))
+        product=Products.objects.get(pk=id)
+        cart=None
+        try:
+            cart=Cart.objects.get(user=user,product=product)
+            cart.qty=cart.qty+int(request.POST['qty'])
+        except Cart.DoesNotExist:
+            cart=Cart.objects.create(user=user,product=product)
+            cart.qty=request.POST['qty']
+        cart.save()
+        return HttpResponseRedirect(reverse("Home_Module:cart"))
+>>>>>>> f0807bdf6afab66e5fa36a338528a5158de06133
 def signup(request):
     if request.method=='GET':
         return HttpResponseRedirect(reverse("Home_Module:login"))
@@ -158,7 +181,10 @@ def signup(request):
         email_body=f'Hey {user.username}\n Thanks for regestring on E_Mart.We are very delighted to have you.Please click the following link to activate your account\n'
         send_link(email_subject,email_body,user,'activate')
         message=f'Please check your inbox.we have sent an email at {user.email} for email verification'
-        return render(request, 'Home_Module/generic_response.html',context={"message":message,"title":"Email verification"})
+        messages.info(request,message)
+        if user.is_seller:
+            return HttpResponseRedirect(reverse("Home_Module:seller_center"))
+        return HttpResponseRedirect(reverse("Home_Module:home"))
 
 
 def logout(request,username):
@@ -241,10 +267,24 @@ def reset_password(request,uidb64,token):
         return render(request,"Home_Module/reset_password.html",context={"username":user.username,"email":user.email})
 
 def cart(request):
-    if not User.is_authenticated:
-        messages.error(request,"you have to login first")
+    user=isUserLogin(request,'user')
+    if user is None:
+        user=request.user
+    if request.method=="GET":
+        if user in User.objects.all():
+            if not user.is_admin:
+                carts=Cart.objects.filter(user=user)
+                return render(request,"Home_Module/cart.html",context={"user":user,"carts":carts})
+        messages.error(request,"You have to login first")
         return HttpResponseRedirect(reverse("Home_Module:signup"))
+<<<<<<< HEAD
     return render(request,"Home_Module/cart.html")
+=======
+
+
+    
+        
+>>>>>>> f0807bdf6afab66e5fa36a338528a5158de06133
 
 def checkout(request):
     if request.method=='GET':
@@ -261,11 +301,11 @@ class Verification(View):
                 return render(request,"Home_Module/Home.html")
 
             if user.is_active:
-                messages.info(request,"your account is already active")
+                messages.info(request,"Your account is already active")
                 return redirect('/')
             user.is_active = True
             user.save()
-            messages.success(request,"your account has been activated")
+            messages.success(request,"Your account has been activated")
             return HttpResponseRedirect(reverse("Home_Module:signup"))
 
         except Exception as ex:

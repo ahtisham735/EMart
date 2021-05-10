@@ -5,74 +5,36 @@
         <div>
         <a href="{%url 'Home_Module:home'%}" class= "Cartbtn">&#x2190;Continue Shopping </a>
         </div>
-        <table>
+        <table id="table">
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>SubTotal</th>
             </tr>
+            {%for cart in carts%}
+            <input type="hidden"  value={{cart.id}} > 
             <tr>
                 <td>
                     <div class="cart-info">
-                        <img src="{%static 'Images/buy-1.jpg'%}">
+                        <img  src="{{cart.product.image1.url}}">
                         <div>
-                            <p>Red Printed Tshirt</p>
-                            <small>Price:$50.00</small>
+                            <p>{{cart.product}}</p>
+                            <small id="p{{cart.id}}">Price:{{cart.product.price}}</small>
                             <a href="">Remove</a>
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="1"></td>
-                <td>$50.00</td>
+                <td><input id="qty{{cart.id}}" name={{cart.id}} onchange="calsubTotal(name)" type="number" value="{{cart.qty}}"></td>
+                <td id="sub{{cart.id}}" ></td>
             </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="{%static 'Images/buy-2.jpg'%}">
-                        <div>
-                            <p>Stylo Shoes</p>
-                            <small>Price:$50.00</small>
-                            <a href="">Remove</a>
-                        
-                        </div>
-                    
-                    
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>$50.00</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="{%static 'Images/buy-3.jpg'%}">
-                        <div>
-                            <p>Jeans</p>
-                            <small>Price:$50.00</small>
-                            <a href="">Remove</a>
-                        
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>$50.00</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="{%static 'Images/buy-2.jpg'%}">
-                        <div>
-                            <p>English Shoes</p>
-                            <small>Price:$50.00</small>
-                            <a href="">Remove</a>
-                        
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>$50.00</td>
-            </tr>
+            {%endfor%}
+            
         </table>
+<<<<<<< HEAD
         <a href="{%url 'Home_Module:checkout'%}" class= "Checkoutbtn">Checkout &#8594; </a>
+=======
+        <button  href="" class= "Checkoutbtn">Checkout &#8594; </button>
+>>>>>>> f0807bdf6afab66e5fa36a338528a5158de06133
     </div>
 {% endblock %}
+

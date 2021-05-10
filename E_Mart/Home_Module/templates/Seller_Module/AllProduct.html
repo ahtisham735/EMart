@@ -1,0 +1,34 @@
+{%extends 'Seller_Module/Seller_base.html'%}
+{%load static %}
+{%block body%}
+
+
+<h1>All Product</h1>
+<div style="overflow-x:auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody >
+           {% for i in products %}
+            <tr>
+                <td>  {{i.productName}} </td>
+                <td>   {{i.category}} </td>
+                <td>   {{i.price}}  </td>
+                <td>
+                <a href="{%url 'Home_Module:edit_product' i.pk %}" class="button1">Edit</a>
+                <a href="{%url 'Home_Module:delete_product' i.pk %}"class="button1">Remove</a>              
+                </td>
+             </tr>
+            {% endfor %}          
+        </tbody>
+    </table>
+</div>
+
+{%endblock%}

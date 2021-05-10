@@ -1,6 +1,6 @@
 from django.views import View
 from .forms import AddProductForm
-from .models import User,SellerDetail
+from .models import User,SellerDetail,Products
 from .utility_functions import isUserLogin
 from django.shortcuts import render,redirect,reverse
 from django.contrib import messages
@@ -58,11 +58,11 @@ def add_product(request):
 
 def seller_detail_update(request):
     user=isUserLogin(request,'seller')
-    detail=SellerDetail.objects.get(pk=user.id)
+    detail=SellerDetail.objects.get(user=user)
     if request.method=="GET":
         if user is None:
             return HttpResponseRedirect(reverse("Home_Module:seller_center"))     
-        return render(request,"Seller_Module/SellerDetailUpdate.html",context={"detail":detail})
+        return render(request,"Seller_Module/SellerDetailUpdate.html",context={"detail":detail,"user":user})
     if request.method=="POST":
         detail.shop=request.POST['shop']
         detail.cnic=request.POST['cnic']
@@ -72,3 +72,45 @@ def seller_detail_update(request):
         detail.save()
         messages.success(request,"Updated")
         return HttpResponseRedirect(reverse("Home_Module:seller_center"))
+
+def all_product(request):
+    user=isUserLogin(request,'seller')
+    productList=Products.objects.all().filter(sellerId=user)
+    if user is None:
+        HttpResponseRedirect(reverse("Home_Module/seller_center"))
+    else:
+        return render(request,"Seller_Module/AllProduct.html",context={"user":user,"products":productList})
+
+def edit_product(request, pk):
+    user=isUserLogin(request,'seller')
+    if user is None:
+        HttpResponseRedirect(reverse("Home_Module/seller_center"))
+    if request.method=="GET": 
+        prodct=Products.objects.get(id=pk) 
+        form=AddProductForm(instance=prodct)
+        return render(request,"Seller_Module/editproduct.html",context={"user":user,"usr":pk,"form":form}) 
+        
+    if request.method=="POST": 
+        prodct=Products.objects.get(id=pk)  
+        form=AddProductForm(request.POST,request.FILES,instance=prodct)
+        if form.is_valid():
+            prodct=form.save(commit=False)
+            prodct.sellerId=user
+            prodct.save()
+            messages.success(request,"Product Updated Successfully")
+            return render(request,"Seller_Module/Seller_base.html",context={"user":user})
+        else:
+            messages.success(request," Product Not Updated")
+        return render(request,"Seller_Module/Seller_base.html",context={"user":user})
+
+def delete_product(request, pk):
+    prodct=Products.objects.get(id=pk) 
+    user=isUserLogin(request,'seller')
+    if user is None:
+        HttpResponseRedirect(reverse("Home_Module/seller_center"))
+    if request.method=="POST":
+        prodct.delete() 
+        messages.success(request," Successfully Deleted")
+        return render(request,"Seller_Module/Seller_base.html",context={"user":user})
+    return render(request,"Seller_Module/deleteProduct.html",context={"user":user,"item":prodct})
+     
