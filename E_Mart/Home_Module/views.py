@@ -113,18 +113,32 @@ def forget(request):
 def contact(request):
     return render(request,"Home_Module/contact.html")
 
-def products(request):
+def search(request):
     user=isUserLogin(request,'user')
-    context={"products":Products.objects.all()}
+    query=request.GET['query']
+    #filtering Products
+    if query:
+        context={"products":Products.objects.filter(productName__icontains=query)or 
+        Products.objects.filter(brand__icontains=query)or Products.objects.filter(category__icontains=query) }
+    else:
+        context={}
     if user is not None:
         context['user']=user
     return render(request,"Home_Module/products.html",context=context)
+    
 def productDetail(request,id):
     product=Products.objects.get(pk=id)
+    category=product.category
+    name=product.productName
+    relatedProd=Products.objects.filter(productName__icontains=name)and Products.objects.filter(category=category)
+    if (len(relatedProd) >=4):
+        print(relatedProd[:4])
+    else:
+        print(relatedProd)
     user=isUserLogin(request,'user')
     if user is not None:
         return render(request,"Home_Module/productDetail.html",context={"user":user})
-    return render(request,"Home_Module/productDetail.html",context={"product":product})
+    return render(request,"Home_Module/productDetail.html",context={"product":product,"rProd": relatedProd})
 def signup(request):
     if request.method=='GET':
         return HttpResponseRedirect(reverse("Home_Module:login"))
@@ -211,7 +225,10 @@ def reset_password_done(request):
         user.save()
         update_session_auth_hash(request, user)
         messages.success(request,'your password has been reset.')
-        return HttpResponseRedirect(reverse("Home_Module:signup"))
+        if user.is_seller:
+            return HttpResponseRedirect(reverse("Home_Module:seller_center"))
+        else:
+            return HttpResponseRedirect(reverse("Home_Module:signup"))
     except:
         messages.error(request,"something has went wrong.please try again later")
         return HttpResponseRedirect(reverse("Home_Module:reset_password_done"))
@@ -228,8 +245,10 @@ def cart(request):
         messages.error(request,"you have to login first")
         return HttpResponseRedirect(reverse("Home_Module:signup"))
     return render(request,"Home_Module/cart.html")
-        
 
+def checkout(request):
+    if request.method=='GET':
+        return render(request,"Home_Module/checkout.html")
 
 class Verification(View):
      def get(self, request, uidb64, token):

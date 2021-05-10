@@ -1,6 +1,7 @@
 {%extends 'base.html'%}
 {%load static%}
 {%block body%}
+    {%if products%}
     <div class="small-container">
         <div class="row row-2">
             <h2>All Products</h2>
@@ -12,17 +13,14 @@
             
             </select>
         </div>
-       
         <div class="row">
             {%for product in products%}
             <div class="col-4">
-              
                 <p>
                     <a href="{%url 'Home_Module:productDetail' product.id%}">
                     <img src="{{product.image1.url}}">
                     </a>
                 </p>
-                
                 <h4 class="productsH4">{{product.productName}}</h4>
                 <div class="rating">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -32,9 +30,15 @@
                     <i class="fa fa-star-o" aria-hidden="true"></i>
                 </div>
                 <p>{{product.price}}</p>
-           
             </div>
             {%endfor%}
         </div>
+        </div>
+        {%else%}
+            <script>
+            alert('No products to show');
+            window.location.href="/"
+            </script>
+        {%endif%}
         
 {%endblock%}

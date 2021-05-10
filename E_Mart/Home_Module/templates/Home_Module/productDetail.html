@@ -40,8 +40,6 @@
                 <a href="" class= "fb_btn fb-btn-back">Add to cart</a>
                 <a href="" class= "fb_btn ">BUY Now</a>
             </div>
-            
-            
             </div>
         </div>
     </div>
@@ -54,56 +52,29 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
-                <img src="{%static '/Images/product-1.jpg' %}">
-                <h4 class="productsH4">Red printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
+            {%if rProd%}
+                {%for Prod in rProd%}
+                    <div class="col-4">
+                        <a href="{%url 'Home_Module:productDetail' Prod.id%}">
+                            <img src="{{Prod.image1.url}}">
+                        </a>
+                    <h4 class="productsH4">{{Prod.productName}} by {{Prod.brand}}</h4>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </div>
+                    <p>Price:{{Prod.price}} rupees</p>
                 </div>
-                <p>$50.00</p>
+                {% endfor %}
+            {%else%}
+            <div>
+                <h3>No products To show</h3>
+            </div>
+            {%endif%}
         
-            </div>
-            <div class="col-4">
-                <img src="{%static '/Images/product-2.jpg' %}"/>
-                <h4 class="productsH4">Shoes</h4>
-                <div class="rating">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-        
-            </div>
-            <div class="col-4">
-                <img src="{%static '/Images/product-3.jpg' %}"/>
-                <h4 class="productsH4">Jeans</h4>
-                <div class="rating">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="{%static '/Images/product-4.jpg' %}"/>
-                <h4 class="productsH4">Black printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
         </div>
     </div>
 {%endblock%}
