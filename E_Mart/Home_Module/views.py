@@ -77,7 +77,10 @@ def login(request):
                         request.session['username']=username
                         request.session['password']=password
                     request.session['user']=cust.username
-                    return render(request,"Home_Module/Home.html",context={"user":cust})
+                    cart=Cart.objects.all() #cart Notification
+                    #context setting
+                    context={"user":cust,"notify":len(cart)}
+                    return render(request,"Home_Module/Home.html",context=context)
         if "is_seller" in request.POST:
             return render(request,"Seller_Module/SellerSignUp.html",context={"errorMessage":errorMessage})
         else:
@@ -86,7 +89,9 @@ def login(request):
 def home(request):
     user=isUserLogin(request,'user')
     if user is not None:
-        return render(request,"Home_Module/Home.html",context={"user":user})
+        cart=Cart.objects.all()
+        context={"user":user,"notify":len(cart)}
+        return render(request,"Home_Module/Home.html",context=context)
     return render(request,"Home_Module/Home.html")
 
 def forget(request):
@@ -123,35 +128,34 @@ def search(request):
     else:
         context={}
     if user is not None:
+        cart=Cart.objects.all()
         context['user']=user
+        context['notify']=len(cart)
     return render(request,"Home_Module/products.html",context=context)
     
 def productDetail(request,id):
     product=Products.objects.get(pk=id)
-    category=product.category
-    name=product.productName
-    relatedProd=Products.objects.filter(productName__icontains=name)and Products.objects.filter(category=category)
-    if (len(relatedProd) >=4):
-        print(relatedProd[:4])
-    else:
-        print(relatedProd)
     user=isUserLogin(request,'user')
-<<<<<<< HEAD
-    if user is not None:
-        return render(request,"Home_Module/productDetail.html",context={"user":user})
-    return render(request,"Home_Module/productDetail.html",context={"product":product,"rProd": relatedProd})
-=======
     if user is None:
-            user=request.user
+        user=request.user
     if request.method=="GET":
+        category=product.category
+        name=product.productName
+        relatedProd=Products.objects.filter(productName__icontains=name)and Products.objects.filter(category=category)
+        if (len(relatedProd) >=4):
+            relatedProd=relatedProd[:4]
+        else:
+            relatedProd=relatedProd
+        context={}
         if user is not None:
-            return render(request,"Home_Module/productDetail.html",context={"user":user,"product":product})
-        return render(request,"Home_Module/productDetail.html",context={"product":product})
+            cart=Cart.objects.all()
+            context={"product":product,"user":user,"relatedProd":relatedProd,"notify":len(cart)}
+        context={"product":product,"rProd":relatedProd}
+        return render(request,"Home_Module/productDetail.html",context=context)
     if request.method=="POST":   
         if not user in User.objects.all():
             messages.error(request,"You have to login first")
             return HttpResponseRedirect(reverse("Home_Module:signup"))
-        product=Products.objects.get(pk=id)
         cart=None
         try:
             cart=Cart.objects.get(user=user,product=product)
@@ -161,7 +165,6 @@ def productDetail(request,id):
             cart.qty=request.POST['qty']
         cart.save()
         return HttpResponseRedirect(reverse("Home_Module:cart"))
->>>>>>> f0807bdf6afab66e5fa36a338528a5158de06133
 def signup(request):
     if request.method=='GET':
         return HttpResponseRedirect(reverse("Home_Module:login"))
@@ -194,11 +197,14 @@ def logout(request,username):
             seller=isUserLogin(request,"seller")
             if seller is None:
                 return HttpResponseRedirect(reverse("Home_Module:seller_center"))
-            return render(request,"Home_Module/logout.html",context={"user":user,"variable":"Seller_Module/Seller_base.html"})
+            context={"user":user,"variable":"Seller_Module/Seller_base.html"}
+            return render(request,"Home_Module/logout.html",context=context)
         cust=isUserLogin(request,"user")
         if cust is None and not user.is_social_user:
             return HttpResponseRedirect(reverse("Home_Module:signup"))
-        return render(request,"Home_Module/logout.html",context={"user":user,"variable":"base.html"})
+        cart=Cart.objects.all()
+        context={"user":user,"variable":"base.html", "notify":len(cart)}
+        return render(request,"Home_Module/logout.html",context=context)
             
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse("Home_Module:signup"))
@@ -261,7 +267,7 @@ def reset_password_done(request):
 def reset_password(request,uidb64,token):
         id = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=id)
-
+        #why??
         if not token_generator.check_token(user, token):
             return render(request,"Home_Module/Home.html")
         return render(request,"Home_Module/reset_password.html",context={"username":user.username,"email":user.email})
@@ -277,14 +283,10 @@ def cart(request):
                 return render(request,"Home_Module/cart.html",context={"user":user,"carts":carts})
         messages.error(request,"You have to login first")
         return HttpResponseRedirect(reverse("Home_Module:signup"))
-<<<<<<< HEAD
-    return render(request,"Home_Module/cart.html")
-=======
 
 
     
         
->>>>>>> f0807bdf6afab66e5fa36a338528a5158de06133
 
 def checkout(request):
     if request.method=='GET':
