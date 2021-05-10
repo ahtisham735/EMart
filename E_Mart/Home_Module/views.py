@@ -136,11 +136,9 @@ def productDetail(request,id):
     else:
         print(relatedProd)
     user=isUserLogin(request,'user')
-<<<<<<< HEAD
     if user is not None:
         return render(request,"Home_Module/productDetail.html",context={"user":user})
     return render(request,"Home_Module/productDetail.html",context={"product":product,"rProd": relatedProd})
-=======
     if user is None:
             user=request.user
     if request.method=="GET":
@@ -161,7 +159,6 @@ def productDetail(request,id):
             cart.qty=request.POST['qty']
         cart.save()
         return HttpResponseRedirect(reverse("Home_Module:cart"))
->>>>>>> f0807bdf6afab66e5fa36a338528a5158de06133
 def signup(request):
     if request.method=='GET':
         return HttpResponseRedirect(reverse("Home_Module:login"))
@@ -279,14 +276,7 @@ def cart(request):
                 return render(request,"Home_Module/cart.html",context={"user":user,"carts":carts})
         messages.error(request,"You have to login first")
         return HttpResponseRedirect(reverse("Home_Module:signup"))
-<<<<<<< HEAD
     return render(request,"Home_Module/cart.html")
-=======
-
-
-    
-        
->>>>>>> f0807bdf6afab66e5fa36a338528a5158de06133
 
 def checkout(request):
     if request.method=='GET':
