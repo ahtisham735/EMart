@@ -122,8 +122,8 @@ def search(request):
     query=request.GET['query']
     #filtering Products
     if query:
-        products=Products.objects.filter(Q(productName__icontains=query)|Q(brand__icontains=query)|Q(category__icontains=query))
-        context={"products":products }
+        context={"products":Products.objects.filter(productName__icontains=query)or 
+        Products.objects.filter(brand__icontains=query)or Products.objects.filter(category__icontains=query)or Products.objects.filter(description__icontains=query) }
     else:
         context={}
     if user is not None:

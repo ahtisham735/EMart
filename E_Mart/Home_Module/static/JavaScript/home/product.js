@@ -43,7 +43,31 @@
         var p=price.innerText.split(":")
         const qty=document.getElementById(`qty${id}`)
         var sub=document.getElementById(`sub${id}`)
+        var diff=parseInt(p[1])*parseInt(qty.value)-parseInt(sub.innerText)
         sub.innerText=parseInt(p[1])*parseInt(qty.value)
+
+        calBill(id)
+
     
     }
-    
+    function calBill(id)
+    {
+        var chkbox=document.getElementById(`${id}`)
+        if(chkbox.checked)
+        {
+            var total_obj=document.getElementById("sub")
+            var str=total_obj.innerText.split(':')
+            var sub=document.getElementById(`sub${id}`).innerText
+            var checkoutTotal=parseInt(sub)+parseInt(str[1])
+            total_obj.innerText="Rs:"+checkoutTotal
+
+
+           
+        }
+        else
+        {
+            console.log("Not checked")
+        }
+
+    }
+    function recalculateBill(id,diff)
