@@ -24,7 +24,7 @@
                                     <div>
                                         <p>{{cart.product}}</p>
                                         <small id="p{{cart.id}}">Price:{{cart.product.price}}</small>
-                                        <a href="">Remove</a>
+                                        <a href="{%url 'Home_Module:delete_cart' cart.id%}">Remove</a>
                                     </div>
                                 </div>
                             </td>

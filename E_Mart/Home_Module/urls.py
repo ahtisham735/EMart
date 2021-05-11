@@ -29,7 +29,7 @@ urlpatterns=[
     path('AllProduct',Seller_views.all_product,name="AllProduct"),
     path("edit_product/<str:pk>/",Seller_views.edit_product,name="edit_product"),
     path("delete_product/<str:pk>/",Seller_views.delete_product,name="delete_product"),
-    path("updatepassword",Seller_views.update_password,name="change_password")
+    path("updatepassword",Seller_views.update_password,name="change_password"),
 
     
  

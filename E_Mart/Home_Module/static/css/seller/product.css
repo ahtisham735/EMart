@@ -18,17 +18,16 @@ select:focus{
     font-family: "Roboto",sans-serif;
     font-size:14px;
     display: block;
-
-
-
-
-
 }
 ::placeholder{
     padding: 2px;
 }
+<<<<<<< HEAD
+.buttonSub{
+=======
 .add{
 
+>>>>>>> 8480d9522ddf6af33386506be8d7e896ea5c6973
     display: inline-block;
     background:linear-gradient(to right,blue,#ff4081);
     color:#ffffff;
@@ -38,14 +37,12 @@ select:focus{
     transition: background 0.5s;
     
 }
+<<<<<<< HEAD
+.buttonSub:hover{
+=======
 .add:hover{
+>>>>>>> 8480d9522ddf6af33386506be8d7e896ea5c6973
     background:blue;
 }
-a:link, a:visited {
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-  }
+
 

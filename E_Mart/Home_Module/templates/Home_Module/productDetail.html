@@ -34,16 +34,23 @@
             <h3>Product Details<i class="fa fa-indent"></i></h3>
             <br>
             <p>{{product.description}}</p>
+<<<<<<< HEAD
+         
+            <input type="number" min="1" max="{{product.quantity}}" class="input" ></input><br>
+            <div class="btn-style">
+                <a href="" class= "fb_btn fb-btn-back">Add to cart</a>
+                <a href="" class= "fb_btn ">BUY Now</a>
+            </div>
+=======
+>>>>>>> 8480d9522ddf6af33386506be8d7e896ea5c6973
             <form method="POST" action="{%url 'Home_Module:productDetail' product.id %}">
                {%csrf_token%}
                 <input type="number" name="qty" min="1" value="1" max="{{product.quantity}}" class="input" ></input><br>
                 <div class="btn-style">
-                    <button href="" class= "fb_btn fb-btn-back">Add to cart</button>
+                    <button  class= "fb_btn fb-btn-back">Add to cart</button>
                     <a href="" class= "fb_btn ">BUY Now</a>
                 </div>
             </form>
-            
-            
             </div>
         </div>
     </div>
