@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </td>
-                <td><input id="qty{{cart.id}}" name={{cart.id}} onchange="calsubTotal(name)" type="number" value="{{cart.qty}}"></td>
+                <td><input id="qty{{cart.id}}" name={{cart.id}} onchange="calsubTotal(name)" type="number" min="1" max="{{cart.product.quantity}}" value="{{cart.qty}}"></td>
                 <td id="sub{{cart.id}}" ></td>
             </tr>
             {%endfor%}

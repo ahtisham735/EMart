@@ -113,9 +113,3 @@ def delete_product(request, pk):
         messages.success(request," Successfully Deleted")
         return render(request,"Seller_Module/Seller_base.html",context={"user":user})
     return render(request,"Seller_Module/deleteProduct.html",context={"user":user,"item":prodct})
-def update_password(request):
-    user =isUserLogin(request,'seller')
-    if user is None:
-        return HttpResponseRedirect(reverse("Home_Module:seller_center"))
-    if request.method=="GET":
-        return render(request,"Seller_Module/UpdatePassword.html",{"user":user})

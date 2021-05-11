@@ -26,7 +26,7 @@
   height: 50px;
   border: 1px solid;
   border-radius: 25px;
-  margin-top: 50px;
+  margin-top: 100px;
   font-size: 15px;
 
 }
@@ -47,7 +47,7 @@
 }
 .anchor {
   /*background: linear-gradient(to right, #6a1b9a, pink);*/
-  background-color:gray;
+  background-color:#666;
 
 
 }
