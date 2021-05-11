@@ -188,7 +188,6 @@ def signup(request):
             return HttpResponseRedirect(reverse("Home_Module:seller_center"))
         return HttpResponseRedirect(reverse("Home_Module:home"))
 
-
 def logout(request,username):
     try:
         user=User.objects.get(username=username)
@@ -282,7 +281,7 @@ def cart(request):
                 return render(request,"Home_Module/cart.html",context={"user":user,"carts":carts,"notify":len(carts)})
         messages.error(request,"You have to login first")
         return HttpResponseRedirect(reverse("Home_Module:signup"))
-    return render(request,"Home_Module/cart.html")       
+
 def checkout(request):
     if request.method=='GET':
         return render(request,"Home_Module/checkout.html")

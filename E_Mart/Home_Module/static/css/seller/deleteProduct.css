@@ -1,8 +1,54 @@
 
-#form1
-{
-  left      : 50%;
-  top       : 50%;
-  position  : absolute;
-  transform : translate(-50%, -50%);
-}
+.btn {
+    width: 110px;
+    height: 40px;
+    padding: 10px 10px;
+    margin:3px 2px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    font-size: 16px;
+    border: 1px solid transparent;
+    border-radius: 1px;
+  }
+  
+  .buttonCancel{
+    color: #000;
+    border-color: #007bff;
+  }
+  .buttonCancel:link, .buttonCancel:visited  {
+    text-decoration: none;
+    color: black;
+  }
+  .buttonSubmit{
+    color: #000;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  .buttonSubmit:hover{
+    background:#0325e9;
+  }
+  .buttonCancel:hover{
+    background:#f0f1f3;
+  }
+  
+  
+  
+  #form1
+  {
+    text-align: center;
+    width: 35%;
+    padding: 35px;
+    background-color: #F8F8FF;
+    left      : 50%;
+    top       : 50%;
+    position  : absolute;
+    transform : translate(-50%, -50%);
+    box-shadow: 10px 10px 5px grey;
+  }
+  .div1
+  {
+    width: 100%;
+    text-align: right;
+  }
