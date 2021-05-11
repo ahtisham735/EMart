@@ -1,4 +1,5 @@
 from django.views import View
+from django.db.models import Q
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect,HttpResponseNotFound
 from rest_framework.parsers import JSONParser
@@ -37,8 +38,6 @@ def cust_api(request,name='',email=''):
         cust_serializer=CustomerSerializer(customers,many=True)
         return JsonResponse(cust_serializer.data,safe=False)
     
-       
-
 def login(request):
     if request.method=="GET":
         if "username" in request.session:
@@ -77,7 +76,7 @@ def login(request):
                         request.session['username']=username
                         request.session['password']=password
                     request.session['user']=cust.username
-                    cart=Cart.objects.all() #cart Notification
+                    cart=Cart.objects.filter(user=cust)#cart Notification
                     #context setting
                     context={"user":cust,"notify":len(cart)}
                     return render(request,"Home_Module/Home.html",context=context)
@@ -89,7 +88,7 @@ def login(request):
 def home(request):
     user=isUserLogin(request,'user')
     if user is not None:
-        cart=Cart.objects.all()
+        cart=Cart.objects.filter(user=user)
         context={"user":user,"notify":len(cart)}
         return render(request,"Home_Module/Home.html",context=context)
     return render(request,"Home_Module/Home.html")
@@ -123,12 +122,12 @@ def search(request):
     query=request.GET['query']
     #filtering Products
     if query:
-        context={"products":Products.objects.filter(productName__icontains=query)or 
-        Products.objects.filter(brand__icontains=query)or Products.objects.filter(category__icontains=query) }
+        products=Products.objects.filter(Q(productName__icontains=query)|Q(brand__icontains=query)|Q(category__icontains=query))
+        context={"products":products }
     else:
         context={}
     if user is not None:
-        cart=Cart.objects.all()
+        cart=Cart.objects.filter(user=user)
         context['user']=user
         context['notify']=len(cart)
     return render(request,"Home_Module/products.html",context=context)
@@ -136,12 +135,6 @@ def search(request):
 def productDetail(request,id):
     product=Products.objects.get(pk=id)
     user=isUserLogin(request,'user')
-<<<<<<< HEAD
-    if user is not None:
-        return render(request,"Home_Module/productDetail.html",context={"user":user})
-    return render(request,"Home_Module/productDetail.html",context={"product":product,"rProd": relatedProd})
-=======
->>>>>>> 8480d9522ddf6af33386506be8d7e896ea5c6973
     if user is None:
         user=request.user
     if request.method=="GET":
@@ -154,7 +147,7 @@ def productDetail(request,id):
             relatedProd=relatedProd
         context={}
         if user is not None:
-            cart=Cart.objects.all()
+            cart=Cart.objects.filter(user=user)
             context={"product":product,"user":user,"relatedProd":relatedProd,"notify":len(cart)}
         context={"product":product,"rProd":relatedProd}
         return render(request,"Home_Module/productDetail.html",context=context)
@@ -207,7 +200,7 @@ def logout(request,username):
         cust=isUserLogin(request,"user")
         if cust is None and not user.is_social_user:
             return HttpResponseRedirect(reverse("Home_Module:signup"))
-        cart=Cart.objects.all()
+        cart=Cart.objects.filter(user=user)
         context={"user":user,"variable":"base.html", "notify":len(cart)}
         return render(request,"Home_Module/logout.html",context=context)            
     except User.DoesNotExist:
@@ -286,13 +279,26 @@ def cart(request):
         if user in User.objects.all():
             if not user.is_admin:
                 carts=Cart.objects.filter(user=user)
-                return render(request,"Home_Module/cart.html",context={"user":user,"carts":carts})
+                return render(request,"Home_Module/cart.html",context={"user":user,"carts":carts,"notify":len(carts)})
         messages.error(request,"You have to login first")
         return HttpResponseRedirect(reverse("Home_Module:signup"))
     return render(request,"Home_Module/cart.html")       
 def checkout(request):
     if request.method=='GET':
         return render(request,"Home_Module/checkout.html")
+def delete_cart(request,id):
+    user=isUserLogin(request,'user')
+    if user is None:
+        messages.error(request,"You have to login first")
+        return HttpResponseRedirect(reverse("Home_Module:signup"))
+    cart=Cart.objects.filter(user=user)
+    try:
+       
+        cart.filter(pk=id).delete()
+        return render(request,"Home_Module/cart.html",context={"user":user,"carts":cart,"notify":cart.count()})
+    except Cart.DoesNotExist:
+        messages.warning(request,"Product does not exist in your cart")
+        return render(request,"Home_Module/cart.html",context={"user":user,"carts":cart,"notify":len(cart)})
 
 class Verification(View):
      def get(self, request, uidb64, token):
