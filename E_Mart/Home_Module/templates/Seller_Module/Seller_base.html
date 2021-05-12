@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="{%static '/css/seller/home_Seller.css'%}">
   {%block css%}
   {%endblock%}
- 
+
   <link rel="stylesheet" href="{%static '/css/home/messages.css'%}"/>
   <link rel="stylesheet" href="{%static '/css/seller/product.css'%}"/>
   <link rel="stylesheet" href="{%static '/css/seller/AllProduct.css'%}"/>
@@ -47,7 +47,7 @@
   </div>
   <div class="sidebar">
     <ul>
-      <li><a href=""><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+      <li><a href="{%url 'Home_Module:seller_center' %}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
       <li class="dropdown"><a href=""><i class="fa fa-cog" aria-hidden="true"></i>Products<span>&rsaquo;</span></a>
         <ul>
             <li><a href="{%url 'Home_Module:add_product' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Add product</a></li>
@@ -79,6 +79,33 @@
     </div>
     {% endfor %}
     {%block body%}
+    <h1>All Product</h1>
+<div style="overflow-x:auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody >
+           {% for i in products %}
+            <tr>
+                <td>  {{i.productName}} </td>
+                <td>   {{i.category}} </td>
+                <td>   {{i.price}}  </td>
+                <td>
+                <a href="{%url 'Home_Module:edit_product' i.pk %}" class="button1 button2" role="button">Edit</a>
+                <a href="{%url 'Home_Module:delete_product' i.pk %}" class="button1 button3" role="button">Remove</a>
+                </td>
+             </tr>
+            {% endfor %}          
+        </tbody>
+    </table>
+</div>
     {%endblock%}
    
 </div>
