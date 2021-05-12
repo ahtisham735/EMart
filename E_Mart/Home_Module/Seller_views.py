@@ -13,7 +13,8 @@ def seller_center(request):
             return render(request,"Seller_Module/SellerSignUp.html",context={"username":request.session['usernameSeller'],"password":request.session['passwordSeller']})     
         else:
             return render(request,"Seller_Module/SellerSignUp.html")
-    return render(request,"Seller_Module/Seller_base.html",context={"user":user})
+    productList=Products.objects.all().filter(sellerId=user)
+    return render(request,"Seller_Module/Seller_base.html",context={"user":user,"products":productList})
 def seller_detail(request):
     seller=isUserLogin(request,'seller')
     if request.method=="GET":
@@ -28,7 +29,9 @@ def seller_detail(request):
         detail.account_no=request.POST['account']
         detail.address=request.POST['address']
         detail.save()
-        return render(request,"Seller_Module/Seller_base.html")
+        productList=Products.objects.all().filter(sellerId=seller)
+        return render(request,"Seller_Module/Seller_base.html",context={"user":seller,"products":productList})
+        #return render(request,"Seller_Module/Seller_base.html")
 def seller_logout(request):
     try:
         del request.session['seller']
@@ -85,31 +88,34 @@ def edit_product(request, pk):
     user=isUserLogin(request,'seller')
     if user is None:
         HttpResponseRedirect(reverse("Home_Module/seller_center"))
-    if request.method=="GET": 
-        prodct=Products.objects.get(id=pk) 
+    prodct=Products.objects.get(id=pk) 
+    if request.method=="GET":    
         form=AddProductForm(instance=prodct)
         return render(request,"Seller_Module/editproduct.html",context={"user":user,"usr":pk,"form":form}) 
         
     if request.method=="POST": 
-        prodct=Products.objects.get(id=pk)  
+        productList=Products.objects.all().filter(sellerId=user) 
         form=AddProductForm(request.POST,request.FILES,instance=prodct)
         if form.is_valid():
             prodct=form.save(commit=False)
             prodct.sellerId=user
             prodct.save()
             messages.success(request,"Product Updated Successfully")
-            return render(request,"Seller_Module/Seller_base.html",context={"user":user})
+            return render(request,"Seller_Module/Seller_base.html",context={"user":user,"products":productList})
+            #return render(request,"Seller_Module/Seller_base.html",context={"user":user})
         else:
             messages.success(request," Product Not Updated")
-        return render(request,"Seller_Module/Seller_base.html",context={"user":user})
+        return render(request,"Seller_Module/Seller_base.html",context={"user":user,"products":productList})
 
 def delete_product(request, pk):
     prodct=Products.objects.get(id=pk) 
     user=isUserLogin(request,'seller')
+    productList=Products.objects.all().filter(sellerId=user) 
     if user is None:
         HttpResponseRedirect(reverse("Home_Module/seller_center"))
     if request.method=="POST":
         prodct.delete() 
         messages.success(request," Successfully Deleted")
-        return render(request,"Seller_Module/Seller_base.html",context={"user":user})
+        return render(request,"Seller_Module/Seller_base.html",context={"user":user,"products":productList})     
+       # return render(request,"Seller_Module/Seller_base.html",context={"user":user})
     return render(request,"Seller_Module/deleteProduct.html",context={"user":user,"item":prodct})
