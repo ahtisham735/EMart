@@ -14,7 +14,7 @@
                             <th></th>
                             <th>Product</th>
                             <th>Quantity</th>
-                            <th>Price</th>
+                            <th>subtotal</th>
                         </tr>
                         {%for cart in carts%}
                         <input type="hidden"  value={{cart.id}} > 
@@ -44,7 +44,7 @@
 				        <h3>Order Summary</h3>
 				        <hr>
 				        <div class="cart-row">
-					        <div style="flex:2"><p>Subtotal (0 items)</p></div>
+					        <div style="flex:2"><p >Subtotal(<span id="noOfItems" style="font-size:16px;">0</span> items)</p></div>
 					        <div style="flex:1"><p id="sub">Rs:0</p></div>
 				        </div>
                         <div class="cart-row">
@@ -52,12 +52,12 @@
 					        <div style="flex:1"><p>RS. 0</p></div>
 				        </div>
                         <div>
-                        <input class= "CartInput" placeholder="Enter Your Shipping Code.."> </input>
+                        <input class= "CartInput" placeholder="Enter Your Voucher Code.."> </input>
                         <button class= "Checkoutbtn">APPLY</button>
                         </div>
                         <div class="cart-row">
 					        <div style="flex:2"><p>Total</p></div>
-					        <div style="flex:1"><p>RS. 0</p></div>
+					        <div style="flex:1"><p id="total_bill">RS:0</p></div>
 				        </div>
                         <div>
                         <button class= "proceed">PROCEED TO CHECKOUT</button>
