@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-	<div class="container">
-            <div class="row">
+	<div class="container cart-page">
+            <div class="row-6">
                 <div class="col-2">
-                     <div class="sizing2">
+                     <div class="">
                     <div class="box-element">
                     <div>
                         <a "{%url 'Home_Module:home'%}" class= "Cartbtn">&#x2190;Continue Shopping </a>
@@ -36,8 +36,8 @@
                     </div>
                     </div> 
                 </div>
-                <div class="col-2">
-                    <div class="sizing">
+                <div class="col-6">
+                    <div class="">
 			        <div class="box-element">
 				        <h3>Order Summary</h3>
 				        <hr>
@@ -58,7 +58,7 @@
 					        <div style="flex:1"><p>RS. 8200</p></div>
 				        </div>
                         <div>
-                        <button class= "proceed">PROCEED TO CHECKOUT</button>
+                        <a href="{%url 'Home_Module:checkout'%}" class= "proceed">PROCEED TO CHECKOUT</a>
                         </div>
 			        </div>
                     </div>

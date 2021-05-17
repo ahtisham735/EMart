@@ -4,12 +4,12 @@
     padding-left: 50px;
     padding-right: 50px;
 }
-  .row{
+.row-6{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-  }
-  .col-2{
+}
+  .col-6{
     flex-basis: 50%;
     min-width: 300px;
   }
@@ -91,8 +91,8 @@ td img{
 
 }
 .sizing{
-    width: 500px;
-    margin-left: 100px;
+    width: 300px;
+    margin-left: 50px;
 }
 .sizing2{
     width:700px;

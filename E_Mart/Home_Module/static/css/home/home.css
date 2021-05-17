@@ -353,13 +353,12 @@ footer hr{
 /*General CSS*/
 .container{
   max-width: 1330px;
-  margin: auto;
+  margin: 10px auto;
   padding-left: 25px;
   padding-right: 25px;
 }
 .row{
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
   justify-content: space-around;
 }
