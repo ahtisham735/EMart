@@ -14,7 +14,7 @@ def seller_center(request):
         else:
             return render(request,"Seller_Module/SellerSignUp.html")
     productList=Products.objects.all().filter(sellerId=user)
-    return render(request,"Seller_Module/Seller_base.html",context={"user":user,"products":productList})
+    return render(request,"Seller_Module/AllProduct.html",context={"user":user,"products":productList})
 def seller_detail(request):
     seller=isUserLogin(request,'seller')
     if request.method=="GET":
@@ -30,7 +30,7 @@ def seller_detail(request):
         detail.address=request.POST['address']
         detail.save()
         productList=Products.objects.all().filter(sellerId=seller)
-        return render(request,"Seller_Module/Seller_base.html",context={"user":seller,"products":productList})
+        return render(request,"Seller_Module/AllProduct.html",context={"user":seller,"products":productList})
         #return render(request,"Seller_Module/Seller_base.html")
 def seller_logout(request):
     try:
@@ -75,14 +75,6 @@ def seller_detail_update(request):
         detail.save()
         messages.success(request,"Updated")
         return HttpResponseRedirect(reverse("Home_Module:seller_center"))
-
-def all_product(request):
-    user=isUserLogin(request,'seller')
-    productList=Products.objects.all().filter(sellerId=user)
-    if user is None:
-        HttpResponseRedirect(reverse("Home_Module/seller_center"))
-    else:
-        return render(request,"Seller_Module/AllProduct.html",context={"user":user,"products":productList})
 
 def edit_product(request, pk):
     user=isUserLogin(request,'seller')

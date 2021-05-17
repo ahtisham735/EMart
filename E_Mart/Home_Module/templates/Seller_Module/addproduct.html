@@ -1,4 +1,8 @@
 {%extends 'Seller_Module/Seller_base.html'%}
+{%load static %}
+{%block css%}
+<link rel="stylesheet" href="{%static '/css/seller/product.css'%}"/>
+{%endblock%}
 {%block body%}
 <h1>Add a new product</h1>
 <form method="POST" action="{%url 'Home_Module:add_product'%}" enctype="multipart/form-data">

@@ -1,8 +1,10 @@
 {%extends 'Seller_Module/Seller_base.html'%}
 {%load static %}
-{%block body%}
 
-<!--
+{%block css%}
+<link rel="stylesheet" href="{%static '/css/seller/AllProduct.css'%}"/>
+{%endblock%}
+{%block body%}
 <h1>All Product</h1>
 <div style="overflow-x:auto;">
     <table>
@@ -30,5 +32,4 @@
         </tbody>
     </table>
 </div>
--->
 {%endblock%}

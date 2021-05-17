@@ -1,6 +1,7 @@
 {%extends 'Seller_Module/Seller_base.html'%}
 {%load static%}
 {%block css%}
+<link rel="stylesheet" href="{%static '/css/seller/deleteProduct.css'%}"/>
 <link rel="stylesheet" href="{%static '/css/seller/logout.css'%}"/>
 {%endblock%}
 {%block body%}
@@ -12,8 +13,8 @@
             {% csrf_token %}
             <div>
                 <h6>Are You Sure You Want to Log Out</h5>
-             <button id="resetbtn" type="submit"  class="btn">Log Out</button>
-             <a id="resetbtn" href="{%url 'Home_Module:seller_center'%}"  class="anchor">Cancel</a>
+             <button id="resetbtn" type="submit" class="btn buttonSubmit margin" >Log Out</button>
+             <a id="resetbtn" href="{%url 'Home_Module:seller_center'%}"  class="btn buttonCancel margin">Cancel</a>
         </form>
             </div>
     </div>

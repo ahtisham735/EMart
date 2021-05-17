@@ -83,6 +83,31 @@ class Cart(models.Model):
     user=models.ForeignKey(User,related_name="user",on_delete=models.CASCADE,null=True, blank=True)
     product=models.ForeignKey(Products,on_delete=models.CASCADE,related_name="products",null=True, blank=True)
     qty=models.PositiveIntegerField(default=1)
+class ShippingDetail(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    name=models.CharField(max_length=255)
+    email=models.EmailField(verbose_name="email",max_length=255,unique=False)
+    address=models.CharField(max_length=255)
+    contact=models.CharField(max_length=11)
+    state=models.CharField(max_length=255,default=None)
+    city=models.CharField(max_length=255)
+    zip_code=models.CharField(max_length=5)
+class Order(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="order_user")
+    is_paid=models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.id}'
+class OrderDetails(models.Model):
+    products=models.ForeignKey(Products,on_delete=models.CASCADE,related_name="product")
+    qty=models.PositiveIntegerField()
+    order=models.ForeignKey(Order,on_delete=models.CASCADE,related_name="order")
+
+
+
+
+
+
 
 
 

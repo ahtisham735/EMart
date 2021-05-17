@@ -1,5 +1,8 @@
 {%extends 'Seller_Module/Seller_base.html'%}
 {%load static %}
+{%block css%}
+<link rel="stylesheet" href="{%static '/css/seller/deleteProduct.css'%}"/>
+{%endblock%}
 {%block body%}
    
     <form id="form1" action="{%url 'Home_Module:delete_product' item.pk %}" method="POST">
@@ -8,7 +11,7 @@
         <h5> Are you sure you want to delete '{{item.productName}}'?</h5><br>  <br>
             <div class="div1"> 
                <a href="{%url 'Home_Module:seller_center' %}" class="btn buttonCancel">Cancel</a> 
-               <input class="btn buttonSubmit" type="submit" value="Submit">
+               <input class="btn buttonSubmit" type="submit" value="Confirm">
             </div>
     </form>
 {%endblock%} 

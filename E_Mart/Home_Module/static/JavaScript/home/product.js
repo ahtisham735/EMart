@@ -36,7 +36,7 @@
             
               calsubTotal(inputs[i].value)
             }
-          }
+        }
     });
     
     function calsubTotal(id)
@@ -47,14 +47,15 @@
         var sub=document.getElementById(`sub${id}`)
         var diff=parseInt(p[1])*parseInt(qty.value)-parseInt(sub.innerText)
         sub.innerText=parseInt(p[1])*parseInt(qty.value)
-      
-
-        calBill(id,diff)
+        var chkbox=document.getElementById(`${id}`)
+        if(chkbox.checked)
+            calBill(id,diff)
 
     
     }
     function calBill(id,diff=0)
     {
+     
         var chkbox=document.getElementById(`${id}`)
         var total_obj=document.getElementById("sub")
         var str=total_obj.innerText.split(':')
@@ -72,13 +73,18 @@
                 checkoutTotal=parseInt(sub)+parseInt(str[1])
             }
             else{
-                noOfItems.innerText=1+parseInt(noOfItems.innerText)
+                if(diff>0) //if the user has increased quantity 
+                    noOfItems.innerText=1+parseInt(noOfItems.innerText)
+                else       //if user has decreased quantity
+                    noOfItems.innerText=parseInt(noOfItems.innerText)-1
+
                  checkoutTotal=diff+parseInt(str[1])
 
             }           
         }
         else
         {
+        
             if(parseInt(noOfItems.innerText)-parseInt(qty.value)>=0)
                 noOfItems.innerText=parseInt(noOfItems.innerText)-parseInt(qty.value)
             checkoutTotal=parseInt(str[1])-parseInt(sub)
@@ -89,3 +95,4 @@
         totalBill.innerText="Rs:"+checkoutTotal
 
     }
+    
