@@ -7,11 +7,9 @@
 	<link rel="stylesheet" href="{%static '/css/seller/home_Seller.css'%}">
   {%block css%}
   {%endblock%}
-
+  
   <link rel="stylesheet" href="{%static '/css/home/messages.css'%}"/>
-  <link rel="stylesheet" href="{%static '/css/seller/product.css'%}"/>
-  <link rel="stylesheet" href="{%static '/css/seller/AllProduct.css'%}"/>
-  <link rel="stylesheet" href="{%static '/css/seller/deleteProduct.css'%}"/>
+ 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -47,11 +45,11 @@
   </div>
   <div class="sidebar">
     <ul>
-      <li><a href=""><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+      <li><a href="{%url 'Home_Module:seller_center' %}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
       <li class="dropdown"><a href=""><i class="fa fa-cog" aria-hidden="true"></i>Products<span>&rsaquo;</span></a>
         <ul>
             <li><a href="{%url 'Home_Module:add_product' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Add product</a></li>
-            <li><a href="{%url 'Home_Module:AllProduct' %}"><i class="fa fa-pencil" aria-hidden="true"></i>Manage Products</a></li>
+            
             
           </ul>
         
@@ -80,25 +78,8 @@
     {% endfor %}
     {%block body%}
     {%endblock%}
-   
-</div>
-    <div class="row" id="r1">
-      
-    </div>
-    <div class="categories">
-    <div class="small-Cat-container">
-      <div class="row">
-        <div class="col-3">
-            <img src=""/>
-            <h2></h2>
-        </div>
-    
-    </div>
-    
-    </div>
-</div>
 	<script  src="{%static  'javascript/seller/Seller.js' %}"></script>
-        <script  src="{%static  'javascript/home/SignUp.js' %}"></script>
+  <script  src="{%static  'javascript/home/SignUp.js' %}"></script>
 </body>
 </html>
        

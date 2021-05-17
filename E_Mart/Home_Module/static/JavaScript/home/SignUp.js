@@ -3,6 +3,7 @@ var usernameStatus=false
 var passwordStatus=false
 var cnfrmPasswordStatus=false
 var chkboxStatus=false
+var current=false
 
 loginSubmit=()=>{
   
@@ -184,7 +185,6 @@ handleResetChange=(id)=>{
     const val=document.getElementById(`${id}`)
     const element =document.getElementById(`${id}Error`)
     var resetbtn=document.getElementById('resetbtn')
-    var current=false
     if(val.value.length===0){
         element.innerHTML="It is a required field";
         if(id=="password"){
@@ -208,6 +208,7 @@ handleResetChange=(id)=>{
     {
         cnfrmPassword(val,'newPassword');
     }
+
     if(current&&passwordStatus&&cnfrmPasswordStatus)
     {
         resetbtn.disabled=false;  

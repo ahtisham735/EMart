@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from Home_Module.models import User,SellerDetail,Products,Cart
+from Home_Module.models import User,SellerDetail,Products,Cart,ShippingDetail,Order,OrderDetails
 # Register your models here.
 
 class CustomAdmin(UserAdmin):
@@ -28,7 +28,20 @@ class CartAdmin(admin.ModelAdmin):
     filter_horizontal=() 
     list_filter=()
     fieldsets=()
+class ShippingDetailAdmin(admin.ModelAdmin):
+    list_display=('pk','user','email')
+    search_fields=('pk','user')
+class OrderAdmin(admin.ModelAdmin):
+    list_display=('pk','user','is_paid')
+    search_fields=('pk','user')
+class OrderDetailsAdmin(admin.ModelAdmin):
+    list_display=('pk','products','qty','order')
+    search_fields=('pk','order')
+
 admin.site.register(Cart,CartAdmin)
 admin.site.register(User,CustomAdmin)
 admin.site.register(SellerDetail,SellerDetailRegister)
 admin.site.register(Products,ProductsAdmin)
+admin.site.register(ShippingDetail,ShippingDetailAdmin)
+admin.site.register(Order,OrderAdmin)
+admin.site.register(OrderDetails,OrderDetailsAdmin)

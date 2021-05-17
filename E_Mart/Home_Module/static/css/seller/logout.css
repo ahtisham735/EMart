@@ -20,46 +20,9 @@
   padding: 0 40px;
   box-sizing: content-box;
 }
-
-.btn,.anchor {
-  width: 25%;
-  height: 50px;
-  border: 1px solid;
-  border-radius: 25px;
-  margin-top: 50px;
-  font-size: 15px;
-
+.margin{
+  margin-top: 30px;
 }
-.btn {
- 
-  /*background: linear-gradient(to right, #6a1b9a, red);*/
-  background-color: cornflowerblue;
-  color: #e9f4fb;
- 
-}
-.btn:hover,.anchor:hover {
-  background-color: #3e8e41;
-}
-.btn:active {
-  background-color: red;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-.anchor {
-  /*background: linear-gradient(to right, #6a1b9a, pink);*/
-  background-color:gray;
-
-
-}
- 
-.anchor:active {
-
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-
-
-
 #logout {
   color: brown;
 }

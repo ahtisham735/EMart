@@ -16,6 +16,7 @@ from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeErro
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from .Serializer import CustomerSerializer
 from .utility_functions import isUserLogin
+import json
 # Create your views here.
 
 @csrf_exempt
@@ -281,13 +282,30 @@ def cart(request):
                 return render(request,"Home_Module/cart.html",context={"user":user,"carts":carts,"notify":len(carts)})
         messages.error(request,"You have to login first")
         return HttpResponseRedirect(reverse("Home_Module:signup"))
+    data=json.load(request)
+    request.session[user.username]=data
+    return render(request,"Home_Module/checkout.html")
 
 def checkout(request):
-    if request.method=='GET':
-        return render(request,"Home_Module/checkout.html")
+    user=isUserLogin(request,'user')
+    if user is None:
+        user=request.user
+    if user is None or not user.is_authenticated:
+        messages.error(request,"You have to login first to access this page")
+        return redirect(reverse("Home_Module:signup"))
+    if request.method=="GET":
+            if user.username in request.session:
+                return render(request,"Home_Module/shippingDetail.html",{"user":user})
+            else:
+                messages.info(request,"You haven't select any items to checkout")
+                return redirect(reverse("Home_Module:cart"))
+    
+    
 def delete_cart(request,id):
     user=isUserLogin(request,'user')
     if user is None:
+        user=request.user
+    if user is None and not user.is_authenticated:
         messages.error(request,"You have to login first")
         return HttpResponseRedirect(reverse("Home_Module:signup"))
     cart=Cart.objects.filter(user=user)

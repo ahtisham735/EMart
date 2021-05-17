@@ -27,6 +27,8 @@
     document.addEventListener('DOMContentLoaded',()=>{
  
         var id=document.getElementById('table');
+        if (id==null)
+            return
         inputs = id.getElementsByTagName("input")
               
         for(var i=0, len=inputs.length; i<len; i++){
@@ -34,7 +36,7 @@
             
               calsubTotal(inputs[i].value)
             }
-          }
+        }
     });
     
     function calsubTotal(id)
@@ -43,7 +45,54 @@
         var p=price.innerText.split(":")
         const qty=document.getElementById(`qty${id}`)
         var sub=document.getElementById(`sub${id}`)
+        var diff=parseInt(p[1])*parseInt(qty.value)-parseInt(sub.innerText)
         sub.innerText=parseInt(p[1])*parseInt(qty.value)
+        var chkbox=document.getElementById(`${id}`)
+        if(chkbox.checked)
+            calBill(id,diff)
+
     
+    }
+    function calBill(id,diff=0)
+    {
+     
+        var chkbox=document.getElementById(`${id}`)
+        var total_obj=document.getElementById("sub")
+        var str=total_obj.innerText.split(':')
+        var sub=document.getElementById(`sub${id}`).innerText
+        var checkoutTotal=0
+        var totalBill=document.getElementById("total_bill")
+        var noOfItems=document.getElementById("noOfItems")
+        const qty=document.getElementById(`qty${id}`)
+
+        if(chkbox.checked)
+        {
+           
+            if(diff===0){
+                noOfItems.innerText=parseInt(qty.value)+parseInt(noOfItems.innerText)
+                checkoutTotal=parseInt(sub)+parseInt(str[1])
+            }
+            else{
+                if(diff>0) //if the user has increased quantity 
+                    noOfItems.innerText=1+parseInt(noOfItems.innerText)
+                else       //if user has decreased quantity
+                    noOfItems.innerText=parseInt(noOfItems.innerText)-1
+
+                 checkoutTotal=diff+parseInt(str[1])
+
+            }           
+        }
+        else
+        {
+        
+            if(parseInt(noOfItems.innerText)-parseInt(qty.value)>=0)
+                noOfItems.innerText=parseInt(noOfItems.innerText)-parseInt(qty.value)
+            checkoutTotal=parseInt(str[1])-parseInt(sub)
+            if (checkoutTotal<0)
+                checkoutTotal=0          
+        }
+        total_obj.innerText="Rs:"+checkoutTotal
+        totalBill.innerText="Rs:"+checkoutTotal
+
     }
     
