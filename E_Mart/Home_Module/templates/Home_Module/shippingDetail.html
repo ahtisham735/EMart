@@ -1,24 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-	<h2>Billing Detail</h2>
-		<div class="checkout-page">
-			<div class="billing-detail">
-				<form class="checkout-form">
+		<input type="checkbox" id="show">
+		
+		<div class="checkout-page cart-page">
+			<div class="billing-detail ">
+				<form class="checkout-form" method="POST">
+					{%csrf_token%}
 					<h4>Shipping Information</h4>
 					<div class="inline-form">
 						<div class="form-group">
-						<label>First Name</label>
-						<input type="text" name="fname">
+							<label>First Name</label>
+							<input type="text" name="fname">
+							<span id="fname_error"></span>
 						</div>
 						<div class="form-group">
-						<label>Last Name</label>
-						<input type="text" name="lname">
+							<label>Last Name</label>
+							<input type="text" name="lname" id="lname" >
 						</div>		
 					</div>
 					<div class="form-group">
 						<label>Adress</label>
-						<input type="text" name="address">
+						<input type="text" name="address" id="address">
 					</div>
 					<div class="selection">
 					<div class="form-group">
@@ -38,22 +41,50 @@
 					</div>
 					<div class="selection">
 						<div class="form-group">
-						<label>Zip Code</label>
-						<input type="text" name="address">
+							<label>Zip Code</label>
+							<input type="text" name="zip" id="zip">
 						</div>
 					</div>
 					<h4>Contact Details</h4>
 					<div class="inline-form">
 						<div class="form-group">
-						<label>Email</label>
-						<input type="email" name="email">
+							<label>Email</label>
+							<input type="email" name="email" id="email" >
 						</div>
 						<div class="form-group">
-						<label>Phone Number</label>
-						<input type="phone" name="phone">
+							<label>Phone Number</label>
+							<input type="phone" name="phone" id="phone" >
 						</div>		
 					</div>
-
+					<button for="show" class="placeOrder">Place Order</button>
+				</form>
+			</div>
+		</div>
+		<div class="payement-page">
+			<div class="pay">
+				<label for="show" class="close fas fa-times"></label>
+				<h2>PAYMENT FORM</h2>
+				<form method="POST">
+					{%csrf_token%}
+					<h4>Account Information</h4>
+					<div class="i_group">
+						<div class="input-box">
+							<input type="text" placeholder="Card Number" required class="name">
+						</div>
+						<div class="input-box">
+							<input type="text" placeholder="Account Holder" required class="name">
+						</div>
+					</div>
+					<div class="i_group">
+						<div class="input-box">
+							<input type="date" placeholder="Expiration Date" required class="name">
+							<input type="text" placeholder="CVV" required class="name">
+						</div>
+					</div>
+					<div class="checking">
+					<input type="checkbox"><span>I acknowledge that my card information is saved in my <strong>E-Mart</strong> account.</span>
+					</div>
+					<button  class="placeOrder">Pay Now</button>
 				</form>
 			</div>
 		</div>
