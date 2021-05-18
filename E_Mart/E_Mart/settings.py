@@ -47,6 +47,7 @@ INSTALLED_APPS = [
      #to ensure only authorize domains can access our Api's
     'corsheaders',
     'reset_migrations',
+    
 
 
     #to use Allauth library
@@ -61,6 +62,7 @@ INSTALLED_APPS = [
 
     #local apps
     'Home_Module',
+    'shipping',
 ]
 #only White List domains can access our Api's
 CORS_ALLOWED_ORIGINS = [
@@ -87,10 +89,12 @@ ROOT_URLCONF = 'E_Mart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+       
         'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.template.context_processors.static',

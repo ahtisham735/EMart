@@ -1,0 +1,59 @@
+{% extends '../base.html' %}
+
+{% block body %}
+		<div class="checkout-page">
+			<div class="billing-detail">
+				<form class="checkout-form">
+					<h4 >Shipping Information</h4>
+					<div class="inline-form">
+						<div class="form-group">
+						<label>First Name</label>
+						<input type="text" name="fname">
+						</div>
+						<div class="form-group">
+						<label>Last Name</label>
+						<input type="text" name="lname">
+						</div>		
+					</div>
+					<div class="form-group">
+						<label>Adress</label>
+						<input type="text" name="address">
+					</div>
+					<div class="selection">
+					<div class="form-group">
+						<label>Country</label>
+						<select name="country" id="selc1" onchange="populate('selc1','selc2')">
+							<option value="">--select country--</option>
+							<option value="Pakistan">Pakistan</option>
+							<option value="China">China</option>
+							<option value="Turkey">Turkey</option>
+							<option value="Saudia">Saudia Arabia</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>City</label>
+						<select name="city" id="selc2"></select>
+					</div>
+					</div>
+					<div class="selection">
+						<div class="form-group">
+						<label>Zip Code</label>
+						<input type="text" name="address">
+						</div>
+					</div>
+					<h4>Contact Details</h4>
+					<div class="inline-form">
+						<div class="form-group">
+						<label>Email</label>
+						<input type="email" name="email">
+						</div>
+						<div class="form-group">
+						<label>Phone Number</label>
+						<input type="phone" name="phone">
+						</div>		
+					</div>
+
+				</form>
+			</div>
+		</div>
+{%endblock%}

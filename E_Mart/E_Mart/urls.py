@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('Home_Module.urls')),
+    path('shipping/',include('shipping.urls')),
     path('accounts/',include('allauth.urls')),	
     path('activate/<uidb64>/<token>',views.Verification.as_view(),name="activate"),
     path('reset_password/<uidb64>/<token>',views.reset_password,name="reset_password"),
