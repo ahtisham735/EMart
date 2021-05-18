@@ -88,3 +88,6 @@ function checkout()
         }
 
     }
+
+/* Error Messages */
+

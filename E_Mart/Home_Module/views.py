@@ -118,9 +118,14 @@ def forget(request):
 def contact(request):
     return render(request,"Home_Module/contact.html")
 
-def search(request):
+def search(request,heading=''):
+    print(heading)
     user=isUserLogin(request,'user')
-    query=request.GET['query']
+    query=None
+    if len(heading)!=0:
+        query=heading
+    else:
+        query=request.GET['query']
     #filtering Products
     if query:
         context={"products":Products.objects.filter(productName__icontains=query)or 

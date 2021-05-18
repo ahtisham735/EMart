@@ -13,6 +13,7 @@ urlpatterns=[
     path('contact',views.contact,name="contact"),
     path('productDetail/<int:id>',views.productDetail,name="productDetail"),
     path('search',views.search,name="search"),
+    path('search/<str:heading>',views.search,name="search"),
     path('cart/',views.cart,name="cart"),
     path('checkout/',views.checkout,name="checkout"),
     path('logout/<str:username>',views.logout,name="account_logout"),
