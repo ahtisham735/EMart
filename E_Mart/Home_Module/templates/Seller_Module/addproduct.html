@@ -4,11 +4,20 @@
 <link rel="stylesheet" href="{%static '/css/seller/product.css'%}"/>
 {%endblock%}
 {%block body%}
-<h1>Add a new product</h1>
+<h1>{{heading}}</h1>
 <form method="POST" action="{%url 'Home_Module:add_product'%}" enctype="multipart/form-data">
     {%csrf_token%}
-   {{form}}
+    {{form}}
+    <label >Product Name:</label>
+    {{ form.productName }}
+    <label >Brand Name:</label>
+    {{ form.brand }}
+    <label >Qunatity:</label>
+    {{ form.quantity }}
+    <label >Image1:</label>
+    <input type="file" name="image1" value="{{form.image1.url}}" class="input" autocomplete="off" accept="image/*" id="id_image1">
+    <p>aaskksa:{{form.instance.image1.url}}</p>
 
-    <button class="add">submit</button>
+    <button class="add">{{button}}</button>
 </form>
 {%endblock%}

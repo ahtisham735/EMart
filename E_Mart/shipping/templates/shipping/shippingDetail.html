@@ -1,10 +1,14 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends '../base.html' %}
+
 {% block body %}
 		<input type="checkbox" id="show">
 		<div class="checkout-page cart-page">
 			<div class="billing-detail ">
+<<<<<<< HEAD:E_Mart/Home_Module/templates/Home_Module/shippingDetail.html
 				<form class="checkout-form" id="GFG" method="POST" >
+=======
+				<form class="checkout-form" action="{%url 'shipping:shipping_detail%'}" method="POST">
+>>>>>>> ac8649803f81ffa45552b8396f20c6ddb062885b:E_Mart/shipping/templates/shipping/shippingDetail.html
 					{%csrf_token%}
 					<h4>Shipping Information</h4>
 					<div class="inline-form">

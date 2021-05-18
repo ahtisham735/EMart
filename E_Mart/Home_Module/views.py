@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.contrib import auth,messages
 from django.conf import settings
 from django.contrib.auth import update_session_auth_hash
-from Home_Module.models import User,SellerDetail,Products,Cart
+from Home_Module.models import User,SellerDetail,Products,Cart,SellerDetail
 from .email_handler import token_generator,send_link
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
@@ -118,9 +118,14 @@ def forget(request):
 def contact(request):
     return render(request,"Home_Module/contact.html")
 
-def search(request):
+def search(request,heading=''):
+    print(heading)
     user=isUserLogin(request,'user')
-    query=request.GET['query']
+    query=None
+    if len(heading)!=0:
+        query=heading
+    else:
+        query=request.GET['query']
     #filtering Products
     if query:
         context={"products":Products.objects.filter(productName__icontains=query)or 
@@ -295,7 +300,11 @@ def checkout(request):
         return redirect(reverse("Home_Module:signup"))
     if request.method=="GET":
             if user.username in request.session:
-                return render(request,"Home_Module/shippingDetail.html",{"user":user})
+                try:
+                    shpping=SellerDetail.objects.get(user=user)
+                    return HttpResponse('Payment page')
+                except SellerDetail.DoesNotExist:    
+                    return redirect(reverse("shipping:shipping_detail"))
             else:
                 messages.info(request,"You haven't select any items to checkout")
                 return redirect(reverse("Home_Module:cart"))

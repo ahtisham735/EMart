@@ -44,7 +44,7 @@ def add_product(request):
         HttpResponseRedirect(reverse("Home_Module/seller_center"))
     if request.method=="GET":
         form=AddProductForm()
-        return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form})
+        return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form,"heading":"Add a new Product","button":"Add Product"})
     else:
         form=AddProductForm(request.POST,request.FILES)
         if form.is_valid():
@@ -83,11 +83,11 @@ def edit_product(request, pk):
     prodct=Products.objects.get(id=pk) 
     if request.method=="GET":    
         form=AddProductForm(instance=prodct)
-        return render(request,"Seller_Module/editproduct.html",context={"user":user,"usr":pk,"form":form}) 
+        return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form,"heading":"Update product","button":"update"}) 
         
     if request.method=="POST": 
         productList=Products.objects.all().filter(sellerId=user) 
-        form=AddProductForm(request.POST,request.FILES,instance=prodct)
+        form=AddProductForm(request.POST,request.FILES)
         if form.is_valid():
             prodct=form.save(commit=False)
             prodct.sellerId=user
