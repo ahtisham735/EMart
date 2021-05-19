@@ -84,16 +84,7 @@ class Cart(models.Model):
     product=models.ForeignKey(Products,on_delete=models.CASCADE,related_name="products",null=True, blank=True)
     qty=models.PositiveIntegerField(default=1)
 
-class Order(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="order_user")
-    is_paid=models.BooleanField(default=False)
 
-    def __str__(self):
-        return f'{self.id}'
-class OrderDetails(models.Model):
-    products=models.ForeignKey(Products,on_delete=models.CASCADE,related_name="product")
-    qty=models.PositiveIntegerField()
-    order=models.ForeignKey(Order,on_delete=models.CASCADE,related_name="order")
 
 
 
