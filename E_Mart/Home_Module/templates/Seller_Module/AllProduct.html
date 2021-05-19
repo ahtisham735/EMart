@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{%static '/css/seller/AllProduct.css'%}"/>
 {%endblock%}
 {%block body%}
-<h1>All Product</h1>
+<h1 class="heading">Your Products</h1>
 <div style="overflow-x:auto;">
     <table>
         <thead>
@@ -13,7 +13,9 @@
                 <th>No.</th>
                 <th>Name</th>
                 <th>Category</th>
+                <th>Quantity</th>
                 <th>Price</th>
+                <th>Image</th>
                 <th></th>
             </tr>
         </thead>
@@ -22,10 +24,12 @@
             <tr>
                 <td>  {{i.productName}} </td>
                 <td>   {{i.category}} </td>
+                <td>   {{i.quantity}}  </td>
                 <td>   {{i.price}}  </td>
+                <td><img class="small-img" src="{{i.image1.url}}">  </td>
                 <td>
-                <a href="{%url 'Home_Module:edit_product' i.pk %}" class="button1 button2" role="button">Edit</a>
-                <a href="{%url 'Home_Module:delete_product' i.pk %}" class="button1 button3" role="button">Remove</a>
+                <a href="{%url 'Home_Module:edit_product' i.pk %}" class="btn button2" role="button">Edit</a>
+                <a href="{%url 'Home_Module:delete_product' i.pk %}" class="btn button3" role="button">Remove</a>
                 </td>
              </tr>
             {% endfor %}          

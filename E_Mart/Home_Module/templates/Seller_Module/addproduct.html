@@ -4,11 +4,54 @@
 <link rel="stylesheet" href="{%static '/css/seller/product.css'%}"/>
 {%endblock%}
 {%block body%}
-<h1>Add a new product</h1>
-<form method="POST" action="{%url 'Home_Module:add_product'%}" enctype="multipart/form-data">
+<h1>{{heading}}</h1>
+<form method="POST" {%if pk%} action="{%url 'Home_Module:edit_product' pk%}" {%else%} action="{%url 'Home_Module:add_product'%}" {%endif%} enctype="multipart/form-data">
+    
     {%csrf_token%}
-   {{form}}
+    <label >Product Name:</label>
+    {{ form.productName }}
+    <label >Brand Name:</label>
+    {{ form.brand }}
+    <label >Price:</label>
+    {{form.price}}
+    <label >Qunatity:</label>
+    {{ form.quantity }}
+    <label >Image1:</label>
+    {%if form.instance.image1.url is not None%}
+        <span class="margins">currently:
+        <a href="{{form.instance.image1.url}}">{{form.instance.image1.url}}</a>
+        </span>
+    {%endif%}
+   {{form.image1}}
+   <label >Image2:</label>
+   {%if form.instance.image2.url is not None%}
+   <span class="margins">currently:
+   <a href="{{form.instance.image2.url}}">{{form.instance.image2.url}}</a>
+   </span>
+    {%endif%}
+    {{form.image2}}
+    <label >Image3:</label>
+    {%if form.instance.image3.url is not None%}
+    <span class="margins">currently:
+    <a href="{{form.instance.image3.url}}">{{form.instance.image3.url}}</a>
+    </span>
+     {%endif%}
+     {{form.image3}}
+     <label >Image4:</label>
+     {%if form.instance.image4.url is not None%}
+     <span class="margins">currently:
+     <a href="{{form.instance.image4.url}}">{{form.instance.image4.url}}</a>
+     </span>
+      {%endif%}
+      {{form.image4}}
+    <label >category</label>
+    {{form.category}}
+    <label >Description:</label>
+    {{form.description}}
 
-    <button class="add">submit</button>
+
+
+
+    <button class="add">{{button}}</button>
 </form>
 {%endblock%}

@@ -44,9 +44,22 @@ def add_product(request):
         HttpResponseRedirect(reverse("Home_Module/seller_center"))
     if request.method=="GET":
         form=AddProductForm()
-        return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form})
+        return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form,"heading":"Add a new Product","button":"Add Product"})
     else:
         form=AddProductForm(request.POST,request.FILES)
+        if not 'image1' in request.FILES:
+            messages.error(request,"image1 is a requried filed")
+            return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form,"heading":"Add a new Product","button":"Add Product"})
+        if not 'image2' in request.FILES:
+            messages.error(request,"image2 is a requried filed")
+            return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form,"heading":"Add a new Product","button":"Add Product"})
+        if not 'image3' in request.FILES:
+            messages.error(request,"image3 is a requried filed")
+            return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form,"heading":"Add a new Product","button":"Add Product"})
+        if not 'image4' in request.FILES:
+            messages.error(request,"image4 is a requried filed")
+            return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form,"heading":"Add a new Product","button":"Add Product"})   
+  
         if form.is_valid():
             product=form.save(commit=False)
             product.sellerId=user
@@ -55,7 +68,7 @@ def add_product(request):
             return HttpResponseRedirect(reverse("Home_Module:seller_center"))
         else:
             messages.error(request,form.errors)
-            return HttpResponseRedirect(reverse("Home_Module:seller_center"))
+            return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form,"heading":"Add a new Product","button":"Add Product"})   
 
         
 
@@ -80,34 +93,41 @@ def edit_product(request, pk):
     user=isUserLogin(request,'seller')
     if user is None:
         HttpResponseRedirect(reverse("Home_Module/seller_center"))
-    prodct=Products.objects.get(id=pk) 
-    if request.method=="GET":    
-        form=AddProductForm(instance=prodct)
-        return render(request,"Seller_Module/editproduct.html",context={"user":user,"usr":pk,"form":form}) 
-        
-    if request.method=="POST": 
-        productList=Products.objects.all().filter(sellerId=user) 
-        form=AddProductForm(request.POST,request.FILES,instance=prodct)
-        if form.is_valid():
-            prodct=form.save(commit=False)
-            prodct.sellerId=user
-            prodct.save()
-            messages.success(request,"Product Updated Successfully")
-            return render(request,"Seller_Module/Seller_base.html",context={"user":user,"products":productList})
-            #return render(request,"Seller_Module/Seller_base.html",context={"user":user})
-        else:
-            messages.success(request," Product Not Updated")
-        return render(request,"Seller_Module/Seller_base.html",context={"user":user,"products":productList})
+    try:
+        prodct=Products.objects.get(id=pk) 
+        if request.method=="GET":    
+            form=AddProductForm(instance=prodct)
+            return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form,"heading":"Update product","button":"update","pk":pk}) 
+            
+        if request.method=="POST":      
+            form=AddProductForm(request.POST or None,request.FILES,instance=prodct)
+            if form.is_valid():
+                prodct=form.save(commit=False)
+                prodct.sellerId=user
+                prodct.save()
+                messages.success(request,"Product Updated Successfully")
+                return redirect(reverse("Home_Module:seller_center"))
+                #return render(request,"Seller_Module/Seller_base.html",context={"user":user})
+            else:
+                messages.success(request,form.errors)
+            return redirect(reverse("Home_Module:edit_product"))
+    except Products.DoesNotExist:
+        messages.error(request,"Product Does not Exist")
+        return redirect(reverse("Home_Module:seller_center"))
+
 
 def delete_product(request, pk):
-    prodct=Products.objects.get(id=pk) 
-    user=isUserLogin(request,'seller')
-    productList=Products.objects.all().filter(sellerId=user) 
-    if user is None:
-        HttpResponseRedirect(reverse("Home_Module/seller_center"))
-    if request.method=="POST":
-        prodct.delete() 
-        messages.success(request," Successfully Deleted")
-        return render(request,"Seller_Module/Seller_base.html",context={"user":user,"products":productList})     
-       # return render(request,"Seller_Module/Seller_base.html",context={"user":user})
-    return render(request,"Seller_Module/deleteProduct.html",context={"user":user,"item":prodct})
+    try:
+        prodct=Products.objects.get(id=pk) 
+        user=isUserLogin(request,'seller')
+        if user is None:
+            HttpResponseRedirect(reverse("Home_Module/seller_center"))
+        if request.method=="POST":
+            prodct.delete() 
+            messages.success(request," Successfully Deleted")
+            return redirect(reverse("Home_Module:seller_center"))
+    except Products.DoesNotExist:
+            messages.error(request,"Product Does not Exist")
+            return redirect(reverse("Home_Module:seller_center"))
+
+
