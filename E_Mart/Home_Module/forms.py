@@ -31,7 +31,7 @@ class AddProductForm(ModelForm):
         )
 
     )
-    image1=forms.CharField(label="Image1",required=True,
+    image1=forms.CharField(label="Image1",required=False,
         widget=forms.FileInput(
             attrs={"class":"input","autocomplete":"off","accept":"image/*"}
         )

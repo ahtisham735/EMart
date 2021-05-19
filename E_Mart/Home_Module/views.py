@@ -119,7 +119,6 @@ def contact(request):
     return render(request,"Home_Module/contact.html")
 
 def search(request,heading=''):
-    print(heading)
     user=isUserLogin(request,'user')
     query=None
     if len(heading)!=0:
@@ -288,8 +287,9 @@ def cart(request):
         messages.error(request,"You have to login first")
         return HttpResponseRedirect(reverse("Home_Module:signup"))
     data=json.load(request)
+    print(data)
     request.session[user.username]=data
-    return render(request,"Home_Module/checkout.html")
+    return JsonResponse("Succeed",safe=False)
 
 def checkout(request):
     user=isUserLogin(request,'user')

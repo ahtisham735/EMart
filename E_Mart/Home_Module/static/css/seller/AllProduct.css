@@ -42,6 +42,7 @@
 }
 
 table {
+  margin-top: 30px;
   border-collapse: collapse;
   width: 100%;
   background-color: #e6f2ff80;
@@ -69,3 +70,11 @@ tbody tr::before {
   text-align: center;
 }
 
+.small-img{
+  width: 70px;
+  height: 70px;
+}
+.heading{
+  margin-top: 10px;
+  margin-left: 30%;
+}
