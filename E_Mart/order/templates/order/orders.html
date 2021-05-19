@@ -1,0 +1,23 @@
+{%extends '../base.html'%}
+{% load static %}
+{%block css%}
+<link rel="stylesheet" href="{%static '/css/home/cart.css'%}"/>
+{%endblock%}
+{%block body%}
+<table>
+    <tr>
+        <th>Order id</th>
+        <th>Date</th>
+    </tr>
+    {%for order in orders%}
+    
+        <tr>
+            <td><a href="">{{order.id}}</a></td>
+            <td>{{order.date}}</td>
+        </tr>
+       
+    {%endfor%}
+
+
+</table>
+{%endblock%}

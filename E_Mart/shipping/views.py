@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from Home_Module.utility_functions import isUserLogin
 from .models import ShippingDetail
 # Create your views here.
@@ -17,6 +17,6 @@ def shipping_detail(request):
     zip_code=request.POST['zip']
     email=request.POST['email']
     phone=request.POST['phone']
-    detail=ShippingDetail.objects.create(name=name,address=address,city=city,zip_code=zip_code,country=country,email=email,phone=phone)
+    detail=ShippingDetail.objects.create(user=user,name=name,address=address,city=city,zip_code=zip_code,country=country,email=email,contact=phone)
     detail.save()
-    return HttpResponse('saved')
+    return redirect(reverse("Home_Module:checkout"))

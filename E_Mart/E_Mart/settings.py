@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     #local apps
     'Home_Module',
     'shipping',
+    'order'
 ]
 #only White List domains can access our Api's
 CORS_ALLOWED_ORIGINS = [

@@ -11,6 +11,8 @@ from django.contrib import auth,messages
 from django.conf import settings
 from django.contrib.auth import update_session_auth_hash
 from Home_Module.models import User,SellerDetail,Products,Cart,SellerDetail
+from order.models import Order,OrderDetails
+from shipping.models import ShippingDetail
 from .email_handler import token_generator,send_link
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
@@ -300,9 +302,16 @@ def checkout(request):
     if request.method=="GET":
             if user.username in request.session:
                 try:
-                    shpping=SellerDetail.objects.get(user=user)
-                    return HttpResponse('Payment page')
-                except SellerDetail.DoesNotExist:    
+                    shpping=ShippingDetail.objects.get(user=user)
+                    order=Order.objects.create(user=user)
+                    for order_detail in request.session[user.username]:
+                        product=Cart.objects.get(id=order_detail['cart id']).product
+                        qty=order_detail['quantity']
+                        product.quantity-=int(qty)
+                        product.save()
+                        order_detail_obj=OrderDetails.objects.create(order=order,qty=qty,products=product)
+                    return redirect(reverse("order:my_orders"))
+                except ShippingDetail.DoesNotExist:    
                     return redirect(reverse("shipping:shipping_detail"))
             else:
                 messages.info(request,"You haven't select any items to checkout")
