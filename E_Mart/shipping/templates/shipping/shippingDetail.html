@@ -2,10 +2,10 @@
 
 {% block body %}
 		<input type="checkbox" id="show">
-		
 		<div class="checkout-page cart-page">
 			<div class="billing-detail ">
-				<form class="checkout-form" action="{%url 'shipping:shipping_detail%'}" method="POST">
+
+				<form class="checkout-form" id="GFG" action="{%url 'shipping:shipping_detail%'}" method="POST">
 					{%csrf_token%}
 					<h4>Shipping Information</h4>
 					<div class="inline-form">
@@ -56,7 +56,9 @@
 							<input type="phone" name="phone" id="phone" >
 						</div>		
 					</div>
-					<button for="show" class="placeOrder">Place Order</button>
+					<a href="#" >
+					<label type="submit" for="show" class="placeOrder">Place Order</label>
+					</a>
 				</form>
 			</div>
 		</div>
@@ -64,7 +66,7 @@
 			<div class="pay">
 				<label for="show" class="close fas fa-times"></label>
 				<h2>PAYMENT FORM</h2>
-				<form method="POST">
+				<form >
 					{%csrf_token%}
 					<h4>Account Information</h4>
 					<div class="i_group">

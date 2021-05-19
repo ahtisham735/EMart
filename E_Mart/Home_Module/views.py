@@ -287,7 +287,6 @@ def cart(request):
         messages.error(request,"You have to login first")
         return HttpResponseRedirect(reverse("Home_Module:signup"))
     data=json.load(request)
-    print(data)
     request.session[user.username]=data
     return JsonResponse("Succeed",safe=False)
 
