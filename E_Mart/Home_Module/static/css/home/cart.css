@@ -55,6 +55,10 @@ td img{
     color:royalblue
   
 }
+.continue{
+  cursor: pointer;
+  margin: 20px auto;
+}
 .total-price{
     display:flex;
     justify-content: flex-end;
