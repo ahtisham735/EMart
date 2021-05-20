@@ -46,14 +46,18 @@
         const qty=document.getElementById(`qty${id}`)
         var sub=document.getElementById(`sub${id}`)
         var diff=parseInt(p[1])*parseInt(qty.value)-parseInt(sub.innerText)
+        if(qty.type!=="number"){
+            sub.innerText=parseInt(p[1])*parseInt(qty.innerText)
+            return
+        }
         sub.innerText=parseInt(p[1])*parseInt(qty.value)
         var chkbox=document.getElementById(`${id}`)
-        if(chkbox.checked)
-            calBill(id,diff)
+        if(chkbox!==null&&chkbox.checked)
+            calBill(id,diff,p[1])
 
     
     }
-    function calBill(id,diff=0)
+    function calBill(id,diff=0,price=0)
     {
      
         var chkbox=document.getElementById(`${id}`)
@@ -73,12 +77,9 @@
                 checkoutTotal=parseInt(sub)+parseInt(str[1])
             }
             else{
-                if(diff>0) //if the user has increased quantity 
-                    noOfItems.innerText=1+parseInt(noOfItems.innerText)
-                else       //if user has decreased quantity
-                    noOfItems.innerText=parseInt(noOfItems.innerText)-1
-
-                 checkoutTotal=diff+parseInt(str[1])
+                var noOfItemsChanged=diff/price
+                noOfItems.innerText=parseInt(noOfItems.innerText)+noOfItemsChanged
+                checkoutTotal=diff+parseInt(str[1])
 
             }           
         }

@@ -3,7 +3,7 @@ from .models import Order,OrderDetails
 
 # Register your models here.
 class OrderAdmin(admin.ModelAdmin):
-    list_display=('pk','user','is_paid','date')
+    list_display=('pk','user','is_paid','date','bill','is_delivered')
     search_fields=('pk','user')
 class OrderDetailsAdmin(admin.ModelAdmin):
     list_display=('pk','products','qty','order')

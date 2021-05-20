@@ -1,0 +1,34 @@
+{%extends '../base.html'%}
+{% load static %}
+{%block css%}
+<link rel="stylesheet" href="{%static '/css/home/cart.css'%}"/>
+{%endblock%}
+{%block body%}
+<table id="table">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+    </tr>
+    {%for order_detail in orders_details%}
+    <input type="hidden"  value={{order_detail.id}} > 
+    
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img  src="{{order_detail.products.image1.url}}">
+                    <div>
+                        <p>{{order_detail.products}}</p>
+                        <small id="p{{order_detail.id}}">Price:{{order_detail.products.price}}</small>
+                    </div>
+                </div>
+                </td>
+            <td id="qty{{order_detail.id}}">{{order_detail.qty}}</td>
+            <td id="sub{{order_detail.id}}"></td>
+        </tr>
+       
+    {%endfor%}
+
+
+</table>
+{%endblock%}

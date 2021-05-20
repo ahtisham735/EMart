@@ -303,13 +303,17 @@ def checkout(request):
             if user.username in request.session:
                 try:
                     shpping=ShippingDetail.objects.get(user=user)
+                    bill=0
                     order=Order.objects.create(user=user)
                     for order_detail in request.session[user.username]:
                         product=Cart.objects.get(id=order_detail['cart id']).product
                         qty=order_detail['quantity']
                         product.quantity-=int(qty)
+                        bill+=(int(qty)*product.price)
                         product.save()
                         order_detail_obj=OrderDetails.objects.create(order=order,qty=qty,products=product)
+                    order.bill=bill
+                    order.save()
                     return redirect(reverse("order:my_orders"))
                 except ShippingDetail.DoesNotExist:    
                     return redirect(reverse("shipping:shipping_detail"))

@@ -8,12 +8,24 @@
     <tr>
         <th>Order id</th>
         <th>Date</th>
+        <th>Bill</th>
+        <th>status</th>
+        <th>Confirmation</th>
+
     </tr>
     {%for order in orders%}
-    
         <tr>
-            <td><a href="">{{order.id}}</a></td>
+            <td><a href="{%url 'order:order_details' order.id%}">{{order.id}}</a></td>
             <td>{{order.date}}</td>
+            <td>{{order.bill}}</td>
+            {%if order.is_delivered%}
+                <td>Finished</td>
+                <td>Buyer has confirmed order received</td>
+            {%else%}
+                <td>Not delivered yet</td>
+                <td><a href="{%url 'order:order_delivered' order.id%}">confirm order received</a></td>
+            {%endif%}
+        
         </tr>
        
     {%endfor%}

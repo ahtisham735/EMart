@@ -6,6 +6,9 @@ class Order(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="order_user")
     is_paid=models.BooleanField(default=False)
     date=models.DateTimeField(verbose_name="placed on",auto_now_add=True)
+    is_delivered=models.BooleanField(verbose_name="status",default=False)
+    bill=models.PositiveIntegerField(default=0)
+    
 
     def __str__(self):
         return f'{self.id}'

@@ -54,7 +54,7 @@
                                 <li><a href="" /><i class="fa fa-pencil-square" aria-hidden="true"></i>Update Profile</li>
                                 <li><a href="{%url 'Home_Module:update_password' user.username%}" /><i class="fas fa-key"></i> Update Password</li>
                                 {%endif%}
-                                <li><a href="" /><i class="fa fa-shopping-cart"></i>My Orders</li>
+                                <li><a href="{%url  'order:my_orders'%}" /><i class="fa fa-shopping-cart"></i>My Orders</li>
                                 <li><a href="{%url 'Home_Module:account_logout' user.username%}" /><i class="fa fa-lock"></i>Logout</li>
                             </ul>
                         </li>
