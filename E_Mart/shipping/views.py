@@ -36,7 +36,7 @@ def update_shipping_detail(request):
             fname=Name.split(' ')[0]
             lname=Name.split(' ')[1]
             context={"details":details,"user":user,"fname":fname,"lname":lname}
-            return render(request,"shipping/UpdateshippingDetail.html",context=context)
+            return render(request,"shipping/ShippingDetail.html",context=context)
         if request.method=="POST":
        
             details.name=request.POST['fname'] + ' ' + request.POST['lname']
