@@ -78,7 +78,7 @@ function checkout()
             "X-CSRFToken": csrftoken },
             })
             .then(response=>{
-                window.location.href = "http://localhost:8000/checkout";
+                window.location.href = "http://localhost:8000/shipping/shipping/";
 
             })
             .catch(error=>{

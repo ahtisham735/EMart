@@ -1,4 +1,4 @@
-from .models import User
+from .models import User,Cart
 from django.contrib import auth,messages
 def isUserLogin(request,name):
     if name in request.session:
@@ -15,4 +15,14 @@ def permission_check(request):
         return None
     else:
         return user
+def cart_lenght(user):
+    try:
+        cart=Cart.objects.filter(user=user)
+        lenght=0
+        for p in cart:
+            lenght+=p.qty
+        return lenght
+    except:
+        return 0
+
      

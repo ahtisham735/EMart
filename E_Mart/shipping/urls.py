@@ -3,5 +3,6 @@ from . import views
 app_name="shipping"
 urlpatterns=[
             path('shipping/',views.shipping_detail,name="shipping_detail"),
-            path('shippingDetail',views.update_shipping_detail,name="update_details"),
+            path('shipping/<str:chk>',views.shipping_detail,name="shipping_detail"),
+           
         ]

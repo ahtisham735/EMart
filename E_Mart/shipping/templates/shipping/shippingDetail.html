@@ -1,33 +1,33 @@
 {% extends '../base.html' %}
 
 {% block body %}
-		<input type="checkbox" id="show">
 		<div class="checkout-page cart-page">
 			<div class="billing-detail ">
 
-				<form class="checkout-form"  action="{%url 'shipping:shipping_detail'%}" method="POST">
+				<form class="checkout-form" action="{%url 'shipping:shipping_detail'%}"  method="POST">
+					<input type="hidden" name='chk' value="{{chk}}">
 					{%csrf_token%}
 					<h4>Shipping Information</h4>
 					<div class="inline-form">
 						<div class="form-group">
 							<label>First Name</label>
-							<input type="text" name="fname">
+							<input type="text" name="fname" value="{{fname}}">
 							<span id="fname_error"></span>
 						</div>
 						<div class="form-group">
 							<label>Last Name</label>
-							<input type="text" name="lname" id="lname" >
+							<input type="text" name="lname" id="lname" value="{{lname}}">
 						</div>		
 					</div>
 					<div class="form-group">
 						<label>Adress</label>
-						<input type="text" name="address" id="address">
+						<input type="text" name="address" id="address" value="{{details.address}}">
 					</div>
 					<div class="selection">
 					<div class="form-group">
 						<label>Country</label>
-						<select name="country" id="selc1" onchange="populate('selc1','selc2')">
-							<option value="">--select country--</option>
+						<select name="country" id="selc1" onchange="populate('selc1','selc2')" >
+			
 							<option value="Pakistan">Pakistan</option>
 							<option value="China">China</option>
 							<option value="Turkey">Turkey</option>
@@ -36,58 +36,31 @@
 					</div>
 					<div class="form-group">
 						<label>City</label>
-						<select name="city" id="selc2"></select>
+						<select name="city" id="selc2">{{details.city}}</select>
 					</div>
 					</div>
 					<div class="selection">
 						<div class="form-group">
 							<label>Zip Code</label>
-							<input type="text" name="zip" id="zip">
+							<input type="text" name="zip" id="zip" value="{{details.zip_code}}">
 						</div>
 					</div>
 					<h4>Contact Details</h4>
 					<div class="inline-form">
 						<div class="form-group">
 							<label>Email</label>
-							<input type="email" name="email" id="email" >
+							<input type="email" name="email" id="email" value="{{details.email}}" >
 						</div>
 						<div class="form-group">
 							<label>Phone Number</label>
-							<input type="phone" name="phone" id="phone" >
+							<input type="phone" name="phone" id="phone" value="{{details.contact}}">
 						</div>		
 					</div>
 				
-					<button type="submit" for="show" class="placeOrder">Place Order</button>
+					<button type="submit" for="show" class="placeOrder">{{button}}</button>
 				
 				</form>
 			</div>
 		</div>
-		<div class="payement-page">
-			<div class="pay">
-				<label for="show" class="close fas fa-times"></label>
-				<h2>PAYMENT FORM</h2>
-				<form >
-					{%csrf_token%}
-					<h4>Account Information</h4>
-					<div class="i_group">
-						<div class="input-box">
-							<input type="text" placeholder="Card Number" required class="name">
-						</div>
-						<div class="input-box">
-							<input type="text" placeholder="Account Holder" required class="name">
-						</div>
-					</div>
-					<div class="i_group">
-						<div class="input-box">
-							<input type="date" placeholder="Expiration Date" required class="name">
-							<input type="text" placeholder="CVV" required class="name">
-						</div>
-					</div>
-					<div class="checking">
-					<input type="checkbox"><span>I acknowledge that my card information is saved in my <strong>E-Mart</strong> account.</span>
-					</div>
-					<button  class="placeOrder">Pay Now</button>
-				</form>
-			</div>
-		</div>
+		
 {%endblock%}
