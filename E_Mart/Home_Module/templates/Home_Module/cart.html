@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{%static '/css/home/cart.css'%}"/>
 {%endblock%}
 {% block body %}
+        {% if carts%}
 
         <div class="small-container cart-page">
             <div>
@@ -57,5 +58,18 @@
             <a onclick="checkout()" class= "Cartbtn">Proceed To Checkout &rarr;
             </a>
         </div>
-        </div> 
+        </div>
+        {%else%}
+            <div class="container">
+                <div class="logout-form">
+                    <div class="paragraph" >
+                        <h3>No Product is added into cart</h3>
+                    </div>
+                    <div>
+                        <a href="{%url 'Home_Module:home'%}" class="Cartbtn " style="margin-left:130px">Continue Shopping </a>
+                    </div>
+                </div>
+            </div> 
+
+        {%endif%}
 {% endblock %}
