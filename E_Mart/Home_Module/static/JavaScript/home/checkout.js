@@ -1,9 +1,11 @@
-function populate(s1,s2){
-    var s1=document.getElementById(s1);
-    var s2=document.getElementById(s2);
-	console.log(s1);
-	console.log(s2);
-    s2.innerHTML="";
+document.addEventListener('DOMContentLoaded',()=>{
+    populate()
+});
+
+function populate(){
+    var s1=document.getElementById('s1');
+    var s2=document.getElementById('s2');
+    console.log(s1)
     if(s1.value=="Pakistan"){
         var optionArray=['lahore|Lahore','karachi|Karachi','islamabad|Islamabad','peshawar|Peshawar'];
     }
