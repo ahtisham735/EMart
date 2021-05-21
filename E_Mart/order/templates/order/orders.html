@@ -1,37 +1,38 @@
 {%extends '../base.html'%}
 {% load static %}
 {%block css%}
+<link rel="stylesheet" href="{%static '/css/shipping/orders.css'%}"/>
 <link rel="stylesheet" href="{%static '/css/home/cart.css'%}"/>
 {%endblock%}
 {%block body%}
-<div class="small-container cart-page">
-<table>
-    <tr>
-        <th>Order id</th>
-        <th>Date</th>
-        <th>Bill</th>
-        <th>status</th>
-        <th>Confirmation</th>
+<div class="container cart-page">
+		{%for order in orders%}
+		<div class="col-lg-12">
+			<div class="box-element">
+                <div class="cart-row2">
+					<div style="flex:1;color:blue"><strong style="color:gray">Bill:</strong>{{order.bill}}</div>
+					<div style="flex:2;color:blue"><strong style="color:gray">Order Place On:</strong>{{order.date}}</div>
+					
+				</div>
+				<div class="cart-row">
+					<div style="flex:2"><strong>Oreder ID</strong></div>
+					<div style="flex:1"><strong>Status</strong></div>
+					<div style="flex:1"><strong>Recieved Or Not?</strong></div>
+				</div>
 
-    </tr>
-    {%for order in orders%}
-        <tr>
-            <td><a href="{%url 'order:order_details' order.id%}">{{order.id}}</a></td>
-            <td>{{order.date}}</td>
-            <td>{{order.bill}}</td>
-            {%if order.is_delivered%}
-                <td>Finished</td>
-                <td>Buyer has confirmed order received</td>
-            {%else%}
-                <td>Not delivered yet</td>
-                <td><a href="{%url 'order:order_delivered' order.id%}">confirm order received</a></td>
-            {%endif%}
-        
-        </tr>
-       
-    {%endfor%}
-
-
-</table>
-</div>
+				<div class="cart-row">
+					<div style="flex:2"><a href="{%url 'order:order_details' order.id%}"><p>{{order.id}}</p></a></div>
+					{%if order.is_delivered%}
+					<div style="flex:1"><p><a href="{%url 'order:order_details' order.id%}">Finished</p></a></div>
+					<div style="flex:1"><a class="orders-btn " href="">Recieved</a></div>
+					{%else%}
+					<div style="flex:1"><p>Not Delivered Yet</p></div>
+					<div style="flex:1"><a   class="orders-btn " href="{%url 'order:order_delivered' order.id%}">Recieved?</a></div>
+					{%endif%}
+				</div>
+			</div>
+			<br>
+		</div>
+        {%endfor%}
+    </div>
 {%endblock%}

@@ -5,19 +5,33 @@ document.addEventListener('DOMContentLoaded',()=>{
 function populate(){
     var s1=document.getElementById('s1');
     var s2=document.getElementById('s2');
-    console.log(s1)
+    var city=document.getElementById('city')
+    console.log(city.value)
     if(s1.value=="Pakistan"){
-        var optionArray=['lahore|Lahore','karachi|Karachi','islamabad|Islamabad','peshawar|Peshawar'];
+        var optionArray=['Lahore|Lahore','Karachi|Karachi','Islamabad|Islamabad','Peshawar|Peshawar'];
     }
 	else if(s1.value=="Turkey"){
-		var optionArray=['istanbul|Istanbul','ankara|Ankara','izmir|Izmir','bursa|Bursa'];
+		var optionArray=['Istanbul|Istanbul','Ankara|Ankara','Izmir|Izmir','Bursa|Bursa'];
 	}
+    var cityoption=document.createElement("option");
+        if(city.value!=null){
+		    cityoption.innerHTML=city.value;
+            s2.options.add(cityoption)
+        }
 	for(var option in optionArray){
 		var pair=optionArray[option].split("|");
 		var newoption=document.createElement("option");
-		newoption.value=pair[0];
+        if(pair[0]!=city.value && pair[1]!=city.value)
+        {
+            newoption.value=pair[0];
 		newoption.innerHTML=pair[1];
 		s2.options.add(newoption);
+
+        }
+
+        
+
+        
 	}
 
 
