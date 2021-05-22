@@ -4,24 +4,26 @@
 		<div class="checkout-page cart-page">
 			<div class="billing-detail ">
 
-				<form class="checkout-form" action="{%url 'shipping:shipping_detail'%}"  method="POST">
+				<form name="shipingDetail" class="checkout-form" action="{%url 'shipping:shipping_detail'%}" onsubmit="return shipValidation()"  method="POST">
 					<input type="hidden" name='chk' value="{{chk}}">
 					{%csrf_token%}
 					<h4>Shipping Information</h4>
 					<div class="inline-form">
 						<div class="form-group">
 							<label>First Name</label>
-							<input type="text" name="fname" value="{{fname}}">
-							<span id="fname_error"></span>
+							<input type="text" name="fname" onkeyup="validateInput(id,'fname_error')" value="{{fname}}">
+							<span class="error_style" id="fname_error"></span>
 						</div>
 						<div class="form-group">
 							<label>Last Name</label>
-							<input type="text" name="lname" id="lname" value="{{lname}}">
+							<input type="text" name="lname" id="lname" onkeyup="validateInput(id,'lname_error')" value="{{lname}}">
+							<span class="error_style" id="lname_error"></span>
 						</div>		
 					</div>
 					<div class="form-group">
 						<label>Adress</label>
-						<input type="text" name="address" id="address" value="{{details.address}}">
+						<input type="text" name="address" id="address" onkeyup="validateInput(id,'address_error')" value="{{details.address}}">
+						<span class="error_style" id="address_error"></span>
 					</div>
 					<div class="selection">
 					<div class="form-group">
@@ -33,6 +35,7 @@
 							<option value="Turkey">Turkey</option>
 							<option value="Saudia">Saudia Arabia</option>
 						</select>
+						<span class="error_style" id="country_error"></span>
 					</div>
 					<div class="form-group">
 						<label>City</label>
@@ -40,25 +43,27 @@
 						<input type="hidden" id='city' value="{{details.city}}">
 					</div>
 					</div>
-					<div class="selection">
-						<div class="form-group">
-							<label>Zip Code</label>
-							<input type="text" name="zip" id="zip" value="{{details.zip_code}}">
-						</div>
+				
+					<div class="form-group">
+						<label>Zip Code</label>
+						<input type="text" name="zip" id="zip" onkeyup="validateInput(id,'zip_error')" value="{{details.zip_code}}">
+						<span class="error_style" id="zip_error"></span>
 					</div>
 					<h4>Contact Details</h4>
 					<div class="inline-form">
 						<div class="form-group">
 							<label>Email</label>
-							<input type="email" name="email" id="email" value="{{details.email}}" >
+							<input type="email" name="email" id="email" onkeyup="validateInput(id,'email_error')" value="{{details.email}}" >
+							<span class="error_style" id="email_error"></span>
 						</div>
-						<div class="form-group">
+						<div class="form-group"> 
 							<label>Phone Number</label>
-							<input type="phone" name="phone" id="phone" value="{{details.contact}}">
+							<input type="phone" name="phone" id="phone" onkeyup="validateInput(id,'phone_error')" value="{{details.contact}}">
+							<span class="error_style" id="phone_error"></span>
 						</div>		
 					</div>
 				
-					<button type="submit" for="show" class="placeOrder">{{button}}</button>
+					<button id="ShipingSubBtn" type="submit" for="show" class="placeOrder">{{button}}</button>
 				
 				</form>
 			</div>
