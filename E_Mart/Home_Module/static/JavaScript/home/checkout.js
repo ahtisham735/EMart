@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded',()=>{
     populate()
 });
-
+function confirm_order(){
+    var a=confirm("Please confirm you have recevied the order")
+    return a
+}
 function populate(){
     var s1=document.getElementById('s1');
     var s2=document.getElementById('s2');

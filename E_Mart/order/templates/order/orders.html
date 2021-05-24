@@ -24,7 +24,7 @@
                 <td>Buyer has confirmed order received</td>
             {%else%}
                 <td>Not delivered yet</td>
-                <td><a href="{%url 'order:order_delivered' order.id%}">confirm order received</a></td>
+                <td><a onclick="return confirm_order()" href="{%url 'order:order_delivered' order.id%}">confirm order received</a></td>
             {%endif%}
         
         </tr>
