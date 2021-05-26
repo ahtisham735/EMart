@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser,BaseUserManager
+from django.db.models.aggregates import Avg
+from django.forms.models import ModelForm
 # Create your models here.
 
 #for creating users
@@ -79,11 +81,36 @@ class Products(models.Model):
     description=models.CharField(max_length=255,blank=False,default=None)
     def __str__(self):
         return self.productName
+    def averagereview(self):
+       total = sum(int(review['rate']) for review in self.reviews.values())
+       return total/self.reviews.count()
+    # def averagereview(self):
+    #     reviews = ProductReview.objects.filter(product=self).aggregate(average=Avg('rate'))
+    #     avg=0
+    #     if reviews["average"] is not None:
+    #         avg=float(reviews["average"])
+    #     return avg
+    
 class Cart(models.Model):
     user=models.ForeignKey(User,related_name="user",on_delete=models.CASCADE,null=True, blank=True)
     product=models.ForeignKey(Products,on_delete=models.CASCADE,related_name="products",null=True, blank=True)
     qty=models.PositiveIntegerField(default=1)
 
+class ProductReview(models.Model):
+    products = models.ForeignKey(Products, related_name='reviews',on_delete=models.CASCADE)
+    users = models.ForeignKey(User, related_name='Userreviews',on_delete=models.CASCADE)
+    subject = models.CharField(max_length=50, blank=True,null=True)
+    content = models.TextField(blank=True,null=True)
+    rate = models.IntegerField(default=1)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.subject
+        
+class ProductReviewForm(ModelForm):
+    class Meta:
+        model = ProductReview
+        fields = ['subject', 'content', 'rate']
 
 
 

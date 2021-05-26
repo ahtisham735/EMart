@@ -23,12 +23,14 @@
                 </p>
                 <h4 class="productsH4">{{product.productName}}</h4>
                 <div class="rating">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <label class="fa fa-star {% if product.averagereview >= 1 %} true-color {%else%} false-color{% endif %}"></label>
+                    <label class="fa fa-star {% if product.averagereview >= 2 %} true-color {%else%} false-color{% endif %}"></label>
+                    <label class="fa fa-star {% if product.averagereview >= 3 %} true-color {%else%} false-color{% endif %}"></label>
+                    <label class="fa fa-star {% if product.averagereview >= 4 %} true-color {%else%} false-color{% endif %}"></label>
+                    <label class="fa fa-star {% if product.averagereview >= 5 %} true-color {%else%} false-color{% endif %}"></label>
+                    <p>{{product.averagereview}}</p>
                 </div>
+                
                 <p>{{product.price}}</p>
             </div>
             {%endfor%}

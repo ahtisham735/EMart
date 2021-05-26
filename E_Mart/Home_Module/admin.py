@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from Home_Module.models import User,SellerDetail,Products,Cart
+from Home_Module.models import ProductReview, User,SellerDetail,Products,Cart
 # Register your models here.
 
 class CustomAdmin(UserAdmin):
@@ -30,8 +30,13 @@ class CartAdmin(admin.ModelAdmin):
     fieldsets=()
 
 
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['subject', 'content', 'date_added']
+    readonly_fields = ['rate','subject', 'content','products','users']
+
 
 admin.site.register(Cart,CartAdmin)
+admin.site.register(ProductReview,ReviewAdmin)
 admin.site.register(User,CustomAdmin)
 admin.site.register(SellerDetail,SellerDetailRegister)
 admin.site.register(Products,ProductsAdmin)

@@ -1,3 +1,4 @@
+from datetime import date
 from django.views import View
 from django.db.models import Q
 from django.shortcuts import render,redirect
@@ -10,7 +11,7 @@ from django.urls import reverse
 from django.contrib import auth,messages
 from django.conf import settings
 from django.contrib.auth import update_session_auth_hash
-from Home_Module.models import User,SellerDetail,Products,Cart,SellerDetail
+from Home_Module.models import ProductReview, User,SellerDetail,Products,Cart,SellerDetail,ProductReviewForm
 from order.models import Order,OrderDetails
 from shipping.models import ShippingDetail
 from .email_handler import token_generator,send_link
@@ -137,10 +138,12 @@ def search(request,heading=''):
         cart=Cart.objects.filter(user=user)
         context['user']=user
         context['notify']=len(cart)
+    
     return render(request,"Home_Module/products.html",context=context)
     
 def productDetail(request,id):
     product=Products.objects.get(pk=id)
+    comments=ProductReview.objects.all().filter(products=product)
     user=isUserLogin(request,'user')
     if user is None:
         user=request.user
@@ -155,8 +158,9 @@ def productDetail(request,id):
         context={}
         if user is not None:
             cart=Cart.objects.filter(user=user)
-            context={"product":product,"user":user,"relatedProd":relatedProd,"notify":len(cart)}
-        context={"product":product,"rProd":relatedProd}
+            context={"product":product,"comment":comments,"user":user,"relatedProd":relatedProd,"notify":len(cart)}
+        context={"product":product,"comment":comments,"user":user,"rProd":relatedProd}
+       
         return render(request,"Home_Module/productDetail.html",context=context)
     if request.method=="POST":   
         if not user in User.objects.all():
@@ -356,3 +360,27 @@ class Verification(View):
             pass
 
         return redirect('/')
+def addComment(request, id):
+    url = request.META.get('HTTP_REFERER')
+    product=Products.objects.get(pk=id)
+    user=isUserLogin(request,'user')
+
+    if user is None:
+        user=request.user
+
+    if request.method == 'POST':
+         form = ProductReviewForm(request.POST) 
+         if form.is_valid():
+             data = ProductReview()
+             data.subject= form.cleaned_data['subject']
+             data.content= form.cleaned_data['content']
+             data.rate = form.cleaned_data['rate']
+             data.products =product
+            # // curent=request.user
+             data.users = user
+             data.save()
+             messages.success(request,"Succesffuly add")
+
+    
+             
+    return HttpResponseRedirect(url)
