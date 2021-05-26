@@ -11,7 +11,6 @@ def permission_check(request):
     if user is None:
         user=request.user
     if not user.is_authenticated or user.is_admin:
-        messages.error(request,"You must login first to access this page")
         return None
     else:
         return user

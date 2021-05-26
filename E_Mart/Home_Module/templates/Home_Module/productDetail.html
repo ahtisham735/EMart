@@ -32,6 +32,7 @@
             <h1>{{product.productName}} by {{product.brand}} </h1>
             <h3>Price:{{product.price}} rupees</h3><br>
             <h3>Product Details<i class="fa fa-indent"></i></h3>
+            <h3>Available Quantity:{{product.quantity}}</h3>
             <br>
             <p>{{product.description}}</p>
             <form method="POST" action="{%url 'Home_Module:productDetail' product.id %}">

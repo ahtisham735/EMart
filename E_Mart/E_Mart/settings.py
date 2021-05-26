@@ -164,7 +164,7 @@ MEDIA_URL='/Images/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
-MEDIA_ROOT=os.path.join(BASE_DIR,'Home_Module/static/Images')
+MEDIA_ROOT=os.path.join(BASE_DIR,'Images')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

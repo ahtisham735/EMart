@@ -1,3 +1,11 @@
+var PhoneNoStatus=true
+var zipStatus=true
+
+var CardNoStatus=false
+var CvvStatus=false
+var holdrStatus=false
+var countryStatus=false
+
 document.addEventListener('DOMContentLoaded',()=>{
     populate()
 });
@@ -5,22 +13,200 @@ function confirm_order(){
     var a=confirm("Please confirm you have recevied the order")
     return a
 }
+
+function validateInput(id, er)
+ {
+    const val=document.getElementById(`${id}`)
+    const element =document.getElementById(`${er}`)
+    var numbers = /^[0-9]+$/;
+    if(id=='phone'){
+        if(val.value.match(numbers))
+        {
+            element.innerHTML=""
+            PhoneNoStatus=true
+        }     
+        else
+        {
+            PhoneNoStatus=false
+            element.innerHTML="Enter Digits only"
+        }
+    }
+    if(id=='zip'){
+        if(val.value.match(numbers))
+        {
+            element.innerHTML=""
+            zipStatus=true
+        }     
+        else
+        {
+            zipStatus=false
+            element.innerHTML="Enter Digits only"
+        }
+    }
+    if(id=="email")
+    {
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if(!filter.test(val.value)){
+            element.innerHTML="invalid email";             
+            emailStatus=false   
+        }
+        else
+        {
+            emailStatus=true; 
+            element.innerHTML="";
+        }
+    }
+    if(id=='fname'){
+        element.innerHTML=""
+    }
+    if(id=='lname'){
+        element.innerHTML=""
+    }
+    if(id=='address'){
+        element.innerHTML=""
+    }
+    if(PhoneNoStatus && zipStatus)
+    {
+        document.getElementById("ShipingSubBtn").disabled=false;  
+    }
+    else
+    {
+        document.getElementById("ShipingSubBtn").disabled=true; 
+    }
+   
+ }
+
+ 
+shipValidation=()=>{
+    var firstName = document.forms["shipingDetail"]["fname"].value;
+    var lastName = document.forms["shipingDetail"]["lname"].value;
+    var adddres = document.forms["shipingDetail"]["address"].value;
+    var phoneN=document.forms["shipingDetail"]["phone"].value
+    var zipcod = document.forms["shipingDetail"]["zip"].value;
+    var emailAdd = document.forms["shipingDetail"]["email"].value;
+    
+    var fnEror=document.getElementById("fname_error")
+    var lnEror=document.getElementById("lname_error")
+    var addEror=document.getElementById("address_error")
+    var phnEror=document.getElementById("phone_error")
+    var emailEror=document.getElementById("email_error")
+    var zipEror=document.getElementById("zip_error")
+    var countryError=document.getElementById("country_error")
+
+   
+   
+
+    if (firstName == "" || firstName==null) {
+      fnEror.innerHTML="first name is required "
+      return false;
+    }
+    else
+    {
+        fnEror.innerHTML=""
+    }
+    if (lastName == "" || lastName==null) {
+        lnEror.innerHTML="Lastname is required"
+        return false;
+    }
+    else
+    {
+        lnEror.innerHTML=""
+    }
+    if (adddres == "" || adddres==null) {
+        addEror.innerHTML="Address is required"
+        return false;
+    }
+    else
+    {
+        addEror.innerHTML=""
+    }
+    if (countryStatus) {
+        countryError.innerHTML=""
+    }
+    else
+    {   
+        countryError.innerHTML="Select Country please!"
+        return false; 
+    }
+    if(zipcod.length!=5)
+    {
+        zipEror.innerHTML="Zip length should be 5."
+        return false
+    }
+    else
+    {
+        zipEror.innerHTML=""
+    }
+    if(phoneN.length!=11)
+    {
+        phnEror.innerHTML="Phone length should be 11."
+        return false
+    }
+    else
+    {
+        phnEror.innerHTML=""
+    }
+   
+    if (emailAdd == "" || emailAdd==null) {
+        emailEror.innerHTML="Email is required "
+        return false;
+    }
+    else
+    {
+        emailEror.innerHTML=""
+    }
+      return true
+}
+
 function populate(){
     var s1=document.getElementById('s1');
     var s2=document.getElementById('s2');
-    console.log(s1)
+    var city=document.getElementById('city')
+    var countryError=document.getElementById("country_error")
+    console.log(city.value)
     if(s1.value=="Pakistan"){
-        var optionArray=['lahore|Lahore','karachi|Karachi','islamabad|Islamabad','peshawar|Peshawar'];
+        var optionArray=['Lahore|Lahore','Karachi|Karachi','Islamabad|Islamabad','Peshawar|Peshawar'];
+        countryStatus=true
+        countryError.innerHTML=""
     }
 	else if(s1.value=="Turkey"){
-		var optionArray=['istanbul|Istanbul','ankara|Ankara','izmir|Izmir','bursa|Bursa'];
+		var optionArray=['Istanbul|Istanbul','Ankara|Ankara','Izmir|Izmir','Bursa|Bursa'];
+        countryStatus=true
+        countryError.innerHTML=""
 	}
+    else if(s1.value=="Saudia"){
+        var optionArray=['riyadh|Riyadh','jeddah|Jeddah','makkah|Makkah','abuk|Tabuk'];
+        countryStatus=true
+        countryError.innerHTML=""
+    }
+	else if(s1.value=="China"){
+		var optionArray=['shanghai|Shanghai','tianjin|Tianjin','shenzhen|Shenzhen','shenyang |Shenyang '];
+        countryStatus=true
+        countryError.innerHTML=""
+	}
+    else
+    {
+        countryStatus=false
+    }
+
+    var cityoption=document.createElement("option");
+        if(city.value!=null){
+		    cityoption.innerHTML=city.value;
+            s2.options.add(cityoption)
+        }
 	for(var option in optionArray){
 		var pair=optionArray[option].split("|");
 		var newoption=document.createElement("option");
-		newoption.value=pair[0];
-		newoption.innerHTML=pair[1];
-		s2.options.add(newoption);
+        if(pair[0]!=city.value && pair[1]!=city.value)
+        {
+            newoption.value=pair[0];
+		    newoption.innerHTML=pair[1];
+	    	s2.options.add(newoption);
+        }
+
+        
+
+        
 	}
 
 
@@ -71,6 +257,19 @@ function checkout()
             {
 
                 const qty=document.getElementById(`qty${chkboxes[i].id}`)
+        
+                if (parseInt(qty.max)<parseInt(qty.value))
+                {
+                    var name=document.getElementById(`name${chkboxes[i].id}`).innerText
+                    var error=document.getElementById("checkoutError")
+                    if (qty.max==0)
+                        error.innerHTML="Dear Customer,"+name+" is not available at the moment"
+                    else if(qty.max==1)
+                        error.innerHTML="Only "+qty.max+" items of "+name+" is available"
+                    else
+                        error.innerHTML="Only "+qty.max+" items of "+name+" is available"
+                    return 
+                }
                 var order={"cart id":chkboxes[i].id,"quantity":qty.value}
                 orders.push(order)     
             }

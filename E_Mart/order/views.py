@@ -11,7 +11,7 @@ def my_orders(request):
    if user is None:
       return redirect(reverse("Home_Module:signup"))
    if request.method=="GET":
-      orders=Order.objects.filter(user=user)
+      orders=Order.objects.filter(user=user).order_by('-date')
       return render(request,"order/orders.html",{"user":user,"orders":orders})
 def order_details(request,id):
    user=permission_check(request)
@@ -46,7 +46,7 @@ def seller_orders(request):
       ids=[]
       for order in ordersDetails:
          ids.append(order.order.id)
-      orders=Order.objects.filter(pk__in=ids)
+      orders=Order.objects.filter(pk__in=ids).order_by('-date')
       return render(request,"order/seller_orders.html",context={"user":user,"orders":orders})
 def seller_orders_details(request,id):
    user=isUserLogin(request,'seller')

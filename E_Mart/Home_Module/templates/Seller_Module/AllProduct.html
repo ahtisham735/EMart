@@ -19,13 +19,14 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody  class="tableBody">
+        <tbody class="tableBody">
            {% for i in products %}
             <tr>
                 <td>  {{i.productName}} </td>
                 <td>   {{i.category}} </td>
                 <td>   {{i.quantity}}  </td>
                 <td>   {{i.price}}  </td>
+                {{i.image1.url}}
                 <td><img class="small-img" src="{{i.image1.url}}">  </td>
                 <td>
                 <a href="{%url 'Home_Module:edit_product' i.pk %}" class="btn button2" role="button">Edit</a>

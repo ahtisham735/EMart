@@ -64,17 +64,17 @@ class SellerDetail(models.Model):
     def __str__(self):
         return self.cnic
 
-category_choice=[('men',"Men's Fashion"),('women',"Women's Fashion"),('WBJ',"Watches,Bags & Jewelery")]
+category_choice=[('men',"Men's Fashion"),('women',"Women's Fashion"),('WBJ',"Watches,Bags & Jewelery"),('electronics','Electronic Devices'),('accessories','Electronic Accessories'),('sports','Sports'),('home','Home Appliances')]
 class Products(models.Model):
     sellerId=models.ForeignKey(User,on_delete=models.CASCADE,related_name="sellerId",null=True, blank=True)
     productName=models.CharField(max_length=255,blank=False)  
     brand=models.CharField(max_length=255,blank=False)
     price=models.PositiveIntegerField(blank=False)
     quantity=models.PositiveIntegerField(blank=False)
-    image1=models.ImageField(upload_to='products/images',default=None)
-    image2=models.ImageField(upload_to='products/images',default=None)
-    image3=models.ImageField(upload_to='products/images',default=None)
-    image4=models.ImageField(upload_to='products/images',default=None)
+    image1=models.ImageField(upload_to='products/images')
+    image2=models.ImageField(upload_to='products/images')
+    image3=models.ImageField(upload_to='products/images')
+    image4=models.ImageField(upload_to='products/images')
     category=models.CharField(max_length=255,choices=category_choice)
     description=models.CharField(max_length=255,blank=False,default=None)
     def __str__(self):
