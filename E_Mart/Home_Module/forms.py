@@ -1,6 +1,7 @@
 from django import forms
+from django.db.models import fields
 from django.forms import ModelForm
-from Home_Module.models import Products
+from Home_Module.models import ProductReview, Products
 class AddProductForm(ModelForm):
     productName=forms.CharField(label="Product Name",
         widget=forms.TextInput(
@@ -68,3 +69,7 @@ class AddProductForm(ModelForm):
     # productName=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={"placeholder":"Ex Red T-Shirt"}))
     # category=forms.CharField(max_length=100,required=True,widget=forms.Select(choices=category_choice))
     # #cnfrm_passwd=forms.CharField(max_length=100,required=True,widget=forms.PasswordInput(attrs={'placeholder':"confirm new password",'id':'cnfrm_passwd'}))
+class ProductReviewForm(ModelForm):
+    class Meta:
+        model = ProductReview
+        fields = ['subject', 'content', 'rate']

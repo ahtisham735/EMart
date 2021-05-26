@@ -1,3 +1,175 @@
+
+/* ------Product detail CSS-------- */
+.true-color
+{
+    color: rgb(35, 202, 110);
+}
+.false-color{
+    color: rgb(124, 128, 126);
+}
+.rating .true-color
+{
+    color: rgb(35, 202, 110);
+}
+.rating .false-color
+{
+    color: rgb(124, 128, 126);
+}
+.pull-right
+{
+    transform: rotateY(180deg);
+}
+.review-top span, a
+{
+    color: black;
+}
+.user-date
+{
+    display: inline;
+    color: black;
+}
+.review-top p
+{
+    color: black;
+}
+.break
+{
+    text-align: center;
+}
+.dat
+{
+    margin-left: 40px;
+}
+.stars
+{
+    position: absolute;
+    display: flex;
+    margin: 5px;
+    transform:rotateY(180deg);
+} 
+.stars input
+{
+    display: none;
+} 
+.stars label
+{
+   display: block;
+   cursor: pointer;
+   width: 50px;
+}
+.stars label:before
+{
+   content: '\f005';
+   font-family: fontAwesome;
+   position: relative;
+   display: block;
+   font-size: 25px;
+   color: rgb(124, 128, 126);
+} 
+.stars label:after
+{
+   content: '\f005';
+   font-family: fontAwesome;
+   position: absolute;
+   display: block;
+   font-size: 25px;
+   color: #1f9cff;
+   top: 0;
+   opacity: 0;
+   transition: .5s;
+   text-shadow: 0 2px 5px rgba(0,0,0,.5);
+} 
+.stars label:hover:after,
+.stars label:hover ~ label:after,
+.stars input:checked ~ label:after
+{
+    opacity: 1;
+}
+.reviews{
+    flex-basis: 50%;
+    padding:10px;
+    min-width: 200px;
+    width: auto;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+}
+
+.review-top
+{
+    position: relative;
+}
+.review-rating{
+    position: absolute;
+    right: 2%;
+    top: 5%;
+}
+.review-Display
+{
+    /* background: #cfe4ee; */
+    display: block;
+    padding:10px;
+    border-style: ridge;
+    min-width: 300px;
+    width: 50%;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+}
+.review-Display p{
+    width: 100%;
+}
+.reviews  .subject-input {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 10px;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.reviews textarea {
+    display: block;
+    width: 100%;
+    margin: 10px;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    color: #495057;
+    overflow: hidden;
+    resize: both;
+    min-height: 60px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    line-height: 20px;
+  }
+
+.row-Review{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: top;
+    justify-content: space-around;
+}
+.review-btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    margin-top: 40px;
+    margin-left: 10px;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: .2rem;
+}
+
 .row-2{
     justify-content: space-between;
     margin: 100px auto 50px;
@@ -80,4 +252,27 @@ select:focus{
 }
 .input{
     width: 100px;
+}
+
+textarea.textArea_input {
+    height: auto;
+}
+.textArea_input {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+textarea{
+    overflow: auto;
+    resize: vertical;
 }
