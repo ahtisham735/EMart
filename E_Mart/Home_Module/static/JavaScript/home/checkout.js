@@ -5,13 +5,19 @@ document.addEventListener('DOMContentLoaded',()=>{
 function populate(){
     var s1=document.getElementById('s1');
     var s2=document.getElementById('s2');
-    var city=document.getElementById('city')
+    var city=document.getElementById('city');
+    var country=document.getElementById('country');
     console.log(city.value)
+    console.log(s1.value)
+    console.log(country.value)
     if(s1.value=="Pakistan"){
         var optionArray=['Lahore|Lahore','Karachi|Karachi','Islamabad|Islamabad','Peshawar|Peshawar'];
     }
 	else if(s1.value=="Turkey"){
 		var optionArray=['Istanbul|Istanbul','Ankara|Ankara','Izmir|Izmir','Bursa|Bursa'];
+	}
+    else if(s1.value=="China"){
+		var optionArray=['Chongqing|Chongqing','Hong Kong|Hong Kong','Beijing|Beijing','Macua|Macua'];
 	}
     var cityoption=document.createElement("option");
         if(city.value!=null){
@@ -24,17 +30,10 @@ function populate(){
         if(pair[0]!=city.value && pair[1]!=city.value)
         {
             newoption.value=pair[0];
-		newoption.innerHTML=pair[1];
-		s2.options.add(newoption);
-
+		    newoption.innerHTML=pair[1];
+		    s2.options.add(newoption);
         }
-
-        
-
-        
 	}
-
-
 }
 function getCookie(name) {
     let cookieValue = null;
