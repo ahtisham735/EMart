@@ -29,5 +29,6 @@ urlpatterns=[
     path('SellerDetailUpdate',Seller_views.seller_detail_update,name="SellerDetailUpdate"),
     path("edit_product/<str:pk>/",Seller_views.edit_product,name="edit_product"),
     path("delete_product/<str:pk>/",Seller_views.delete_product,name="delete_product"),
-    path("delete_cart/<int:id>",views.delete_cart,name="delete_cart")
+    path("delete_cart/<int:id>",views.delete_cart,name="delete_cart"),
+    path("addComment/<int:id>", views.addComment,name="addComment")
 ]

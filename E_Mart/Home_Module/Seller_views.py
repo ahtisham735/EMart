@@ -59,7 +59,6 @@ def add_product(request):
         return render(request,"Seller_Module/addproduct.html",context={"user":user,"form":form,"heading":"Add a new Product","button":"Add Product"})   
     form=AddProductForm(request.POST,request.FILES)
     form.instance.sellerId=user
-    print(form.instance)
     if form.is_valid():
         form.save()
         messages.success(request,"Product Added Successfully")

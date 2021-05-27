@@ -1,6 +1,7 @@
 from django import forms
+from django.db.models import fields
 from django.forms import ModelForm
-from Home_Module.models import Products
+from Home_Module.models import ProductReview, Products
 class AddProductForm(ModelForm):
     productName=forms.CharField(label="Product Name",
         widget=forms.TextInput(
@@ -31,29 +32,30 @@ class AddProductForm(ModelForm):
         )
 
     )
-    image1=forms.CharField(label="Image1",required=False,
+    image1=forms.ImageField(
+        label="Image1",required=False,
         widget=forms.FileInput(
             attrs={"class":"input","autocomplete":"off","accept":"image/*"}
         )
-
     )
-    image2=forms.CharField(label="Image2",required=False,
+
+    image2=forms.ImageField(
+        label="Image2",required=False,
         widget=forms.FileInput(
             attrs={"class":"input","autocomplete":"off","accept":"image/*"}
         )
-
     )
-    image3=forms.CharField(label="Image3",required=False,
+    image3=forms.ImageField(
+        label="Image3",required=False,
         widget=forms.FileInput(
             attrs={"class":"input","autocomplete":"off","accept":"image/*"}
         )
-
     )
-    image4=forms.CharField(label="Image4",required=False,
+    image4=forms.ImageField(
+        label="Image4",required=False,
         widget=forms.FileInput(
             attrs={"class":"input","autocomplete":"off","accept":"image/*"}
         )
-
     )
  
     class Meta:
@@ -68,3 +70,7 @@ class AddProductForm(ModelForm):
     # productName=forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={"placeholder":"Ex Red T-Shirt"}))
     # category=forms.CharField(max_length=100,required=True,widget=forms.Select(choices=category_choice))
     # #cnfrm_passwd=forms.CharField(max_length=100,required=True,widget=forms.PasswordInput(attrs={'placeholder':"confirm new password",'id':'cnfrm_passwd'}))
+class ProductReviewForm(ModelForm):
+    class Meta:
+        model = ProductReview
+        fields = ['subject', 'content', 'rate']

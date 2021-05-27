@@ -31,6 +31,7 @@
             <div class="col-2">
             <h1>{{product.productName}} by {{product.brand}} </h1>
             <h3>Price:{{product.price}} rupees</h3><br>
+            <h3>Rating:{{product.averagereview}} </h3><br>
             <h3>Product Details<i class="fa fa-indent"></i></h3>
             <h3>Available Quantity:{{product.quantity}}</h3>
             <br>
@@ -60,14 +61,15 @@
                     <div class="col-4">
                         <a href="{%url 'Home_Module:productDetail' Prod.id%}">
                             <img src="{{Prod.image1.url}}">
-                        </a>
+                        </a> 
                     <h4 class="productsH4">{{Prod.productName}} by {{Prod.brand}}</h4>
                     <div class="rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <label class="fa fa-star {% if Prod.averagereview >= 1 %} true-color {%else%} false-color{% endif %}"></label>
+                        <label class="fa fa-star {% if Prod.averagereview >= 2 %} true-color {%else%} false-color{% endif %}"></label>
+                        <label class="fa fa-star {% if Prod.averagereview >= 3 %} true-color {%else%} false-color{% endif %}"></label>
+                        <label class="fa fa-star {% if Prod.averagereview >= 4 %} true-color {%else%} false-color{% endif %}"></label>
+                        <label class="fa fa-star {% if Prod.averagereview >= 5 %} true-color {%else%} false-color{% endif %}"></label>
+                        <p class="far rate-color">  Average:  {{Prod.averagereview}}</p>
                     </div>
                     <p>Price:{{Prod.price}} rupees</p>
                 </div>
@@ -78,6 +80,68 @@
             </div>
             {%endif%}
         
+        </div>
+    </div>
+
+    <div class="small-container">
+        <div clas="small-container">
+            <div class="row row-2">
+                <h2>Reviews</h2>
+                <a>View More</a>
+            </div>
+        </div>
+        <div class="row-Review">
+            <div class="review-Display">
+                
+                {% for re in comment %}
+                <div class="review-top">
+                    <div class="user-date"><a href="#">{{re.users}}</a> </div>
+                   <div class="user-date dat"> <span >{{re.date_added}}</span></div>
+                    <div><h3>{{re.subject}} :</h3></div>
+                    <div><p>{{re.content}}</p></div>
+                    <div class="review-rating pull-right">
+                        <label class="fa fa-star {% if re.rate > 4  %} true-color {%else%} false-color{% endif %}"></label>
+                        <label class="fa fa-star {% if re.rate > 3 %}true-color {%else%} false-color{% endif %}"></label>
+                        <label class="fa fa-star {% if re.rate > 2 %}true-color {%else%} false-color{% endif %}"></label>
+                        <label class="fa fa-star {% if re.rate > 1 %}true-color {%else%} false-color{% endif %}"></label>
+                        <label class="fa fa-star {% if re.rate > 0 %}true-color {%else%} false-color{% endif %}"></label>
+                     </div>
+                     <br>
+                     <p class="break">----------------------------------------------------</p>
+                     <br>
+                     <br>
+                    </div>
+                {% endfor %}
+            
+         </div>
+         <div class="reviews">
+            <div>
+                <h2>Write your Reviews:</h2>
+                </div>
+            <form class="" method="POST" action="{%url 'Home_Module:addComment' product.id%}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="subject" placeholder="Your Subject" class="subject-input"/>
+                </div>
+                <div class="form-group">
+                    <textarea type="text" name="content" placeholder="Your Comment" class="textArea_input"></textarea>
+                </div>
+                <div class="review-form-group">
+                    <strong class="text-uppercase">Rating :</strong>
+                    <div class="stars">
+                        <input  type="radio" id="star1" name="rate" value="5"/><label for="star1"></label>
+                        <input type="radio" id="star2" name="rate" value="4"/><label for="star2"></label>
+                        <input type="radio" id="star3" name="rate" value="3"/><label for="star3"></label>
+                        <input type="radio" id="star4" name="rate" value="2"/><label for="star4"></label>
+                        <input type="radio" id="star5" name="rate" value="1"/><label for="star5"></label>
+                    </div>
+                </div>
+                    {% if user is not None %}
+                        <button class="review-btn">Submit</button>
+                     {% else %}
+                        please login
+                     {%endif%}
+            </form> 
         </div>
     </div>
 {%endblock%}

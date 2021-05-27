@@ -54,3 +54,8 @@
      font-size: 18px;
      cursor: pointer;
  }
+ .review-form .rate{
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+ }
