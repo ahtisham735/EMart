@@ -18,7 +18,7 @@ from .email_handler import token_generator,send_link
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from .Serializer import CustomerSerializer
-from .utility_functions import isUserLogin
+from .utility_functions import isUserLogin,permission_check,cart_lenght
 import json
 # Create your views here.
 
@@ -122,7 +122,6 @@ def contact(request):
     return render(request,"Home_Module/contact.html")
 
 def search(request,heading=''):
-    user=isUserLogin(request,'user')
     query=None
     if len(heading)!=0:
         query=heading
@@ -134,11 +133,10 @@ def search(request,heading=''):
         Products.objects.filter(brand__icontains=query)or Products.objects.filter(category__icontains=query)or Products.objects.filter(description__icontains=query) }
     else:
         context={}
+    user=permission_check(request)
     if user is not None:
-        cart=Cart.objects.filter(user=user)
         context['user']=user
-        context['notify']=len(cart)
-    
+        context['notify']=cart_lenght(user)
     return render(request,"Home_Module/products.html",context=context)
     
 def productDetail(request,id):

@@ -3,6 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from Home_Module.utility_functions import isUserLogin,permission_check
 from django.shortcuts import render,redirect,reverse
 from .models import Order,OrderDetails
+from Home_Module.models import Products
 from django.contrib import auth,messages
 # Create your views here.
 def my_orders(request):
@@ -10,7 +11,7 @@ def my_orders(request):
    if user is None:
       return redirect(reverse("Home_Module:signup"))
    if request.method=="GET":
-      orders=Order.objects.filter(user=user)
+      orders=Order.objects.filter(user=user).order_by('-date')
       return render(request,"order/orders.html",{"user":user,"orders":orders})
 def order_details(request,id):
    user=permission_check(request)
@@ -35,6 +36,27 @@ def order_delivered(request,id):
          messages.warning(request,"This order doesn't exist.Perhaps it has been deleted")
          return redirect(reverse("order:my_orders"))
          
+def seller_orders(request):
+   user=isUserLogin(request,'seller')
+   if user is None:
+      return redirect(reverse("Home_Module:seller_center"))
+   if request.method=="GET":
+      p=Products.objects.filter(sellerId=user)
+      ordersDetails=OrderDetails.objects.filter(products__in=p)
+      ids=[]
+      for order in ordersDetails:
+         ids.append(order.order.id)
+      orders=Order.objects.filter(pk__in=ids).order_by('-date')
+      return render(request,"order/seller_orders.html",context={"user":user,"orders":orders})
+def seller_orders_details(request,id):
+   user=isUserLogin(request,'seller')
+   if user is None:
+      return redirect(reverse("Home_Module:seller_center"))
+   if request.method=="GET":
+      p=Products.objects.filter(sellerId=user)
+      order_details=OrderDetails.objects.filter(products__in=p)
+      return render(request,"order/order_details.html",{"user":user,"orders_details":order_details})
+   
 
 
 

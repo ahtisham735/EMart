@@ -23,11 +23,11 @@
 				<div class="cart-row">
 					<div style="flex:2"><a href="{%url 'order:order_details' order.id%}"><p>{{order.id}}</p></a></div>
 					{%if order.is_delivered%}
-					<div style="flex:1"><p><a href="{%url 'order:order_details' order.id%}">Finished</p></a></div>
-					<div style="flex:1"><a class="orders-btn " href="">Recieved</a></div>
+					<div style="flex:1">Finished</p></a></div>
+					<div style="flex:1">Buyer has confirmed order received</div>
 					{%else%}
 					<div style="flex:1"><p>Not Delivered Yet</p></div>
-					<div style="flex:1"><a   class="orders-btn " href="{%url 'order:order_delivered' order.id%}">Recieved?</a></div>
+					<div style="flex:1"><a onclick="return confirm_order()"  class="orders-btn " href="{%url 'order:order_delivered' order.id%}">Recieved?</a></div>
 					{%endif%}
 				</div>
 			</div>
@@ -36,3 +36,4 @@
         {%endfor%}
     </div>
 {%endblock%}
+

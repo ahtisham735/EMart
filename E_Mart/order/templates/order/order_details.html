@@ -1,4 +1,4 @@
-{%extends '../base.html'%}
+{%extends '../base.html' %}
 {% load static %}
 {%block css%}
 <link rel="stylesheet" href="{%static '/css/shipping/orders.css'%}"/>
@@ -19,13 +19,13 @@
 				
 
 				<div class="cart-row">
-					<input type="hidden"  value={{order_detail.id}} > 
+					<input type="hidden" id="hidden"  value={{order_detail.id}} > 
 					
 					<div style="flex:2"><p><img class="cart-row-image" src="{{order_detail.products.image1.url}}"></p> </div>
                     <div style="flex:2">
 						<p>{{order_detail.products}}</p>
 					</div>
-					<div style="flex:2" id="p{{order_detail.id}}"><p>{{order_detail.products.price}}</p></div>
+					<div style="flex:2" ><p id="p{{order_detail.id}}">{{order_detail.products.price}}</p></div>
                     <div style="flex:1">
 						<p id="qty{{order_detail.id}}" class="quantity">{{order_detail.qty}}</p>
 					</div>
@@ -40,3 +40,7 @@
 	</div>
     </div>
 {%endblock%}
+{%block js%}
+<script src="{%static  'javascript/home/orders.js' %}"></script>
+{%endblock%}
+	  

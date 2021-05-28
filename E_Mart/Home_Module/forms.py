@@ -32,29 +32,30 @@ class AddProductForm(ModelForm):
         )
 
     )
-    image1=forms.CharField(label="Image1",required=False,
+    image1=forms.ImageField(
+        label="Image1",required=False,
         widget=forms.FileInput(
             attrs={"class":"input","autocomplete":"off","accept":"image/*"}
         )
-
     )
-    image2=forms.CharField(label="Image2",required=False,
+
+    image2=forms.ImageField(
+        label="Image2",required=False,
         widget=forms.FileInput(
             attrs={"class":"input","autocomplete":"off","accept":"image/*"}
         )
-
     )
-    image3=forms.CharField(label="Image3",required=False,
+    image3=forms.ImageField(
+        label="Image3",required=False,
         widget=forms.FileInput(
             attrs={"class":"input","autocomplete":"off","accept":"image/*"}
         )
-
     )
-    image4=forms.CharField(label="Image4",required=False,
+    image4=forms.ImageField(
+        label="Image4",required=False,
         widget=forms.FileInput(
             attrs={"class":"input","autocomplete":"off","accept":"image/*"}
         )
-
     )
  
     class Meta:

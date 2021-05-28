@@ -1,0 +1,35 @@
+{%extends '../Seller_Module/Seller_base.html'%}
+{% load static %}
+{%block css%}
+<link rel="stylesheet" href="{%static '/css/seller/AllProduct.css'%}"/>
+{%endblock%}
+{%block body%}
+<div class="small-container cart-page">
+<table>
+    <thead>
+        <tr>
+            <th>order id</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>status</th>
+            <th>Confirmation</th>
+
+        </tr>
+    </thead>    
+    {%for order in orders%}
+        <tr>
+            <td><a href="{%url 'order:seller_orders_details' order.id%}" >{{order.id}}</a></td>
+            <td>{{order.date}}</td>
+            <td>{{order.user}}</td>
+            <td>Initial</td>
+            <td><a onclick="return confirm_order()" href="" >confirm order Shipped</a></td>
+    
+        
+        </tr>
+       
+    {%endfor%}
+
+
+</table>
+</div>
+{%endblock%}

@@ -9,6 +9,10 @@ var countryStatus=false
 document.addEventListener('DOMContentLoaded',()=>{
     populate()
 });
+function confirm_order(){
+    var a=confirm("Please confirm you have recevied the order")
+    return a
+}
 
 function validateInput(id, er)
  {
@@ -252,6 +256,19 @@ function checkout()
             {
 
                 const qty=document.getElementById(`qty${chkboxes[i].id}`)
+        
+                if (parseInt(qty.max)<parseInt(qty.value))
+                {
+                    var name=document.getElementById(`name${chkboxes[i].id}`).innerText
+                    var error=document.getElementById("checkoutError")
+                    if (qty.max==0)
+                        error.innerHTML="Dear Customer,"+name+" is not available at the moment"
+                    else if(qty.max==1)
+                        error.innerHTML="Only "+qty.max+" items of "+name+" is available"
+                    else
+                        error.innerHTML="Only "+qty.max+" items of "+name+" is available"
+                    return 
+                }
                 var order={"cart id":chkboxes[i].id,"quantity":qty.value}
                 orders.push(order)     
             }

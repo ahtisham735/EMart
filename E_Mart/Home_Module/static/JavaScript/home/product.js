@@ -25,6 +25,8 @@
         ProductImg.src=smallImg.src;
     }
     document.addEventListener('DOMContentLoaded',()=>{
+
+       
  
         var id=document.getElementById('table');
         if (id==null)

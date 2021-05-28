@@ -26,13 +26,14 @@
                         <div class="cart-info">
                             <img  src="{{cart.product.image1.url}}">
                             <div>
-                                <p>{{cart.product}}</p>
+                                <p id="name{{cart.id}}" >{{cart.product}}</p>
                                 <small id="p{{cart.id}}">Price:{{cart.product.price}}</small>
                                 <a href="{%url 'Home_Module:delete_cart' cart.id%}">Remove</a>
                             </div>
                         </div>
                     </td>
-                    <td><input id="qty{{cart.id}}" name={{cart.id}} onchange="calsubTotal(name)" type="number" min="1" max="{cart.product.quantity}" value="{{cart.qty}}"></td>
+                    <td><input id="qty{{cart.id}}" name={{cart.id}} onchange="calsubTotal(name)" type="number" min="1" max="{{cart.product.quantity}}" value="{{cart.qty}}"></td>
+                    <p></p>
                     <td id="sub{{cart.id}}" ></td>
                 </tr>
                     {%endfor%}

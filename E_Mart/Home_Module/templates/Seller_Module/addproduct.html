@@ -5,7 +5,7 @@
 {%endblock%}
 {%block body%}
 <h1>{{heading}}</h1>
-<form method="POST" {%if pk%} action="{%url 'Home_Module:edit_product' pk%}" {%else%} action="{%url 'Home_Module:add_product'%}" {%endif%} enctype="multipart/form-data">
+<form method="POST" {%if pk%} action="{%url 'Home_Module:edit_product' pk%}" {%else%} action="{%url 'Home_Module:add_product'%}" {%endif%} enctype='multipart/form-data'>
     
     {%csrf_token%}
     <label >Product Name:</label>
