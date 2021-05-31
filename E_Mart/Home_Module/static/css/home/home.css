@@ -410,7 +410,6 @@ footer hr{
 }
 .col-3:hover{
   transform: translateY(5px);
-  background:#c5cae9;
 }
 .col-3 img{
   width:50%;
