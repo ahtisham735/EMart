@@ -21,26 +21,20 @@
 						</div>		
 					</div>
 					<div class="form-group">
-						<label>Adress</label>
+						<label>Address</label>
 						<input type="text" name="address" id="address" onkeyup="validateInput(id,'address_error')" value="{{details.address}}">
 						<span class="error_style" id="address_error"></span>
 					</div>
 					<div class="selection">
 					<div class="form-group">
 						<label>Country</label>
-						<select name="country" id="s1" onchange="populate()" >
-							<option value="{{details.country}}" selected>{{details.country}}</option>
-							<option value="Pakistan">Pakistan</option>
-							<option value="China">China</option>
-							<option value="Turkey">Turkey</option>
-							<option value="Saudia">Saudia Arabia</option>
-						</select>
+						<input type="text" name="country" id="country" onkeyup="validateInput(id,'country_error')" value="{{details.country}}">
 						<span class="error_style" id="country_error"></span>
 					</div>
 					<div class="form-group">
 						<label>City</label>
-						<select name="city" id="s2"></select>
-						<input type="hidden" id='city' value="{{details.city}}">
+						<input type="text" name="city" id='city' onkeyup="validateInput(id,'city_error')" value="{{details.city}}" required>
+						<span class="error_style" id="city_error"></span>
 					</div>
 					</div>
 				

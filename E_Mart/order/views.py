@@ -3,7 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from Home_Module.utility_functions import isUserLogin,permission_check
 from django.shortcuts import render,redirect,reverse
 from .models import Order,OrderDetails
-from Home_Module.models import Products
+from Home_Module.models import Products,Cart
 from django.contrib import auth,messages
 from django.db.models import Q
 # Create your views here.
@@ -13,14 +13,16 @@ def my_orders(request):
       return redirect(reverse("Home_Module:signup"))
    if request.method=="GET":
       orders=Order.objects.filter(user=user).order_by('-date')
-      return render(request,"order/orders.html",{"user":user,"orders":orders})
+      cart=Cart.objects.filter(user=user)  #cart-notification
+      return render(request,"order/orders.html",{"user":user,"orders":orders,"notify":len(cart)})
 def order_details(request,id):
    user=permission_check(request)
    if user is None:
       return redirect(reverse("Home_Module:signup"))
    if request.method=="GET":
+      cart=Cart.objects.filter(user=user)   #cart-notification
       order_details=OrderDetails.objects.filter(order=id)
-      return render(request,"order/order_details.html",{"user":user,"orders_details":order_details})
+      return render(request,"order/order_details.html",{"user":user,"orders_details":order_details,"notify":len(cart)})
     
 def order_delivered(request,id):
    user=permission_check(request)
