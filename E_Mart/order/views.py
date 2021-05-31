@@ -22,7 +22,7 @@ def order_details(request,id):
    if request.method=="GET":
       cart=Cart.objects.filter(user=user)   #cart-notification
       order_details=OrderDetails.objects.filter(order=id)
-      return render(request,"order/order_details.html",{"user":user,"orders_details":order_details,"notify":len(cart)})
+      return render(request,"order/order_details.html",{"user":user,"orders_details":order_details,"notify":len(cart),"variable":"base.html"})
     
 def order_delivered(request,id):
    user=permission_check(request)
@@ -62,7 +62,8 @@ def seller_orders_details(request,id):
    if request.method=="GET":
       p=Products.objects.filter(sellerId=user)
       order_details=OrderDetails.objects.filter(Q(products__in=p),Q(order=id) )
-      return render(request,"order/order_details_seller.html",{"user":user,"orders_details":order_details})
+
+      return render(request,"order/order_details.html",{"user":user,"orders_details":order_details,"variable":f"Seller_Module/Seller_base.html"})
 def seller_confirmation(request,id):
    user =isUserLogin(request,'seller')
    if user is None:

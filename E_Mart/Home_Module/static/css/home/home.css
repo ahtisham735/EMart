@@ -1,0 +1,742 @@
+/*-----------------------------------BASE.HTML CSS-------------------------------------------*/
+
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Roboto', sans-serif;
+}
+.header{
+  /*background:radial-gradient( #9e9e9e,pink);*/
+  background: white;
+  /*background: radial-gradient(#ff8a80,white);*/
+}
+.home{
+  background: radial-gradient(#ff8a80,white);
+}
+.header .row{
+  margin-top: 70px;
+}
+.fa{
+  margin-right: 2px;
+}
+.fas{
+  margin-right: 2px;
+  color:black;
+}
+
+.wrapper{
+    background:white;
+    width: 100%;
+}
+.wrapper nav{
+    position: relative;
+    display: flex;
+    max-width: calc(100% - 200px);
+    margin: 0 auto;
+    height: 70px;
+    justify-content: space-between;
+}
+nav .content{
+    display: flex;
+    align-items: center;
+}
+nav .content .links{
+    display: flex;
+    margin-left: 80px;
+}
+.content .logo a{
+      color:purple;
+      font-size: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      
+}
+.content .links li{
+      list-style: none;
+}
+.content .links li a{
+      color:black;
+      font-size: 18px;
+      font-weight: 500;
+      padding: 9px 17px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+}
+.content .links li label{
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 9px 17px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: none;
+}
+.content .links li a:hover,
+.content .links li label:hover{
+    background: #e2e4e7;
+    color: black;
+
+}
+/*NOtification CSS*/
+.icon-badage{
+  position: relative;
+  top:-10px;
+  right: -2px;
+  color:red;
+}
+
+/*Drop down Menus*/
+.content .links ul{
+    position: absolute;
+    background: #171c24;
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+
+  }
+  .content .links ul li a{
+    width:250px;
+    float:none;
+    display: list-item;
+    position: relative;
+    padding: 5px;
+    background:#171c24;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+  }
+  .content .links li:hover ul{
+      top:70px;
+      opacity: 1;
+      visibility: visible;
+  }
+.wrapper .search-box{
+    position: absolute;
+    height: 100%;
+    max-width: calc(100% - 50px);
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3 ease;
+}
+.wrapper .search-icon,
+.wrapper .menu-icon{
+    color: white;
+    margin-top: 25px;
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 70px;
+    width: 70px;
+    text-align:center;
+}
+.wrapper .menu-icon{
+    display: none;
+}
+.wrapper #show-search:checked ~ .search-icon i::before{
+    content:"\f00d";
+}
+.search-box input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    color:black;
+    background:white;
+    padding: 0 100px 0 15px;
+}
+.search-box input::placeholder{
+    color: black;
+}
+.search-box .go-icon{
+    position: absolute;
+    right: 10px;
+    top:50%;
+    transform: translateY(-50%);
+    line-height: 60px;
+    width: 70px;
+    background: white;
+    border:none;
+    outline: none;
+    color:black;
+    font-size: 20px;
+}
+.wrapper #show-search:checked ~ .search-box{
+    opacity: 1;
+    pointer-events: auto; 
+}
+.wrapper input[type="checkbox"]{
+    display: none;
+
+}
+
+
+/*Responsiveness*/
+@media screen and (max-width: 1250px){
+    .wrapper nav{
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    nav .content .links{
+        margin-left: 30px;
+    }
+    .content .links li a{
+        padding: 8px 13px;
+    }
+    .wrapper .search-box{
+        max-width: cal(100% - 100px);
+    }
+    .wrapper .search-box input{
+        padding: 0 100px 0 15px;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .wrapper .logo{
+      margin-left:160px;
+    }
+    .wrapper .menu-icon{
+        display: block;
+    }
+    nav .content .links{
+        display: block;
+        position: fixed;
+        background: #14181f;
+        height: 100%;
+        width: 100%;
+        top:70px;
+        left:-100%;
+        margin-left: 0;
+        overflow-y: auto;
+        max-width: 350px;
+        transition: all 0.3s ease;
+    }
+    nav #show-menu:checked ~ .content .links{
+        left:0%;
+    }
+    .content .links li{
+        margin: 15px 20px;
+    }
+    .content .links li a,
+    .content .links li label{
+        line-height: 40px;
+        font-size: 20px;
+        display: block;
+        padding: 0px 5px;
+        cursor: pointer;
+        color:white
+    }
+    .content .links li a:hover,
+    .content .links li label:hover{
+        color: black;
+    }
+    .content .links li a.desktop-link{
+        display: none;
+    }
+    .content .links ul{
+        position:static;
+        margin-left: 5px;
+        opacity: 1;
+        max-height: 0;
+        overflow:hidden;
+        visibility: visible;
+        background: none;
+    }
+    .content .links #show-menus:checked ~ ul{
+        max-height: 100vh;
+    }
+    .content .links ul li{
+        margin:5px 10px;
+    }
+   
+    .content .links ul li a{
+        font-size: 16px;
+        line-height: 20px;
+        color: white;
+        border-radius: 5px!important;
+    }
+
+}
+a{
+  text-decoration: none;
+  color:#555;
+}
+a:hover{
+  color: #ff523b;
+}
+p{
+  color:#555;
+}
+
+/*FOOTER CSS*/
+footer{
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  background: black;
+  
+}
+.main-content{
+  display: flex;
+  padding:10px 20px
+}
+.main-content .box{
+  flex-basis: 50%;
+  padding:10px 20px
+}
+.text{
+  color: white;
+}
+.fa-facebook-f, .fa-twitter{
+  color:blue;
+}
+.fa-instagram{
+  color: orangered;
+}
+.box h2{
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: blueviolet;
+}
+.box .content{
+  margin: 20px 0 0 0;
+}
+
+.left .content .social{
+  margin: 20px 0 0 0;
+}
+.left .content .social a{
+  padding:0 2px;
+}
+.left .content .social a span{
+  height:40px;
+  width:40px;
+  line-height: 40px;
+  text-align: center;
+  background: #1a1a1a;
+  font-size: 18px;
+}
+footer hr{
+  border: none;
+  color: white;
+  height: 1px;
+  margin: 20px;
+}
+.copyright{
+  text-align: center;
+  color:red;
+}
+.fa-map-marker-alt, .fa-phone, .fa-envelope{
+  color:white
+}
+
+.menu-icon{
+  width:28px;
+  margin-left: 5px;
+  margin-top: 0;
+  position:absolute;
+  display: none;
+}
+/*------------------------------------------END OF BASE.HTML CSS------------------------------*/
+
+
+
+
+
+/*------------------------------HOME PAGE CSS--------------------------------------------------*/
+/*General CSS*/
+.container{
+  max-width: 1330px;
+  margin: 10px auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+.col-2{
+  flex-basis: 50%;
+  min-width: 300px;
+}
+.col-2 img{
+  max-width: 100%;
+  padding: 50px 0;
+}
+.col-2 h1{
+  font-size: 50px;
+  line-height: 60px;
+  margin: 25px 0;
+}
+.Visitbtn{
+  display: inline-block;
+  background:linear-gradient(to right,blue,#ff4081);
+  color:#fff;
+  padding: 8px 30px;
+  margin:30px 0;
+  border-radius: 30px;
+  transition: background 0.5s;
+}
+.Visitbtn:hover{
+  background: #caa6a2;
+
+}
+
+
+/*CATEGORIES And Featured Products CSS*/
+
+.categories{
+  margin: 70px 0;
+}
+.small-Cat-container{
+  max-width: 900px;
+  margin: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.col-3{
+  flex-basis:30%;
+  min-width: 250px;
+  margin-bottom: 30px;
+  transition: transform 0.5s;
+}
+.col-3:hover{
+  transform: translateY(5px);
+
+}
+.col-3 img{
+  width:50%;
+  object-fit: contain;
+ 
+}
+.small-container{
+  max-width: 1080px;
+  margin:auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.col-4{
+  flex-basis: 25%;
+  padding:10px;
+  min-width: 200px;
+  margin-bottom: 50px;
+  transition: transform 0.5s;
+
+}
+.col-4 img{
+  width: 100%;
+}
+
+.title{
+  text-align: center;
+  margin: 0 auto 80px;
+  position: relative;
+  line-height: 60px;
+}
+.title::after{
+  content: '';
+  background: blueviolet;
+  width:80px;
+  height: 5px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 0;
+  left:50%;
+  transform: translateX(-50%);
+}
+.productsH4{
+  color:#555;
+  font-weight: normal;
+}
+.col-4 p{
+  font-size: 14px;
+}
+.col-4:hover{
+  transform: translateY(5px);
+  background:#c5cae9;
+
+}
+.rating .fa{
+  color: #fdd835;
+}
+
+
+
+/*Offer Setion CSS*/
+
+.offer{
+  background: radial-gradient(#ff8a80,white);
+  margin-top:80px;
+  padding:30px 0;
+}
+.col-2 .offer-img{
+  padding:80px;
+}
+small{
+  color:#555;
+}
+
+.brands{
+  margin: 100px auto;
+}
+.col-5{
+  width: 160px;
+}
+.col-5 img{
+  width:100%;
+  cursor:pointer;
+  filter: grayscale(100%);
+}
+.col-5 img:hover{
+  filter: grayscale(0%);
+}
+/* ---------------------------media query for MENUS-------------------------------------------*/
+
+/*-------------------------------------END OF MEDIA QUERY---------------------------------------------*/
+
+
+
+
+/*----------------------------------------------SIGNUP.HTML CSS---------------------------------------------  */
+.Login{
+  padding:50px 0;
+  background: radial-gradient(#ff8a80,white);
+}
+.form-box{
+  width: 400px;
+  height: 700px;
+  position: relative;
+  padding:5px;
+  margin: 6% auto;
+  background: whitesmoke;
+  overflow: hidden;
+
+}
+.btn-box {
+   width: 220px;
+  margin: 35px auto;
+  position: relative;
+  border-radius: 30px;
+  box-shadow: 0 0 20px 9px #ff61241f;;
+}
+.toggle-btn {
+  padding: 10px 20px;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+#btn_back {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 110px;
+  height: 100%;
+  background: linear-gradient(to right, #6a1b9a, pink);
+  border-radius: 30px;
+  transition: .5s;
+}
+.div_head {
+  color: black;
+  width: 250px;
+  margin:35px 80px auto;
+ 
+  cursor: pointer;
+}
+.input-group{
+    top:180px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+}
+.input_field{
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 5px;
+  border: none;
+  border-top: 0;
+  border-bottom: 1px solid black;
+  border-left: 0;
+  border-right: 0;
+  background: transparent;
+    
+}
+.submit_btn {
+  width: 85%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  background: linear-gradient(to left, #6a1b9a, pink);
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+}
+.check_box {
+  margin: 20px 10px 30px auto;
+}
+span{
+  color:#777;
+  font-size: 12px;
+  margin-top: 5px;
+  position:relative;
+}
+.checkbox_style {
+  color: #777;
+  font-size: 10px;
+  bottom: 3px;
+  position: relative;
+}
+#login{
+  left:50px;
+}
+#register{
+  left:-450px;
+}
+.forget {
+  cursor: pointer;
+  color: purple;
+}
+h5 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+h5::before,
+h5:after {
+  content: "";
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
+  border-bottom: 1px solid #9e9e9e;
+  margin: auto;
+}
+.btn_div {
+  position: absolute;
+  margin: 5px 30px;
+}
+.fb_btn {
+  background-color: #304ffe;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  outline: 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0px 2px 2px lightgray;
+  transition: ease background-color 250ms;
+  display:inline-block;
+}
+
+.fb_btn :hover {
+  background-color: blue;
+}
+
+.fb_btn img {
+  width: 30px;
+  border-radius: 30px;
+  outline-color: blue;
+}
+.error_style {
+  color: red;
+  display: block;
+  font-size:15px;
+  margin-left:10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.regPointer{
+  cursor: pointer;
+  color:red;
+}
+/*----------------------------END OF SIGNUP.HTML CSS-------------------------------*/
+
+
+
+
+
+
+
+
+/*--------------------------FORGET PASSWORD CSS-------------------------*/
+
+.forgettBack{
+  padding:50px 0;
+  background: radial-gradient(#ff8a80,white);
+
+}
+.forget-form-box{
+  width:500px;
+  height:450px;
+  position:relative;
+  margin:6% auto;
+  background:whitesmoke;
+  padding: 5px;
+}
+.rounded{
+  margin:25px 180px auto;
+  position:relative;
+  box-shadow:0 0 20px 9px pink;
+  width: 100px;
+  height: 100px;
+  border-radius:50%;
+}
+.heading{
+  color:black;
+  width:250px;
+  margin:35px 150px auto;
+  cursor: pointer;
+
+}
+.forget_input_field{
+  width: 50%;
+  padding: 10px 0;
+  margin: 25px 120px;
+  border:none;
+  border-top: 0;
+  border-bottom: 1px solid black;
+  border-left:0 ;
+  border-right: 0;
+  background: transparent;
+
+}
+.forget_btn{
+  width: 50%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display:block;
+  margin: 0px auto;
+  background: linear-gradient(to left,blue,#f50057);
+  border:0;
+  outline: none;
+  border-radius: 30px;
+}
+pre{
+  color:black;
+  margin:10px 30px auto;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.goBack{
+  cursor: pointer;
+  color:purple;
+  padding: 20px 30px 10px;
+  margin-left: 190px;
+  margin-top: 10px;
+}
+
+/*-------------------------------------------END OF FORGET PASSWORD--------------------------------------------*/
+
