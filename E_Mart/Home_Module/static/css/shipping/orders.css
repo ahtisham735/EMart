@@ -1,12 +1,14 @@
 
-
+.order{
+    margin-top: 50px;
+    
+}
 .box-element{
 	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
 	background-color: #fff;
 	border-radius: 4px;
 	padding: 10px;
 }
-
 .thumbnail{
 	width: 100%;
 	height: 200px;

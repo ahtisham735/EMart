@@ -413,6 +413,7 @@ footer hr{
 }
 .col-3 img{
   width:50%;
+  object-fit: contain;
  
 }
 .small-container{

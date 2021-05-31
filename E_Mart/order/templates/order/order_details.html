@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{%static '/css/home/cart.css'%}"/>
 {%endblock%}
 {%block body%}
+<div class="order">
 <div class="small-container cart-page">
 <div class="col-lg-12 ">
     {%for order_detail in orders_details%}
@@ -35,10 +36,12 @@
 				</div>
 			</div>
 			<br>
+			{%endfor%}
 		</div>
-		{%endfor%}
+		
 	</div>
     </div>
+</div>
 {%endblock%}
 {%block js%}
 <script src="{%static  'javascript/home/orders.js' %}"></script>

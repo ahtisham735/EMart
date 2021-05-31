@@ -4,11 +4,7 @@ var zipStatus=true
 var CardNoStatus=false
 var CvvStatus=false
 var holdrStatus=false
-var countryStatus=false
 
-document.addEventListener('DOMContentLoaded',()=>{
-    populate()
-});
 function confirm_order(){
     var a=confirm("Please confirm you have recevied the order")
     return a
@@ -65,6 +61,12 @@ function validateInput(id, er)
     if(id=='address'){
         element.innerHTML=""
     }
+    if(id=='country'){
+        element.innerHTML=""
+    }
+    if(id=='city'){
+        element.innerHTML=""
+    }
     if(PhoneNoStatus && zipStatus)
     {
         document.getElementById("ShipingSubBtn").disabled=false;  
@@ -84,6 +86,8 @@ shipValidation=()=>{
     var phoneN=document.forms["shipingDetail"]["phone"].value
     var zipcod = document.forms["shipingDetail"]["zip"].value;
     var emailAdd = document.forms["shipingDetail"]["email"].value;
+    var country=document.forms["shippingDetail"]["country"].value;
+    var city=document.forms["shippingDetail"]["city"].value;
     
     var fnEror=document.getElementById("fname_error")
     var lnEror=document.getElementById("lname_error")
@@ -92,10 +96,7 @@ shipValidation=()=>{
     var emailEror=document.getElementById("email_error")
     var zipEror=document.getElementById("zip_error")
     var countryError=document.getElementById("country_error")
-
-   
-   
-
+    var cityError=document.getElementById("city_error")
     if (firstName == "" || firstName==null) {
       fnEror.innerHTML="first name is required "
       return false;
@@ -120,13 +121,21 @@ shipValidation=()=>{
     {
         addEror.innerHTML=""
     }
-    if (countryStatus) {
-        countryError.innerHTML=""
+    if (country=="" || country==null) {
+        countryError.innerHTML="Country is required!"
+        return false; 
     }
     else
     {   
-        countryError.innerHTML="Select Country please!"
-        return false; 
+        countryError.innerHTML=""
+    }
+    if(city=="" || city==null){
+        cityError.innerHTML="City is Required!"
+        return false
+    }
+    else
+    {
+        cityError.innerHTML=""
     }
     if(zipcod.length!=5)
     {
@@ -158,58 +167,7 @@ shipValidation=()=>{
       return true
 }
 
-function populate(){
-    var s1=document.getElementById('s1');
-    var s2=document.getElementById('s2');
-    var city=document.getElementById('city');
-    var country=document.getElementById('country');
-    console.log(city.value)
-    console.log(s1.value)
-    console.log(country.value)
-    if(s1.value=="Pakistan"){
-        var optionArray=['Lahore|Lahore','Karachi|Karachi','Islamabad|Islamabad','Peshawar|Peshawar'];
-        countryStatus=true
-        countryError.innerHTML=""
-    }
-	else if(s1.value=="Turkey"){
-		var optionArray=['Istanbul|Istanbul','Ankara|Ankara','Izmir|Izmir','Bursa|Bursa'];
-        countryStatus=true
-        countryError.innerHTML=""
-	}
-    else if(s1.value=="Saudia"){
-        var optionArray=['riyadh|Riyadh','jeddah|Jeddah','makkah|Makkah','abuk|Tabuk'];
-        countryStatus=true
-        countryError.innerHTML=""
-    }
-	else if(s1.value=="China"){
-		var optionArray=['shanghai|Shanghai','tianjin|Tianjin','shenzhen|Shenzhen','shenyang |Shenyang '];
-        countryStatus=true
-        countryError.innerHTML=""
-	}
-    else if(s1.value=="China"){
-		var optionArray=['Chongqing|Chongqing','Hong Kong|Hong Kong','Beijing|Beijing','Macua|Macua'];
-	}
-    else
-    {
-        countryStatus=false
-    }
 
-    var cityoption=document.createElement("option");
-        if(city.value!=null){
-		    cityoption.innerHTML=city.value;
-            s2.options.add(cityoption)
-        }
-	for(var option in optionArray){
-		var pair=optionArray[option].split("|");
-		var newoption=document.createElement("option");
-        if(pair[0]!=city.value && pair[1]!=city.value)
-        {
-            newoption.value=pair[0];
-		    newoption.innerHTML=pair[1];
-		    s2.options.add(newoption);
-        }
-	}
-}
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
