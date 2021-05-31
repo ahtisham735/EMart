@@ -7,5 +7,5 @@ urlpatterns=[
             path('order_delivered/<int:id>/',views.order_delivered,name="order_delivered"),
             path("orders/",views.seller_orders,name="seller_orders"),
             path('seller_order_details/<int:id>/',views.seller_orders_details,name="seller_orders_details"),
-
+            path('seller_confirmation/<int:id>/',views.seller_confirmation,name="seller_confirmation")
 ]

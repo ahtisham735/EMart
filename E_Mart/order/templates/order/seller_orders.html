@@ -21,9 +21,18 @@
             <td><a href="{%url 'order:seller_orders_details' order.id%}" >{{order.id}}</a></td>
             <td>{{order.date}}</td>
             <td>{{order.user}}</td>
-            <td>Initial</td>
-            <td><a onclick="return confirm_order()" href="" >confirm order Shipped</a></td>
-    
+            {%if order.is_delivered%}
+                <td>Customer has received the order </td>
+            {%elif order.is_shipped%}
+                <td>Order has been Shipped </td>
+            {%else%}
+                <td>Initial</td>
+            {%endif%}
+            {%if order.id in confirmation%}
+                <td>Seller has confimed order Shipped</td>
+            {%else%}
+                <td><a onclick="return confirm_order()" href="{%url 'order:seller_confirmation' order.id%}" >confirm order Shipped</a></td>
+            {%endif%}
         
         </tr>
        
