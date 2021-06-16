@@ -32,7 +32,7 @@ installed libraries(backend):
 5:Pillow(python -m pip install Pillow ...for storing images in db)
 5:django-reset-migrations-0.4.0 (pip install django-reset-migrations)..for reseting migrations
 5: pip install six .......to Install Six
-
+6:pip install Babel...(Babel-2.9.1) to format currency
 
 
 

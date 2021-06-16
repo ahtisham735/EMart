@@ -1,0 +1,87 @@
+@keyframes move{
+  0%{
+      left: 0%;    
+ 
+  }
+  50%{
+      left:50%;
+      font-size: 40px;
+
+  }
+  100%{
+      left:0%;
+      font-size: 30px;
+
+  }
+
+}
+
+h2{
+  position: relative;
+  animation-name:move;
+  animation-duration:3s;
+  animation-fill-mode:forwards;
+  animation-iteration-count: 1;
+  animation-play-state: running;
+}
+
+.row {
+  background-color: aqua;
+  height: auto;
+  border-bottom: 0px;
+  position: static;
+}
+.col1 {
+  text-align: left;
+  font-family: "Crimson Text", serif;
+  border-bottom: 0px;
+  height: 0px;
+}
+.col2 {
+  text-align: center;
+  font-family: "Crimson Text", serif;
+  font-size: 20px;
+  margin-left: 40%;
+  margin-top: 0px;
+  border-bottom: 0px;
+}
+.col2 .date {
+  font-style: italic;
+  background-color: burlywood;
+  font-size: 20px;
+}
+.col2 .searchButton {
+  background-color: gray;
+  font-size: 20px;
+}
+.container {
+  
+  height: 200px;
+  border-top: 0px;
+  margin-top: 100px;
+  width: 800px;
+}
+.instructions {
+  padding: 50px;
+  font-family: "Crimson Text", serif;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Raleway", sans-serif;
+}
+.instructions h2{
+  color:slateblue;
+  margin-bottom: 10px;
+}
+
+.instructions ul li{
+  color:black;
+  font-size: 18px;
+  margin: 20px;
+
+}
+.instructions span{
+  margin-right: 5px;
+  font-family:'Times New Roman', Times, serif;
+  color:dodgerblue;
+  font-size: 20px;
+
+}

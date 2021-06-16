@@ -1,0 +1,77 @@
+{%extends 'Seller_Module/Seller_base.html'%}
+{%load static%}
+    {%block css%}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,700&family=Montserrat&family=Raleway&display=swap" rel="stylesheet">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="{%static 'css/seller/report.css'%}">
+    {%endblock%}
+    {%block js%}
+        <script>
+            onSearch=()=>{
+            const start=document.getElementById('startDate').value
+            const end=document.getElementById('endDate').value
+            if(start=='' ||end==''){
+                alert("please select dates to search between")
+                return false;
+            }
+            if(start>end){
+                alert("start date must be less than the end date")
+                return false
+            }
+            else
+                return true;
+   
+            }
+        </script>
+    {%endblock%}
+ 
+    {%block body%}
+        <div class="table">
+            <div class="row">
+                <div class="col1">
+                        <h1>Seller Reports</h1>
+                </div>
+            <div class="col2" >
+                <form method="POST" action="{%url 'Home_Module:reports'%}">
+                    {%csrf_token%}
+                    Start Date:<input type="date" name="startDate" class="date" id="startDate">
+                    End Date:<input type="date" name="endDate" class = "date" id="endDate">
+                    <button   onclick="return onSearch()" class="searchButton" value="search" >Search</button>
+                </form>
+            </div>
+            </div>
+        </div>
+        <div class="container" >
+            <div id="container">
+                <div class="instructions">
+                    <h2>Your Total sale is:{{sale}}</h2>
+                    <ul style="list-style-type: disc;">
+                        <li><span>Orders Delivered:</span>{{delivered}}
+                        <li><span>Orders Pending:</span>{{pending}}
+                        <li><span>Products Rating:</span>{{ratings}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="container" >
+            <div id="container">
+                <div class="instructions">
+                    <h2>Maximize your Sales:</h2>
+                    <ul style="list-style-type: disc;">
+                        <li>Try to Advertise your product more effectively
+                        <li>Try to Minimize your Response Time
+                        <li>Try to Minimize the Delivery Time</li>
+                        <li>Try different promotions on your products</li>
+                        <li>Try to enhance your products quality</li>
+                    </ul>
+                </div>
+            </div>
+        </div> -->
+    {%endblock%}
