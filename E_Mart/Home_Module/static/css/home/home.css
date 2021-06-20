@@ -410,11 +410,10 @@ footer hr{
 }
 .col-3:hover{
   transform: translateY(5px);
-
 }
 .col-3 img{
   width:50%;
-  object-fit: contain;
+  object-fit: fill;
  
 }
 .small-container{
@@ -433,6 +432,7 @@ footer hr{
 }
 .col-4 img{
   width: 100%;
+  object-fit: fill;
 }
 
 .title{

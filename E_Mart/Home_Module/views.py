@@ -234,7 +234,9 @@ def change_password(request,username):
                 user=isUserLogin(request,'user')
                 if user is None:
                     return HttpResponseRedirect(reverse("Home_Module:signup"))
-                return render(request,"Home_Module/change_password.html",context={"user":user,"variable":"base.html"})
+                cart=Cart.objects.filter(user=user)
+                context={"user":user,"notify":len(cart),"variable":"base.html"}
+                return render(request,"Home_Module/change_password.html",context=context)
         if request.method=="POST":
             passwd=request.POST['password']
             chkPasswd=auth.authenticate(username=user.username,password=passwd)
