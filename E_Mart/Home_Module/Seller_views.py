@@ -6,7 +6,7 @@ from django.shortcuts import render,redirect,reverse
 from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect
 from order.models import Order,OrderDetails
-import babel.numbers
+
 from django.db.models import Sum 
 import datetime
 

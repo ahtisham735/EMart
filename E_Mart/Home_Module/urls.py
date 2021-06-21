@@ -31,9 +31,6 @@ urlpatterns=[
     path("delete_product/<str:pk>/",Seller_views.delete_product,name="delete_product"),
     path("delete_cart/<int:id>",views.delete_cart,name="delete_cart"),
     path("addComment/<int:id>", views.addComment,name="addComment"),
-<<<<<<< HEAD
-    path("about/",views.about,name="about")
-=======
     path('reports/',Seller_views.reports,name="reports"),
->>>>>>> 0dc21e5e1448079ab744cb849e91411a32dec119
+    path('about/',views.about,name="about")
 ]
