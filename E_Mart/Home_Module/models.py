@@ -101,13 +101,13 @@ class Cart(models.Model):
 class ProductReview(models.Model):
     products = models.ForeignKey(Products, related_name='reviews',on_delete=models.CASCADE)
     users = models.ForeignKey(User, related_name='Userreviews',on_delete=models.CASCADE)
-    subject = models.CharField(max_length=50, blank=True,null=True)
+    subject = models.CharField(max_length=50, blank=True,default="",null=True)
     content = models.TextField(blank=True,null=True)
     rate = models.IntegerField(default=1)
     date_added = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.subject
+    #def __str__(self):
+        #return self.subject
         
 class ProductReviewForm(ModelForm):
     class Meta:

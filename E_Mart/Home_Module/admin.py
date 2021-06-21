@@ -32,7 +32,6 @@ class CartAdmin(admin.ModelAdmin):
 
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ['subject', 'content', 'date_added']
-    readonly_fields = ['rate','subject', 'content','products','users']
 
 
 admin.site.register(Cart,CartAdmin)
