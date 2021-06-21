@@ -18,6 +18,7 @@ def seller_center(request):
         else:
             return render(request,"Seller_Module/SellerSignUp.html")
     productList=Products.objects.all().filter(sellerId=user)
+    
     return render(request,"Seller_Module/AllProduct.html",context={"user":user,"products":productList})
 def seller_detail(request):
     seller=isUserLogin(request,'seller')

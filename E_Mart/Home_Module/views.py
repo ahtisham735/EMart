@@ -48,6 +48,15 @@ def login(request):
             return render(request,"Home_Module/signup.html",context={"username":request.session['username'],"password":request.session['password']})
         return render(request,"Home_Module/signup.html")
     if request.method=="POST":
+        #Filtering Latest Objects on The basis of ID
+        prod=Products.objects.all().order_by('-id')
+        prod=prod[:4]
+    
+        #Filtering Featured Products
+        #select_related basically works as join
+        feature=ProductReview.objects.select_related('products').all().order_by('-rate')
+        if len(feature)>4:
+            feature=feature[:4]
         username= request.POST['username']
         password= request.POST['password']  
         cust = auth.authenticate(username=username,password=password)
@@ -82,7 +91,7 @@ def login(request):
                     request.session['user']=cust.username
                     cart=Cart.objects.filter(user=cust)#cart Notification
                     #context setting
-                    context={"user":cust,"notify":len(cart)}
+                    context={"user":cust,"notify":len(cart),"Products":prod,"feature":feature}
                     return render(request,"Home_Module/Home.html",context=context)
         if "is_seller" in request.POST:
             return render(request,"Seller_Module/SellerSignUp.html",context={"errorMessage":errorMessage})
@@ -90,12 +99,23 @@ def login(request):
             return render(request,"Home_Module/SignUp.html",context={"errorMessage":errorMessage})
     
 def home(request):
+    #Filtering Latest Objects on The basis of ID
+    prod=Products.objects.all().order_by('-id')
+    prod=prod[:4]
+    
+    #Filtering Featured Products
+    #select_related basically works as join
+    feature=ProductReview.objects.select_related('products').all().order_by('-rate')
+    if len(feature)>4:
+        feature=feature[:4]
+    
     user=isUserLogin(request,'user')
     if user is not None:
         cart=Cart.objects.filter(user=user)
-        context={"user":user,"notify":len(cart)}
+        context={"user":user,"notify":len(cart),"Products":prod,"feature":feature}
         return render(request,"Home_Module/Home.html",context=context)
-    return render(request,"Home_Module/Home.html")
+    context={"Products":prod,"feature":feature}
+    return render(request,"Home_Module/Home.html",context=context)
 
 def forget(request):
     if request.method!="POST":
@@ -391,3 +411,7 @@ def addComment(request, id):
     
              
     return HttpResponseRedirect(url)
+
+def about(request):
+    return render(request,"Home_Module/about.html")
+
