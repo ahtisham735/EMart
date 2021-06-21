@@ -116,6 +116,7 @@
          </div>
          <div class="reviews">
             <div>
+            {% if p is None %}
                 <h2>Write your Reviews:</h2>
                 </div>
             <form class="" method="POST" action="{%url 'Home_Module:addComment' product.id%}">
@@ -136,10 +137,8 @@
                         <input type="radio" id="star5" name="rate" value="1"/><label for="star5"></label>
                     </div>
                 </div>
-                    {% if user is not None %}
+                 
                         <button class="review-btn">Submit</button>
-                     {% else %}
-                        please login
                      {%endif%}
             </form> 
         </div>
