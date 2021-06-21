@@ -165,6 +165,12 @@ def productDetail(request,id):
     user=isUserLogin(request,'user')
     if user is None:
         user=request.user
+    try:
+        p=ProductReview.objects.get(users=user,products=id)  
+        print("abc")  
+    except ProductReview.DoesNotExist:
+         p = None
+         print("pathan")
     if request.method=="GET":
         category=product.category
         name=product.productName
@@ -176,8 +182,9 @@ def productDetail(request,id):
         context={}
         if user is not None:
             cart=Cart.objects.filter(user=user)
-            context={"product":product,"comment":comments,"user":user,"relatedProd":relatedProd,"notify":len(cart)}
-        context={"product":product,"comment":comments,"user":user,"rProd":relatedProd}
+            context={"product":product,"comment":comments,"p":p,"user":user,"relatedProd":relatedProd,"notify":len(cart)}
+            print("shoaib")
+        context={"product":product,"p":p,"comment":comments,"user":user,"rProd":relatedProd}
        
         return render(request,"Home_Module/productDetail.html",context=context)
     if request.method=="POST":   
