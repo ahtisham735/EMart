@@ -32,6 +32,7 @@ class CartAdmin(admin.ModelAdmin):
 
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ['subject', 'content', 'date_added']
+ 
 
 
 admin.site.register(Cart,CartAdmin)

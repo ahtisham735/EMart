@@ -1,10 +1,14 @@
 from django.views import View
 from .forms import AddProductForm
-from .models import User,SellerDetail,Products
+from .models import User,SellerDetail,Products,ProductReview
 from .utility_functions import isUserLogin
 from django.shortcuts import render,redirect,reverse
 from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect
+from order.models import Order,OrderDetails
+import babel.numbers
+from django.db.models import Sum 
+import datetime
 
 def seller_center(request):
     user=isUserLogin(request,'seller')
@@ -129,5 +133,37 @@ def delete_product(request, pk):
     except Products.DoesNotExist:
             messages.error(request,"Product Does not Exist")
             return redirect(reverse("Home_Module:seller_center"))
+def reports(request):
+    user=isUserLogin(request,'seller')
+    if user is None:
+       return HttpResponseRedirect(reverse("Home_Module/seller_center"))
+    p=Products.objects.filter(sellerId=user)
+    order_details=OrderDetails.objects.filter(products__in=p)
+    delivered_orders=order_details.filter(is_shipped=True)
+    sale=0
+    reviews=ProductReview.objects.filter(products__in=p)
+    if reviews.count()!=0:
+        ratings=reviews.aggregate(Sum('rate'))['rate__sum']/reviews.count()
+        ratings=f'{ratings}/5.0'   
+    else:
+        ratings="No one has rated your products yet"
+    delivered_count=delivered_orders.values('order').distinct().count()
+    pending_count=order_details.filter(is_shipped=False).values('order').distinct().count()
+    if request.method=="GET":
+            for delivered_order in delivered_orders:
+                sale+=(delivered_order.products.price*delivered_order.qty)
+    if request.method=="POST":
+        start_date=request.POST['startDate']
+        end_date=request.POST['endDate']
+        start_date=datetime.datetime.strptime(start_date, "%Y-%m-%d").date()
+        end_date=datetime.datetime.strptime(end_date, "%Y-%m-%d").date()
 
+        for delivered_order in delivered_orders:
+            cmp_date= str(delivered_order.order.date)
+            cmp_date=cmp_date.split()[0]
+            cmp_date=datetime.datetime.strptime(cmp_date, "%Y-%m-%d").date()
+            if cmp_date >=start_date and cmp_date<=end_date:
+                sale+=(delivered_order.products.price*delivered_order.qty)  
+    sale=babel.numbers.format_currency(sale, "Rs ", locale='en_PK')
+    return render(request,"Seller_Module/Seller_Report.html",{"user":user,"sale":sale,"pending":pending_count,"delivered":delivered_count,"ratings":ratings})
 
