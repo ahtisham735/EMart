@@ -6,10 +6,10 @@ from django.shortcuts import render,redirect,reverse
 from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect
 from order.models import Order,OrderDetails
-import babel.numbers
+
 from django.db.models import Sum 
 import datetime
-
+import babel.numbers
 def seller_center(request):
     user=isUserLogin(request,'seller')
     if user is None:
@@ -18,6 +18,7 @@ def seller_center(request):
         else:
             return render(request,"Seller_Module/SellerSignUp.html")
     productList=Products.objects.all().filter(sellerId=user)
+    
     return render(request,"Seller_Module/AllProduct.html",context={"user":user,"products":productList})
 def seller_detail(request):
     seller=isUserLogin(request,'seller')

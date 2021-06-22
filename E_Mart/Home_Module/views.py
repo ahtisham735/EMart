@@ -48,6 +48,15 @@ def login(request):
             return render(request,"Home_Module/signup.html",context={"username":request.session['username'],"password":request.session['password']})
         return render(request,"Home_Module/signup.html")
     if request.method=="POST":
+        #Filtering Latest Objects on The basis of ID
+        prod=Products.objects.all().order_by('-id')
+        prod=prod[:4]
+    
+        #Filtering Featured Products
+        #select_related basically works as join
+        feature=ProductReview.objects.select_related('products').all().order_by('-rate')
+        if len(feature)>4:
+            feature=feature[:4]
         username= request.POST['username']
         password= request.POST['password']  
         cust = auth.authenticate(username=username,password=password)
@@ -82,7 +91,7 @@ def login(request):
                     request.session['user']=cust.username
                     cart=Cart.objects.filter(user=cust)#cart Notification
                     #context setting
-                    context={"user":cust,"notify":len(cart)}
+                    context={"user":cust,"notify":len(cart),"Products":prod,"feature":feature}
                     return render(request,"Home_Module/Home.html",context=context)
         if "is_seller" in request.POST:
             return render(request,"Seller_Module/SellerSignUp.html",context={"errorMessage":errorMessage})
@@ -90,12 +99,23 @@ def login(request):
             return render(request,"Home_Module/SignUp.html",context={"errorMessage":errorMessage})
     
 def home(request):
+    #Filtering Latest Objects on The basis of ID
+    prod=Products.objects.all().order_by('-id')
+    prod=prod[:4]
+    
+    #Filtering Featured Products
+    #select_related basically works as join
+    feature=ProductReview.objects.select_related('products').all().order_by('-rate')
+    if len(feature)>4:
+        feature=feature[:4]
+    
     user=isUserLogin(request,'user')
     if user is not None:
         cart=Cart.objects.filter(user=user)
-        context={"user":user,"notify":len(cart)}
+        context={"user":user,"notify":len(cart),"Products":prod,"feature":feature}
         return render(request,"Home_Module/Home.html",context=context)
-    return render(request,"Home_Module/Home.html")
+    context={"Products":prod,"feature":feature}
+    return render(request,"Home_Module/Home.html",context=context)
 
 def forget(request):
     if request.method!="POST":
@@ -145,6 +165,12 @@ def productDetail(request,id):
     user=isUserLogin(request,'user')
     if user is None:
         user=request.user
+    try:
+        p=ProductReview.objects.get(users=user,products=id)  
+        print("abc")  
+    except ProductReview.DoesNotExist:
+         p = None
+         print("pathan")
     if request.method=="GET":
         category=product.category
         name=product.productName
@@ -156,9 +182,11 @@ def productDetail(request,id):
         context={}
         if user is not None:
             cart=Cart.objects.filter(user=user)
-            context={"product":product,"comment":comments,"user":user,"relatedProd":relatedProd,"notify":len(cart)}
-        context={"product":product,"comment":comments,"user":user,"rProd":relatedProd}
-       
+            context={"product":product,"comment":comments,"p":p,"user":user,"rProd":relatedProd,"notify":len(cart)}
+            print("shoaib")
+            return render(request,"Home_Module/productDetail.html",context=context)
+           
+        context={"product":product,"p":p,"comment":comments,"user":user,"rProd":relatedProd}
         return render(request,"Home_Module/productDetail.html",context=context)
     if request.method=="POST":   
         if not user in User.objects.all():
@@ -384,3 +412,7 @@ def addComment(request, id):
     
              
     return HttpResponseRedirect(url)
+
+def about(request):
+    return render(request,"Home_Module/about.html")
+

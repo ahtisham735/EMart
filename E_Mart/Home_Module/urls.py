@@ -32,4 +32,5 @@ urlpatterns=[
     path("delete_cart/<int:id>",views.delete_cart,name="delete_cart"),
     path("addComment/<int:id>", views.addComment,name="addComment"),
     path('reports/',Seller_views.reports,name="reports"),
+    path('about/',views.about,name="about")
 ]

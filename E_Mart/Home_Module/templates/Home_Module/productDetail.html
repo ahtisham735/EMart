@@ -31,9 +31,9 @@
             <div class="col-2">
             <h1>{{product.productName}} by {{product.brand}} </h1>
             <h3>Price:{{product.price}} rupees</h3><br>
-            <h3>Rating:{{product.averagereview}} </h3><br>
-            <h3>Product Details<i class="fa fa-indent"></i></h3>
             <h3>Available Quantity:{{product.quantity}}</h3>
+            <h3>Rating:{{product.averagereview|floatformat:2}} </h3><br>
+            <h3>Product Details<i class="fa fa-indent"></i></h3>
             <br>
             <p>{{product.description}}</p>
             <form method="POST" action="{%url 'Home_Module:productDetail' product.id %}">
@@ -52,7 +52,6 @@
         <div clas="small-container">
             <div class="row row-2">
                 <h2>Related Images</h2>
-                <a>View More</a>
             </div>
         </div>
         <div class="row">
@@ -69,7 +68,7 @@
                         <label class="fa fa-star {% if Prod.averagereview >= 3 %} true-color {%else%} false-color{% endif %}"></label>
                         <label class="fa fa-star {% if Prod.averagereview >= 4 %} true-color {%else%} false-color{% endif %}"></label>
                         <label class="fa fa-star {% if Prod.averagereview >= 5 %} true-color {%else%} false-color{% endif %}"></label>
-                        <p class="far rate-color">  Average:  {{Prod.averagereview}}</p>
+                        <p class="far rate-color"></p>
                     </div>
                     <p>Price:{{Prod.price}} rupees</p>
                 </div>
@@ -116,6 +115,7 @@
          </div>
          <div class="reviews">
             <div>
+            {% if p is None %}
                 <h2>Write your Reviews:</h2>
                 </div>
             <form class="" method="POST" action="{%url 'Home_Module:addComment' product.id%}">
@@ -136,13 +136,12 @@
                         <input type="radio" id="star5" name="rate" value="1"/><label for="star5"></label>
                     </div>
                 </div>
-                    {% if user is not None %}
+                 
                         <button class="review-btn">Submit</button>
-                     {% else %}
-                        please login
                      {%endif%}
             </form> 
         </div>
+    </div>
     </div>
     </div>
 {%endblock%}
