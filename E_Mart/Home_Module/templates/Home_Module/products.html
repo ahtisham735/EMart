@@ -5,13 +5,7 @@
     <div class="small-container">
         <div class="row row-2">
             <h2>All Products</h2>
-            <select>
-                <option>Default Sort</option>
-                <option>Sort by Price</option>
-                <option>Sort by Rating</option>
-                <option>Sort By popularity</option>
             
-            </select>
         </div>
         <div class="row">
             {%for product in products%}
@@ -29,6 +23,7 @@
                     <label class="fa fa-star {% if product.averagereview >= 4 %} true-color {%else%} false-color{% endif %}"></label>
                     <label class="fa fa-star {% if product.averagereview >= 5 %} true-color {%else%} false-color{% endif %}"></label>
                     <p>{{product.averagereview}}</p>
+                    <p>{{product.category}}</p>
                 </div>
                 
                 <p>{{product.price}}</p>

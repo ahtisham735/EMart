@@ -182,10 +182,11 @@ def productDetail(request,id):
         context={}
         if user is not None:
             cart=Cart.objects.filter(user=user)
-            context={"product":product,"comment":comments,"p":p,"user":user,"relatedProd":relatedProd,"notify":len(cart)}
+            context={"product":product,"comment":comments,"p":p,"user":user,"rProd":relatedProd,"notify":len(cart)}
             print("shoaib")
+            return render(request,"Home_Module/productDetail.html",context=context)
+           
         context={"product":product,"p":p,"comment":comments,"user":user,"rProd":relatedProd}
-       
         return render(request,"Home_Module/productDetail.html",context=context)
     if request.method=="POST":   
         if not user in User.objects.all():
