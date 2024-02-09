@@ -9,7 +9,7 @@ Sellers, on the other hand, can create their own store, add products to their in
 
 The admin module provides an interface to manage the website's overall functionality, including user management, order management, and store management. Admins can also view sales reports and generate analytics to help improve the website's performance.
 
-EMART is designed to provide a seamless shopping experience for buyers while enabling sellers to easily manage their online store. The website's intuitive interface and robust features make it a convenient and efficient platform for online shopping.
+EMART is designed to provide a seamless shopping experience for buyers while enabling sellers to easily manage their online store. The [website's](https://lescobilling.pk/) intuitive interface and robust features make it a convenient and efficient platform for online shopping.
 
 ## Installed libraries:
 
